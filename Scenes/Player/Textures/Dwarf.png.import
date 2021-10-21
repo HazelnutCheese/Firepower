@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Dwarf.png-36467859d0aa0ff8659a1376b6f81604.s3tc.stex"
-path.etc2="res://.import/Dwarf.png-36467859d0aa0ff8659a1376b6f81604.etc2.stex"
+path.s3tc="res://.import/Dwarf.png-ea2f395d1a257da0d67318c40dd8bff8.s3tc.stex"
+path.etc2="res://.import/Dwarf.png-ea2f395d1a257da0d67318c40dd8bff8.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Textures/Dwarf.png"
-dest_files=[ "res://.import/Dwarf.png-36467859d0aa0ff8659a1376b6f81604.s3tc.stex", "res://.import/Dwarf.png-36467859d0aa0ff8659a1376b6f81604.etc2.stex" ]
+source_file="res://Scenes/Player/Textures/Dwarf.png"
+dest_files=[ "res://.import/Dwarf.png-ea2f395d1a257da0d67318c40dd8bff8.s3tc.stex", "res://.import/Dwarf.png-ea2f395d1a257da0d67318c40dd8bff8.etc2.stex" ]
 
 [params]
 

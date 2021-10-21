@@ -3,6 +3,9 @@ extends KinematicBody
 # Load the custom images for the mouse cursor.
 var arrow = load("res://UI/Cursor.png")
 
+# inGameMenu
+onready var _inGameMenu : Popup = get_node("CanvasLayer/InGameMenu")
+
 # cam look
 const _minLookAngleX = -45.0
 const _maxLookAngleX = 0.0
@@ -19,8 +22,6 @@ var _velocity : Vector3 = Vector3()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Changes only the arrow shape of the cursor.
-	# This is similar to changing it in the project settings.
 	Input.set_custom_mouse_cursor(arrow)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
