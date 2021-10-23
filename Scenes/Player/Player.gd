@@ -3,16 +3,17 @@ extends KinematicBody
 # cam look
 const _minLookAngleX = -45.0
 const _maxLookAngleX = 0.0
-const _lookSensitivity = 30.0
+const _lookSensitivity = 10.0
 const _cameraReturnSensitivity = 500.0
 onready var _cameraSpatial : Spatial = get_node("Camera_Spatial")
 var _mouseDelta : Vector2 = Vector2()
 
 # movement
 const _moveSpeed = 10
-const _gravity = 28
-const _jumpSpeed = 14
+const _gravity = 32
+const _jumpSpeed = 32
 var _velocity : Vector3 = Vector3()
+var _isFalling = false
 
 # input
 var _inputDict = { 
@@ -21,9 +22,19 @@ var _inputDict = {
 	"inGame_StrafeLeft" : false,
 	"inGame_StrafeRight" : false  }
 
+# Animation
+onready var _animationPlayer : AnimationPlayer = get_node("DwardDummyRigged2/AnimationPlayer")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	PlayerGlobals._addPlayer(self, 0)
+	_animationPlayer.set_blend_time("Idle", "Run", 0.25)
+	_animationPlayer.set_blend_time("Run", "Idle", 0.25)
+	_animationPlayer.set_blend_time("Run", "Jump", 0.25)
+	_animationPlayer.set_blend_time("Jump", "Falling", 0.25)
+	_animationPlayer.set_blend_time("Falling", "Land", 0.25)
+	_animationPlayer.set_blend_time("Land", "Idle", 1.5)
+	_animationPlayer.set_blend_time("Land", "Run", 1.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -50,11 +61,21 @@ func _process(delta):
 	input = input.normalized() * _moveSpeed
 	
 	if is_on_floor():
+		if(_isFalling):
+			_isFalling = false
+			_animationPlayer.play("Land")		
 		_velocity.x = input.x
-		_velocity.z = input.z
-	
-	if Input.is_action_pressed("ingame_jump") and is_on_floor():
-		_velocity.y = _jumpSpeed
+		_velocity.z = input.z	
+		if Input.is_action_pressed("ingame_jump"):
+			_velocity.y = _jumpSpeed
+			_animationPlayer.play("Jump", -1, 2)
+		elif(input.x == 0 and input.y == 0):
+			_animationPlayer.play("Idle")
+		else:
+			_animationPlayer.play("Run")
+	else:
+		_isFalling = true
+		_animationPlayer.queue("Falling")
 	
 	_velocity.y -= delta * _gravity	
 	_velocity = move_and_slide(_velocity, Vector3.UP)

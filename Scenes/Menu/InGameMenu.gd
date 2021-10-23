@@ -23,6 +23,7 @@ func _closeButton_Pressed():
 	self.hide()
 
 func _ready():	
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# warning-ignore:return_value_discarded
 	_settingsButton.connect("pressed", self, "_settingsButton_Pressed")
 	# warning-ignore:return_value_discarded
@@ -36,6 +37,7 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("ingame_MenuButton"):
 		if(self.visible and not _settingsMenu.visible): 
 			self.hide()
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		elif(_settingsMenu.visible):
 			_settingsMenu.hide()
 		elif(_quitDialog != null):
@@ -43,6 +45,7 @@ func _unhandled_input(event):
 		else:
 			self.show()
 			PlayerGlobals._getPlayer(0)._clearInput()
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if(visible):
 		accept_event()
 
