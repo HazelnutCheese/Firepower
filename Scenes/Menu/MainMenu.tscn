@@ -52,23 +52,23 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="MarginContainer/MarginContainer/Menu Options"]
-margin_top = 92.0
+margin_top = 73.0
 margin_right = 200.0
-margin_bottom = 117.0
+margin_bottom = 111.0
 rect_min_size = Vector2( 200, 25 )
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/MarginContainer/Menu Options"]
-margin_top = 137.0
+margin_top = 131.0
 margin_right = 200.0
-margin_bottom = 162.0
+margin_bottom = 169.0
 rect_min_size = Vector2( 200, 25 )
 text = "Settings"
 
 [node name="ExitButton" type="Button" parent="MarginContainer/MarginContainer/Menu Options"]
-margin_top = 182.0
+margin_top = 189.0
 margin_right = 200.0
-margin_bottom = 207.0
+margin_bottom = 227.0
 rect_min_size = Vector2( 200, 25 )
 text = "Exit"
 

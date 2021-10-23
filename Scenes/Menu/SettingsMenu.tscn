@@ -7,6 +7,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -17,10 +22,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -460.0
-margin_top = -320.0
-margin_right = 460.0
-margin_bottom = 320.0
+margin_left = -450.0
+margin_top = -377.5
+margin_right = 450.0
+margin_bottom = 377.5
+mouse_filter = 1
 custom_constants/margin_right = 120
 custom_constants/margin_top = 80
 custom_constants/margin_left = 120
@@ -32,8 +38,9 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 margin_left = 120.0
 margin_top = 80.0
-margin_right = 800.0
-margin_bottom = 560.0
+margin_right = 780.0
+margin_bottom = 675.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0, 0, 0, 1 )
@@ -44,12 +51,12 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 120.0
 margin_top = 80.0
-margin_right = 800.0
-margin_bottom = 560.0
+margin_right = 780.0
+margin_bottom = 675.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 680.0
-margin_bottom = 411.0
+margin_right = 660.0
+margin_bottom = 548.0
 size_flags_vertical = 3
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
@@ -59,15 +66,15 @@ custom_constants/margin_bottom = 20
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 660.0
-margin_bottom = 391.0
+margin_right = 640.0
+margin_bottom = 528.0
 tab_align = 0
 
 [node name="Display" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 45.0
 margin_right = -4.0
 margin_bottom = -4.0
 custom_constants/margin_right = 20
@@ -78,36 +85,113 @@ custom_constants/margin_bottom = 20
 [node name="VboxOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 612.0
-margin_bottom = 315.0
+margin_right = 592.0
+margin_bottom = 439.0
 custom_constants/separation = 20
 alignment = 1
 
-[node name="ResolutionOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions"]
-margin_top = 67.0
-margin_right = 592.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 200, 25 )
-text = "Resolution"
+[node name="ScreenMode" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions"]
+margin_top = 2.0
+margin_right = 572.0
+margin_bottom = 77.0
+custom_constants/separation = 10
 
-[node name="ScreenModeOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions"]
-margin_top = 112.0
-margin_right = 592.0
-margin_bottom = 137.0
+[node name="ScreenModeLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/ScreenMode"]
+margin_right = 572.0
+margin_bottom = 27.0
+text = "Screen Mode:"
+
+[node name="ScreenModeOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/ScreenMode"]
+margin_top = 37.0
+margin_right = 572.0
+margin_bottom = 75.0
 rect_min_size = Vector2( 200, 25 )
+
+[node name="WindowSize" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions"]
+margin_top = 97.0
+margin_right = 572.0
+margin_bottom = 172.0
+custom_constants/separation = 10
+
+[node name="WindowSizeLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/WindowSize"]
+margin_right = 572.0
+margin_bottom = 27.0
+text = "Window Size:"
+
+[node name="WindowSizeOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/WindowSize"]
+margin_top = 37.0
+margin_right = 572.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 200, 25 )
+
+[node name="RenderScale" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions"]
+margin_top = 192.0
+margin_right = 572.0
+margin_bottom = 298.0
+custom_constants/separation = 10
+
+[node name="RenderScaleLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/RenderScale"]
+margin_right = 572.0
+margin_bottom = 27.0
+text = "Render Scale:"
+
+[node name="HboxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/RenderScale"]
+margin_top = 37.0
+margin_right = 572.0
+margin_bottom = 69.0
+size_flags_horizontal = 3
+
+[node name="RenderScaleSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/RenderScale/HboxContainer"]
+margin_right = 568.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 25.0
+max_value = 200.0
+step = 5.0
+value = 100.0
+rounded = true
+tick_count = 35
+ticks_on_borders = true
+
+[node name="RenderScaleTextValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/RenderScale/HboxContainer"]
+margin_left = 572.0
+margin_right = 572.0
+margin_bottom = 32.0
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/RenderScale"]
+margin_top = 79.0
+margin_right = 572.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+custom_constants/separation = 15
+
+[node name="RenderedResolutionLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/RenderScale/HBoxContainer"]
+margin_right = 210.0
+margin_bottom = 27.0
+text = "Rendered Resolution:"
+
+[node name="RenderedResolutionTextValue" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/RenderScale/HBoxContainer"]
+margin_left = 225.0
+margin_right = 324.0
+margin_bottom = 27.0
+text = "1920x1080"
+align = 3
+valign = 1
 
 [node name="Borderless" type="CheckBox" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions"]
-margin_top = 157.0
-margin_right = 592.0
-margin_bottom = 182.0
+margin_top = 318.0
+margin_right = 572.0
+margin_bottom = 358.0
 rect_min_size = Vector2( 200, 25 )
-disabled = true
 text = "Borderless"
 
 [node name="ApplyButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions"]
-margin_top = 202.0
-margin_right = 592.0
-margin_bottom = 227.0
+margin_top = 378.0
+margin_right = 572.0
+margin_bottom = 416.0
 rect_min_size = Vector2( 200, 25 )
 text = "Apply"
 
@@ -116,18 +200,19 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
-margin_right = -596.0
-margin_bottom = -808.0
+margin_top = 45.0
+margin_right = -4.0
+margin_bottom = -4.0
 
 [node name="VboxOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/TabContainer/Gameplay"]
 visible = false
-margin_right = 40.0
+margin_right = 612.0
+margin_bottom = 459.0
 
 [node name="BackButtonContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 415.0
-margin_right = 680.0
-margin_bottom = 480.0
+margin_top = 552.0
+margin_right = 660.0
+margin_bottom = 630.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -136,7 +221,7 @@ custom_constants/margin_bottom = 20
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/BackButtonContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 660.0
-margin_bottom = 45.0
+margin_right = 640.0
+margin_bottom = 58.0
 rect_min_size = Vector2( 200, 25 )
 text = "Back"

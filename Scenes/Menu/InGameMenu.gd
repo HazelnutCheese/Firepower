@@ -8,6 +8,8 @@ onready var _closeButton : Button = get_node("MarginContainer/MarginContainer/Me
 onready var _settingsMenu : Popup = get_node("SettingsMenu")
 onready var _quitDialog : ConfirmationDialog = null
 
+#onready var _player = get_tree().get_root().find_node("Player")
+
 func _settingsButton_Pressed():
 	_settingsMenu.show()
 
@@ -21,12 +23,16 @@ func _closeButton_Pressed():
 	self.hide()
 
 func _ready():	
+	# warning-ignore:return_value_discarded
 	_settingsButton.connect("pressed", self, "_settingsButton_Pressed")
+	# warning-ignore:return_value_discarded
 	_exitToMenuButton.connect("pressed", self, "_exitToMenuButton_Pressed")
+	# warning-ignore:return_value_discarded
 	_exitButton.connect("pressed", self, "_exitButton_Pressed")
+	# warning-ignore:return_value_discarded
 	_closeButton.connect("pressed", self, "_closeButton_Pressed")
 
-func _input(event):
+func _unhandled_input(event):
 	if Input.is_action_just_pressed("ingame_MenuButton"):
 		if(self.visible and not _settingsMenu.visible): 
 			self.hide()
@@ -36,6 +42,9 @@ func _input(event):
 			_quitCancelled()
 		else:
 			self.show()
+			PlayerGlobals._getPlayer(0)._clearInput()
+	if(visible):
+		accept_event()
 
 func _quitGame():
 	_quitDialog = ConfirmationDialog.new()
@@ -43,7 +52,9 @@ func _quitGame():
 	add_child(_quitDialog)
 	_quitDialog.window_title = "Are you sure?"
 	_quitDialog.popup_exclusive = true
+	# warning-ignore:return_value_discarded
 	_quitDialog.get_ok().connect("pressed", self, "_quitPressed")
+	# warning-ignore:return_value_discarded
 	_quitDialog.get_cancel().connect("pressed", self, "_quitCancelled")
 	self.hide()
 	_quitDialog.popup_centered()
