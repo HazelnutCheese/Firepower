@@ -1,11 +1,5 @@
 extends KinematicBody
 
-# Load the custom images for the mouse cursor.
-var arrow = load("res://UI/Cursor.png")
-
-# inGameMenu
-onready var _inGameMenu : Popup = get_node("CanvasLayer/InGameMenu")
-
 # cam look
 const _minLookAngleX = -45.0
 const _maxLookAngleX = 0.0
@@ -20,36 +14,37 @@ const _gravity = 28
 const _jumpSpeed = 14
 var _velocity : Vector3 = Vector3()
 
+# input
+var _inputDict = { 
+	"inGame_MoveForward" : false,
+	"inGame_MoveBackward" : false,
+	"inGame_StrafeLeft" : false,
+	"inGame_StrafeRight" : false  }
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Input.set_custom_mouse_cursor(arrow)
+	PlayerGlobals._addPlayer(self, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed("ui_mouseDownLeft"):	
-		rotatePlayer(delta)	
-	elif Input.is_action_pressed("ui_mouseDownRight"):	
-		rotateCamera(delta)	
-	elif _cameraSpatial.rotation_degrees.y != 0:
-		resetCameraBehind(delta)
+#	if Input.is_action_pressed("ui_mouseDownLeft"):	
+	_rotatePlayer(delta)	
+#	elif Input.is_action_pressed("ui_mouseDownRight"):	
+#		rotateCamera(delta)	
+#	elif _cameraSpatial.rotation_degrees.y != 0:
+#		resetCameraBehind(delta)
 
 	# reset the mouseDelta vector
 	_mouseDelta = Vector2()
-	
 	var input = Vector3()
-	if Input.is_action_pressed("ui_up") or (
-		Input.is_action_pressed("ui_mouseDownLeft") and 
-		Input.is_action_pressed("ui_mouseDownRight")):
+	if(_inputDict["inGame_MoveForward"]):
 		input.z -= 1
-		
-	if Input.is_action_pressed("ui_down"):
+	if(_inputDict["inGame_MoveBackward"]):
 		input.z += 1
-	
-	if Input.is_action_pressed("ui_right"):
-		input.x += 1
-		
-	if Input.is_action_pressed("ui_left"):
+	if(_inputDict["inGame_StrafeLeft"]):
 		input.x -= 1
+	if(_inputDict["inGame_StrafeRight"]):
+		input.x += 1
 	
 	input = input.rotated(Vector3.UP, rotation.y)	
 	input = input.normalized() * _moveSpeed
@@ -64,11 +59,7 @@ func _process(delta):
 	_velocity.y -= delta * _gravity	
 	_velocity = move_and_slide(_velocity, Vector3.UP)
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		_mouseDelta = event.relative
-
-func rotatePlayer(delta):
+func _rotatePlayer(delta):
 	# rotate the player along the y axis
 	_cameraSpatial.rotation_degrees.x -= _mouseDelta.y * _lookSensitivity * delta
   
@@ -84,7 +75,7 @@ func rotatePlayer(delta):
 	rotation_degrees.y += cameraRotationY
 	rotation_degrees.y -= (_mouseDelta.x * 1.5) * _lookSensitivity * delta
 
-func rotateCamera(delta):
+func _rotateCamera(delta):
 	# rotate the camera along the y axis
 	_cameraSpatial.rotation_degrees.x -= _mouseDelta.y * _lookSensitivity * delta
   
@@ -96,9 +87,9 @@ func rotateCamera(delta):
   
 	# rotate the camera along their y-axis
 	_cameraSpatial.rotation_degrees.y -= _mouseDelta.x * _lookSensitivity * delta
-	fmodYRotation(_cameraSpatial)
+	_fmodYRotation(_cameraSpatial)
 
-func resetCameraBehind(delta):
+func _resetCameraBehind(delta):
 	var returnDelta = delta * _cameraReturnSensitivity
 	
 	_cameraSpatial.rotation_degrees.y = clamp(
@@ -112,6 +103,32 @@ func resetCameraBehind(delta):
 		_cameraSpatial.rotation_degrees.y < 0):
 		_cameraSpatial.rotation_degrees.y = 0
 
-func fmodYRotation(spatial):
+func _fmodYRotation(spatial):
 	spatial.rotation_degrees.y = fmod(spatial.rotation_degrees.y, 360.0)
 	spatial.rotation_degrees.y = fmod(spatial.rotation_degrees.y, -360.0)
+
+func _clearInput():
+	_inputDict["inGame_MoveForward"] = false
+	_inputDict["inGame_MoveBackward"] = false
+	_inputDict["inGame_StrafeLeft"] = false
+	_inputDict["inGame_StrafeRight"] = false
+
+func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		_mouseDelta = event.relative	
+	elif (event.is_action_pressed("inGame_MoveForward")):
+		_inputDict["inGame_MoveForward"] = true
+	elif (event.is_action_pressed("inGame_MoveBackward")):
+		_inputDict["inGame_MoveBackward"] = true
+	elif (event.is_action_pressed("inGame_StrafeLeft")):
+		_inputDict["inGame_StrafeLeft"] = true
+	elif (event.is_action_pressed("inGame_StrafeRight")):
+		_inputDict["inGame_StrafeRight"] = true		
+	elif (event.is_action_released("inGame_MoveForward")):
+		_inputDict["inGame_MoveForward"] = false
+	elif (event.is_action_released("inGame_MoveBackward")):
+		_inputDict["inGame_MoveBackward"] = false
+	elif (event.is_action_released("inGame_StrafeLeft")):
+		_inputDict["inGame_StrafeLeft"] = false
+	elif (event.is_action_released("inGame_StrafeRight")):
+		_inputDict["inGame_StrafeRight"] = false

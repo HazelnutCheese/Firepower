@@ -9,7 +9,7 @@ onready var _settingsMenu : Popup = get_node("SettingsMenu")
 onready var _quitDialog : ConfirmationDialog = null
 
 func _playButton_Pressed():
-	get_tree().change_scene("res://scenes/test_farm.tscn")
+	get_tree().change_scene("res://scenes/MainScene.tscn")
 
 func _settingsButton_Pressed():
 	_settingsMenu.show()
@@ -18,8 +18,11 @@ func _exitButton_Pressed():
 	get_tree().quit()
 
 func _ready():	
+	# warning-ignore:return_value_discarded
 	_playButton.connect("pressed", self, "_playButton_Pressed")
+	# warning-ignore:return_value_discarded
 	_settingsButton.connect("pressed", self, "_settingsButton_Pressed")
+	# warning-ignore:return_value_discarded
 	_exitButton.connect("pressed", self, "_exitButton_Pressed")
 
 func _input(event):
@@ -37,7 +40,9 @@ func _quitGame():
 	add_child(_quitDialog)
 	_quitDialog.window_title = "Are you sure?"
 	_quitDialog.popup_exclusive = true
+	# warning-ignore:return_value_discarded
 	_quitDialog.get_ok().connect("pressed", self, "_quitPressed")
+	# warning-ignore:return_value_discarded
 	_quitDialog.get_cancel().connect("pressed", self, "_quitCancelled")
 	_quitDialog.popup_centered()
 
