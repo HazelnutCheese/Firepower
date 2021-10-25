@@ -8,19 +8,9 @@ onready var _closeButton : Button = get_node("MarginContainer/MarginContainer/Me
 onready var _settingsMenu : Popup = get_node("SettingsMenu")
 onready var _quitDialog : ConfirmationDialog = null
 
+var menuScene = load("res://Scenes/Menu/MainMenu.tscn")
+
 #onready var _player = get_tree().get_root().find_node("Player")
-
-func _settingsButton_Pressed():
-	_settingsMenu.show()
-
-func _exitToMenuButton_Pressed():
-	get_tree().change_scene("res://Scenes/Menu/MainMenu.tscn")
-
-func _exitButton_Pressed():
-	_quitGame()
-
-func _closeButton_Pressed():
-	self.hide()
 
 func _ready():	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -44,10 +34,21 @@ func _unhandled_input(event):
 			_quitCancelled()
 		else:
 			self.show()
-			PlayerGlobals._getPlayer(0)._clearInput()
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if(visible):
 		accept_event()
+
+func _settingsButton_Pressed():
+	_settingsMenu.show()
+
+func _exitToMenuButton_Pressed():
+	ServerClient._endConnection()
+
+func _exitButton_Pressed():
+	_quitGame()	
+
+func _closeButton_Pressed():
+	self.hide()
 
 func _quitGame():
 	_quitDialog = ConfirmationDialog.new()
@@ -64,6 +65,7 @@ func _quitGame():
 
 func _quitPressed():
 	get_tree().quit()
+	ServerClient._endConnection()
 
 func _quitCancelled():
 	remove_child(_quitDialog)

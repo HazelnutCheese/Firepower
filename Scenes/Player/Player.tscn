@@ -14,11 +14,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera_Spatial" type="Spatial" parent="."]
-
-[node name="Camera" type="Camera" parent="Camera_Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 12 )
-
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81284, 0 )
 shape = SubResource( 1 )
@@ -26,14 +21,11 @@ shape = SubResource( 1 )
 [node name="DwardDummyRigged2" parent="." instance=ExtResource( 2 )]
 transform = Transform( -3, 0, 2.62268e-07, 0, 3, 0, -2.62268e-07, 0, -3, 0, 0, 0 )
 
-[node name="Skeleton" parent="DwardDummyRigged2/Armature" index="0"]
-bones/15/bound_children = [ NodePath("BoneAttachment") ]
-
 [node name="Cube" parent="DwardDummyRigged2/Armature/Skeleton" index="0"]
 mesh = ExtResource( 3 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="DwardDummyRigged2/Armature/Skeleton" index="1"]
-transform = Transform( -0.99303, 0.108715, -0.0455213, 0.117203, 0.951597, -0.284123, 0.0124295, -0.287478, -0.957707, -0.337929, 1.41719, -0.0474138 )
+transform = Transform( -0.974061, -0.22442, -0.0289838, 0.152899, -0.747171, 0.646806, -0.166812, 0.625597, 0.762104, -0.352246, 0.545582, -0.0384445 )
 bone_name = "Fingers.R"
 
 [node name="MeshInstance" type="MeshInstance" parent="DwardDummyRigged2/Armature/Skeleton/BoneAttachment"]

@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Models/DwardDummyRigged2.glb" type="PackedScene" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -46,8 +45,5 @@ material = SubResource( 1 )
 [node name="CollisionShape" type="CollisionShape" parent="Spatial/Spatial"]
 shape = SubResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-
-[node name="DwardDummyRigged2" parent="." instance=ExtResource( 2 )]
+[node name="DwardDummyRigged2" parent="Spatial" instance=ExtResource( 2 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 10.6149, -0.00415945, -3.32477 )
