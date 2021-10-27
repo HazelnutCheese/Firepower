@@ -100,10 +100,10 @@ func _addPlayer(id, name):
 	var player = playerScene.instance()	
 	# The id must be unique
 	player.set_name(name)	
-	# Call the setup
-	player._setup(id)
 	# Add the player to the scene
 	get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene/Spatial").add_child(player)
+	# Call the setup
+	player._setup(id)
 
 remote func _removePlayer(id):
 	var playerName = "Player" + str(id)
