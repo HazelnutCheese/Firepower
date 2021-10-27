@@ -1,25 +1,25 @@
 extends Node
 
 onready var _playButton : Button = get_node("MarginContainer/MarginContainer/Menu Options/PlayButton")
+onready var _hostButton : Button = get_node("MarginContainer/MarginContainer/Menu Options/HostButton")
+onready var _joinButton : Button = get_node("MarginContainer/MarginContainer/Menu Options/JoinButton")
 onready var _settingsButton : Button = get_node("MarginContainer/MarginContainer/Menu Options/SettingsButton")
 onready var _exitButton : Button = get_node("MarginContainer/MarginContainer/Menu Options/ExitButton")
+
+onready var _joinIpTextEdit : TextEdit = get_node("MarginContainer/MarginContainer/Menu Options/JoinIpTextEdit")
+onready var _joinPortTextEdit : TextEdit = get_node("MarginContainer/MarginContainer/Menu Options/JoinPortTextEdit")
 
 onready var _settingsMenu : Popup = get_node("SettingsMenu")
 
 onready var _quitDialog : ConfirmationDialog = null
 
-func _playButton_Pressed():
-	get_tree().change_scene("res://scenes/MainScene.tscn")
-
-func _settingsButton_Pressed():
-	_settingsMenu.show()
-
-func _exitButton_Pressed():
-	get_tree().quit()
-
 func _ready():	
 	# warning-ignore:return_value_discarded
 	_playButton.connect("pressed", self, "_playButton_Pressed")
+	# warning-ignore:return_value_discarded
+	_hostButton.connect("pressed", self, "_hostButton_Pressed")
+	# warning-ignore:return_value_discarded
+	_joinButton.connect("pressed", self, "_joinButton_Pressed")
 	# warning-ignore:return_value_discarded
 	_settingsButton.connect("pressed", self, "_settingsButton_Pressed")
 	# warning-ignore:return_value_discarded
@@ -33,6 +33,21 @@ func _input(event):
 			_quitGame()
 		elif(_quitDialog != null):
 			_quitCancelled()
+
+func _playButton_Pressed():
+	get_tree().change_scene("res://scenes/MainScene.tscn")
+
+func _hostButton_Pressed():
+	ServerClient._hostServer(int(_joinPortTextEdit.text))
+	
+func _joinButton_Pressed():
+	ServerClient._joinServer(_joinIpTextEdit.text, int(_joinPortTextEdit.text))
+
+func _settingsButton_Pressed():
+	_settingsMenu.show()
+
+func _exitButton_Pressed():
+	get_tree().quit()
 
 func _quitGame():
 	_quitDialog = ConfirmationDialog.new()

@@ -9,9 +9,6 @@ onready var _renderedResolutionText : Label = get_node("MarginContainer/VBoxCont
 onready var _applyButton : Button = get_node("MarginContainer/VBoxContainer/MarginContainer/TabContainer/Display/VboxOptions/ApplyButton")
 onready var _backButton : Button = get_node("MarginContainer/VBoxContainer/BackButtonContainer/BackButton")
 
-# Viewport
-onready var _gameViewport : Viewport = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport")
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_setup_ScreenModeOptions()	
@@ -94,8 +91,9 @@ func _backButton_pressed():
 func set_fullscreen():
 	OS.set_window_fullscreen(true)
 	OS.set_borderless_window(false)
-	if(_gameViewport != null):
-		_gameViewport.size = get_viewport().size * (Configuration._renderScale / 100)
+	var gameViewport : Viewport = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport")
+	if(gameViewport != null):
+		gameViewport.size = get_viewport().size * (Configuration._renderScale / 100)
 
 func set_windowed():	
 	var windowSizeOption = Configuration._getWindowSizeAsId()
@@ -112,7 +110,8 @@ func set_windowed():
 	var window_y = (screen_size.y / 2) - (newSize.y / 2)
 	OS.set_borderless_window(Configuration._borderless)
 	OS.set_window_fullscreen(false)
-	OS.set_window_position(Vector2(window_x, window_y))
+	#OS.set_window_position(Vector2(window_x, window_y))
 	OS.set_window_size(newSize)
-	if(_gameViewport != null):
-		_gameViewport.size = get_viewport().size * (Configuration._renderScale / 100)
+	var gameViewport : Viewport = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport")
+	if(gameViewport != null):
+		gameViewport.size = get_viewport().size * (Configuration._renderScale / 100)

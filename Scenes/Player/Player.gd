@@ -1,33 +1,34 @@
 extends KinematicBody
 
-# cam look
-const _minLookAngleX = -45.0
-const _maxLookAngleX = 0.0
-const _lookSensitivity = 10.0
-const _cameraReturnSensitivity = 500.0
-onready var _cameraSpatial : Spatial = get_node("Camera_Spatial")
-var _mouseDelta : Vector2 = Vector2()
+# Camera
+var playerCameraScene = load("res://Scenes/Player/PlayerCamera.tscn")
+var localCamera = null
 
 # movement
 const _moveSpeed = 10
 const _gravity = 32
 const _jumpSpeed = 32
 var _velocity : Vector3 = Vector3()
+var _isWalking = false
 var _isFalling = false
+var _isJumping = false
 
-# input
-var _inputDict = { 
-	"inGame_MoveForward" : false,
-	"inGame_MoveBackward" : false,
-	"inGame_StrafeLeft" : false,
-	"inGame_StrafeRight" : false  }
+# networking
+var _networkId = -1
+puppet var puppet_translation = Vector3()
+puppet var puppet_rotation_degrees = Vector3()
+puppet var puppet_camera_rotation_degrees = Vector3()
+puppet var puppet_velocity = Vector3()
+puppet var puppet_isWalking = false
+puppet var puppet_isFalling = false
+puppet var puppet_isJumping = false
+remote var puppet_forServer_cameraY = 0.0
 
 # Animation
 onready var _animationPlayer : AnimationPlayer = get_node("DwardDummyRigged2/AnimationPlayer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	PlayerGlobals._addPlayer(self, 0)
 	_animationPlayer.set_blend_time("Idle", "Run", 0.25)
 	_animationPlayer.set_blend_time("Run", "Idle", 0.25)
 	_animationPlayer.set_blend_time("Run", "Jump", 0.25)
@@ -36,120 +37,83 @@ func _ready():
 	_animationPlayer.set_blend_time("Land", "Idle", 1.5)
 	_animationPlayer.set_blend_time("Land", "Run", 1.0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-#	if Input.is_action_pressed("ui_mouseDownLeft"):	
-	_rotatePlayer(delta)	
-#	elif Input.is_action_pressed("ui_mouseDownRight"):	
-#		rotateCamera(delta)	
-#	elif _cameraSpatial.rotation_degrees.y != 0:
-#		resetCameraBehind(delta)
+func _setup(networkId):
+	_networkId = networkId
+	if(_networkId == ServerClient._networkId):
+		localCamera = playerCameraScene.instance()
+		self.add_child(localCamera)
 
-	# reset the mouseDelta vector
-	_mouseDelta = Vector2()
-	var input = Vector3()
-	if(_inputDict["inGame_MoveForward"]):
-		input.z -= 1
-	if(_inputDict["inGame_MoveBackward"]):
-		input.z += 1
-	if(_inputDict["inGame_StrafeLeft"]):
-		input.x -= 1
-	if(_inputDict["inGame_StrafeRight"]):
-		input.x += 1
-	
-	input = input.rotated(Vector3.UP, rotation.y)	
-	input = input.normalized() * _moveSpeed
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	if(get_tree().is_network_server()):		
+		_velocity = move_and_slide(_velocity, Vector3.UP)
+		
+		var networkInputs = InputManager._getInputs(_networkId)
+
+		var input = Vector3()
+		if(networkInputs["inGame_MoveForward"]):
+			input.z -= 1
+		if(networkInputs["inGame_MoveBackward"]):
+			input.z += 1
+		if(networkInputs["inGame_StrafeLeft"]):
+			input.x -= 1
+		if(networkInputs["inGame_StrafeRight"]):
+			input.x += 1
+		
+		_isWalking = not (input.x == 0 and input.z == 0)
+		input = input.rotated(Vector3.UP, rotation.y)	
+		input = input.normalized() * _moveSpeed
+
+		_velocity.y -= delta * _gravity
+		if is_on_floor():
+			if(_isFalling):
+				_isFalling = false
+				_isJumping = false
+			_velocity.x = input.x
+			_velocity.z = input.z
+			if(networkInputs["inGame_Jump"]):
+				_velocity.y = _jumpSpeed
+				_isJumping = true
+		else:
+			_isFalling = true
+
+		if(_isFalling and _velocity.y < 0):
+			_isJumping = false
+		
+		rset_unreliable("puppet_translation", translation)
+		rset_unreliable("puppet_velocity", _velocity)
+		rset_unreliable("puppet_rotation_degrees", rotation_degrees)
+		rset_unreliable("puppet_isWalking", _isWalking)
+		rset_unreliable("puppet_isFalling", _isFalling)
+		rset_unreliable("puppet_isJumping", _isJumping)
+		
+		if(localCamera != null):
+			rotation_degrees.y = localCamera._nextCameraY
+		else:
+			rotation_degrees.y = networkInputs["cameraY"]
+	else:	
+		translation = puppet_translation
+		_velocity = puppet_velocity
+		rotation_degrees = puppet_rotation_degrees
+		_isWalking = puppet_isWalking
+		_isFalling = puppet_isFalling
+		_isJumping = puppet_isJumping
+		
+		_velocity.y -= delta * _gravity
+		_velocity = move_and_slide(_velocity, Vector3.UP)
+		
+		if(localCamera != null):
+			rotation_degrees.y = localCamera._nextCameraY
 	
 	if is_on_floor():
-		if(_isFalling):
-			_isFalling = false
-			_animationPlayer.play("Land")		
-		_velocity.x = input.x
-		_velocity.z = input.z	
-		if Input.is_action_pressed("ingame_jump"):
-			_velocity.y = _jumpSpeed
+		if(_isJumping):
 			_animationPlayer.play("Jump", -1, 2)
-		elif(input.x == 0 and input.y == 0):
-			_animationPlayer.play("Idle")
-		else:
+		elif(_isFalling):
+			# give up on this for now
+			_animationPlayer.play("Land")
+		elif(_isWalking):
 			_animationPlayer.play("Run")
+		else:
+			_animationPlayer.play("Idle")
 	else:
-		_isFalling = true
 		_animationPlayer.queue("Falling")
-	
-	_velocity.y -= delta * _gravity	
-	_velocity = move_and_slide(_velocity, Vector3.UP)
-
-func _rotatePlayer(delta):
-	# rotate the player along the y axis
-	_cameraSpatial.rotation_degrees.x -= _mouseDelta.y * _lookSensitivity * delta
-  
-	# clamp camera x rotation axis
-	_cameraSpatial.rotation_degrees.x = clamp(
-		_cameraSpatial.rotation_degrees.x, 
-		_minLookAngleX, 
-		_maxLookAngleX)
-  
-	# rotate the player along their y-axis
-	var cameraRotationY = _cameraSpatial.rotation_degrees.y
-	_cameraSpatial.rotation_degrees.y = 0
-	rotation_degrees.y += cameraRotationY
-	rotation_degrees.y -= (_mouseDelta.x * 1.5) * _lookSensitivity * delta
-
-func _rotateCamera(delta):
-	# rotate the camera along the y axis
-	_cameraSpatial.rotation_degrees.x -= _mouseDelta.y * _lookSensitivity * delta
-  
-	# clamp camera x rotation axis
-	_cameraSpatial.rotation_degrees.x = clamp(
-		_cameraSpatial.rotation_degrees.x, 
-		_minLookAngleX, 
-		_maxLookAngleX)
-  
-	# rotate the camera along their y-axis
-	_cameraSpatial.rotation_degrees.y -= _mouseDelta.x * _lookSensitivity * delta
-	_fmodYRotation(_cameraSpatial)
-
-func _resetCameraBehind(delta):
-	var returnDelta = delta * _cameraReturnSensitivity
-	
-	_cameraSpatial.rotation_degrees.y = clamp(
-		_cameraSpatial.rotation_degrees.y, 
-		-(_cameraSpatial.rotation_degrees.abs().y) + returnDelta, 
-		_cameraSpatial.rotation_degrees.abs().y - returnDelta)
-		
-	if (_cameraSpatial.rotation_degrees.y < returnDelta and 
-		_cameraSpatial.rotation_degrees.y > 0) or (
-		_cameraSpatial.rotation_degrees.y > -returnDelta and 
-		_cameraSpatial.rotation_degrees.y < 0):
-		_cameraSpatial.rotation_degrees.y = 0
-
-func _fmodYRotation(spatial):
-	spatial.rotation_degrees.y = fmod(spatial.rotation_degrees.y, 360.0)
-	spatial.rotation_degrees.y = fmod(spatial.rotation_degrees.y, -360.0)
-
-func _clearInput():
-	_inputDict["inGame_MoveForward"] = false
-	_inputDict["inGame_MoveBackward"] = false
-	_inputDict["inGame_StrafeLeft"] = false
-	_inputDict["inGame_StrafeRight"] = false
-
-func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		_mouseDelta = event.relative	
-	elif (event.is_action_pressed("inGame_MoveForward")):
-		_inputDict["inGame_MoveForward"] = true
-	elif (event.is_action_pressed("inGame_MoveBackward")):
-		_inputDict["inGame_MoveBackward"] = true
-	elif (event.is_action_pressed("inGame_StrafeLeft")):
-		_inputDict["inGame_StrafeLeft"] = true
-	elif (event.is_action_pressed("inGame_StrafeRight")):
-		_inputDict["inGame_StrafeRight"] = true		
-	elif (event.is_action_released("inGame_MoveForward")):
-		_inputDict["inGame_MoveForward"] = false
-	elif (event.is_action_released("inGame_MoveBackward")):
-		_inputDict["inGame_MoveBackward"] = false
-	elif (event.is_action_released("inGame_StrafeLeft")):
-		_inputDict["inGame_StrafeLeft"] = false
-	elif (event.is_action_released("inGame_StrafeRight")):
-		_inputDict["inGame_StrafeRight"] = false
