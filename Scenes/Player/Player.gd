@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody
 
 # Camera
@@ -14,13 +15,8 @@ const MAX_HEALTH = 100
 var _currentHealth = 100
 
 # movement
-const _moveSpeed = 10
 const _gravity = 32
-const _jumpSpeed = 32
 var _velocity : Vector3 = Vector3()
-var _isWalking = false
-var _isFalling = false
-var _isJumping = false
 
 # networking
 var _networkId = -1
@@ -28,9 +24,6 @@ puppet var puppet_translation = Vector3()
 puppet var puppet_rotation_degrees = Vector3()
 puppet var puppet_camera_rotation_degrees = Vector3()
 puppet var puppet_velocity = Vector3()
-puppet var puppet_isWalking = false
-puppet var puppet_isFalling = false
-puppet var puppet_isJumping = false
 remote var puppet_forServer_cameraY = 0.0
 remote var puppet_current_health = 100
 
@@ -59,59 +52,22 @@ func _setup(networkId):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if(get_tree().is_network_server()):		
-		_velocity = move_and_slide(_velocity, Vector3.UP)
-		
-		var networkInputs = InputManager._getInputs(_networkId)
-
-		var input = Vector3()
-		if(networkInputs["inGame_MoveForward"]):
-			input.z -= 1
-		if(networkInputs["inGame_MoveBackward"]):
-			input.z += 1
-		if(networkInputs["inGame_StrafeLeft"]):
-			input.x -= 1
-		if(networkInputs["inGame_StrafeRight"]):
-			input.x += 1
-		
-		_isWalking = not (input.x == 0 and input.z == 0)
-		input = input.rotated(Vector3.UP, rotation.y)	
-		input = input.normalized() * _moveSpeed
-
+	if(get_tree().is_network_server()):
 		_velocity.y -= delta * _gravity
-		if is_on_floor():
-			if(_isFalling):
-				_isFalling = false
-				_isJumping = false
-				_currentHealth -= 5
-			_velocity.x = input.x
-			_velocity.z = input.z
-			if(networkInputs["inGame_Jump"]):
-				_velocity.y = _jumpSpeed
-				_isJumping = true
-		else:
-			_isFalling = true
-
-		if(_isFalling and _velocity.y < 0):
-			_isJumping = false
+		_velocity = move_and_slide(_velocity, Vector3.UP)
 		
 		rset_unreliable("puppet_translation", translation)
 		rset_unreliable("puppet_velocity", _velocity)
 		rset_unreliable("puppet_rotation_degrees", rotation_degrees)
-		rset_unreliable("puppet_isWalking", _isWalking)
-		rset_unreliable("puppet_isFalling", _isFalling)
-		rset_unreliable("puppet_isJumping", _isJumping)
 		rset_unreliable("puppet_current_health", _currentHealth)
 		
 		if(_networkId != 1):
+			var networkInputs = InputManager._getInputs(_networkId)
 			rotation_degrees.y = networkInputs["cameraY"]
 	else:	
 		translation = puppet_translation
 		_velocity = puppet_velocity
 		rotation_degrees = puppet_rotation_degrees
-		_isWalking = puppet_isWalking
-		_isFalling = puppet_isFalling
-		_isJumping = puppet_isJumping
 		_currentHealth = puppet_current_health
 		
 		_velocity.y -= delta * _gravity
@@ -124,16 +80,3 @@ func _physics_process(delta):
 		localHud._updateHealth(_currentHealth)
 	else:
 		remoteHud._updateHealth(_currentHealth)
-
-	if is_on_floor():
-		if(_isJumping):
-			_animationPlayer.play("Jump", -1, 2)
-		elif(_isFalling):
-			# give up on this for now
-			_animationPlayer.play("Land")
-		elif(_isWalking):
-			_animationPlayer.play("Run")
-		else:
-			_animationPlayer.play("Idle")
-	else:
-		_animationPlayer.queue("Falling")

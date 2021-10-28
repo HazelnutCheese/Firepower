@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Models/DwardDummyRigged2.glb" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Models/miniplayer.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://Scenes/Player/States/StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Player/States/PlayerIdle.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Player/States/PlayerWalk.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Player/States/PlayerFall.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Player/States/PlayerJump.gd" type="Script" id=8]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 1.0204
@@ -21,6 +26,9 @@ shape = SubResource( 1 )
 [node name="DwardDummyRigged2" parent="." instance=ExtResource( 2 )]
 transform = Transform( -3, 0, 2.62268e-07, 0, 3, 0, -2.62268e-07, 0, -3, 0, 0, 0 )
 
+[node name="Skeleton" parent="DwardDummyRigged2/Armature" index="0"]
+bones/15/bound_children = [ NodePath("BoneAttachment") ]
+
 [node name="Cube" parent="DwardDummyRigged2/Armature/Skeleton" index="0"]
 mesh = ExtResource( 3 )
 
@@ -32,5 +40,21 @@ bone_name = "Fingers.R"
 transform = Transform( 0.3, 0, 0, 0, -2.62268e-08, -0.5, 0, 0.6, -2.18557e-08, 0, 0, -0.075 )
 mesh = ExtResource( 3 )
 material/0 = null
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
 
 [editable path="DwardDummyRigged2"]
