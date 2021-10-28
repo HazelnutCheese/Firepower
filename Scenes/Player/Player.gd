@@ -4,6 +4,15 @@ extends KinematicBody
 var playerCameraScene = load("res://Scenes/Player/PlayerCamera.tscn")
 var localCamera = null
 
+# HUD
+var remoteHudScene = load("res://Scenes/Player/RemoteHud.tscn")
+var localHud = null
+var remoteHud = null
+
+# Gameplay
+const MAX_HEALTH = 100
+var _currentHealth = 100
+
 # movement
 const _moveSpeed = 10
 const _gravity = 32
@@ -23,6 +32,7 @@ puppet var puppet_isWalking = false
 puppet var puppet_isFalling = false
 puppet var puppet_isJumping = false
 remote var puppet_forServer_cameraY = 0.0
+remote var puppet_current_health = 100
 
 # Animation
 onready var _animationPlayer : AnimationPlayer = get_node("DwardDummyRigged2/AnimationPlayer")
@@ -42,6 +52,10 @@ func _setup(networkId):
 	if(_networkId == ServerClient._networkId):
 		localCamera = playerCameraScene.instance()
 		self.add_child(localCamera)
+		localHud = get_tree().get_root().get_node("Control/HUD")
+	else:
+		remoteHud = remoteHudScene.instance()
+		self.add_child(remoteHud)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -69,6 +83,7 @@ func _physics_process(delta):
 			if(_isFalling):
 				_isFalling = false
 				_isJumping = false
+				_currentHealth -= 5
 			_velocity.x = input.x
 			_velocity.z = input.z
 			if(networkInputs["inGame_Jump"]):
@@ -86,10 +101,9 @@ func _physics_process(delta):
 		rset_unreliable("puppet_isWalking", _isWalking)
 		rset_unreliable("puppet_isFalling", _isFalling)
 		rset_unreliable("puppet_isJumping", _isJumping)
+		rset_unreliable("puppet_current_health", _currentHealth)
 		
-		if(localCamera != null):
-			rotation_degrees.y = localCamera._nextCameraY
-		else:
+		if(_networkId != 1):
 			rotation_degrees.y = networkInputs["cameraY"]
 	else:	
 		translation = puppet_translation
@@ -98,13 +112,19 @@ func _physics_process(delta):
 		_isWalking = puppet_isWalking
 		_isFalling = puppet_isFalling
 		_isJumping = puppet_isJumping
+		_currentHealth = puppet_current_health
 		
 		_velocity.y -= delta * _gravity
 		_velocity = move_and_slide(_velocity, Vector3.UP)
 		
-		if(localCamera != null):
-			rotation_degrees.y = localCamera._nextCameraY
-	
+	if(localCamera != null):
+		rotation_degrees.y = localCamera._nextCameraY
+
+	if(localHud != null):
+		localHud._updateHealth(_currentHealth)
+	else:
+		remoteHud._updateHealth(_currentHealth)
+
 	if is_on_floor():
 		if(_isJumping):
 			_animationPlayer.play("Jump", -1, 2)
