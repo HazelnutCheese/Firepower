@@ -1,16 +1,32 @@
 extends PlayerBaseState
 
-const JUMP_VELOCITY = 32
+const JUMP_VERTICAL_VELOCITY = 18
+const JUMP_PUSH_MULTI = 1.2
 
-func _ready():
-	yield(owner, "ready")
-	player._animationPlayer.set_blend_time("Jump", "Falling", 0.25)
+func physics_update(delta: float) -> void:
+	if(get_tree().is_network_server()):		
+		var networkInputs = InputManager._getInputs(player._networkId)
 
-func physics_update(_delta: float) -> void:
-	if(get_tree().is_network_server()):
+		var input = Vector3()
+		if(networkInputs["inGame_MoveForward"]):
+			input.z -= 1
+		if(networkInputs["inGame_MoveBackward"]):
+			input.z += 1
+		if(networkInputs["inGame_StrafeLeft"]):
+			input.x -= 1
+		if(networkInputs["inGame_StrafeRight"]):
+			input.x += 1
+		
+		var direction = input.rotated(Vector3.UP, player.rotation.y).normalized()#
+		player._velocity = lerp(player._velocity, direction * player.MAX_AIR_MOVE_VELOCITY, delta * player.AIR_ACCEL)
+		
 		if(player._velocity.y < 0):
 			state_machine.transition_to("Fall")
 
 func enter(_msg := {}) -> void:
-	player._velocity.y = JUMP_VELOCITY
-	player._animationPlayer.play("Jump")
+	if(get_tree().is_network_server()):
+		player._velocity.x *= JUMP_PUSH_MULTI
+		player._velocity.z *= JUMP_PUSH_MULTI
+		player._velocity.y = JUMP_VERTICAL_VELOCITY
+	player._animationTree.set("parameters/To_Jump/active", true)
+	player._animationTree.set("parameters/Run_To_Fall/blend_amount", 1)

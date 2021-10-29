@@ -1,3 +1,4 @@
+class_name PlayerCamera
 extends Spatial
 
 const _minLookAngleX = -45.0
@@ -24,7 +25,8 @@ func _rotateCamera(mouseDelta, delta):
 		_maxLookAngleX)
 	
 	# rotate the camera along the y-axis
-	_nextCameraY -= (mouseDelta.x * 1.5) * _lookSensitivity * delta
+	var change = (mouseDelta.x * 1.5) * _lookSensitivity * delta
+	_nextCameraY -= change
 	InputManager._updateInput("cameraY", _nextCameraY)
 
 func _unhandled_input(event):

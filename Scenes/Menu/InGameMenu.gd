@@ -23,7 +23,7 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	_closeButton.connect("pressed", self, "_closeButton_Pressed")
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ingame_MenuButton"):
 		if(self.visible and not _settingsMenu.visible): 
 			self.hide()

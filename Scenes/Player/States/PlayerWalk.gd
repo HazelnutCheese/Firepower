@@ -1,14 +1,11 @@
 extends PlayerBaseState
 
-const MOVE_VELOCITY = 10
+const MOVE_ACCEL = 2.0
 
-func _ready():
-	yield(owner, "ready")
-	player._animationPlayer.set_blend_time("Run", "Idle", 0.25)
-	player._animationPlayer.set_blend_time("Run", "Jump", 0.25)
-
-func physics_update(_delta: float) -> void:
-	player._animationPlayer.play("Run")
+func physics_update(delta: float) -> void:
+	var animationBlendAmount = player._velocity.length() / player.MAX_SPRINT_VELOCITY
+	player._animationTree.set("parameters/Idle_To_Run/blend_amount", animationBlendAmount)
+	
 	if(get_tree().is_network_server()):
 		var networkInputs = InputManager._getInputs(player._networkId)
 
@@ -24,13 +21,16 @@ func physics_update(_delta: float) -> void:
 		
 		var isWalking = not (input.x == 0 and input.z == 0)
 		
-		input = input.rotated(Vector3.UP, player.rotation.y)	
-		input = input.normalized() * MOVE_VELOCITY
+		var maxMoveVelocity = player.MAX_MOVE_VELOCITY
+		if(networkInputs["inGame_Sprint"]):
+			maxMoveVelocity = player.MAX_SPRINT_VELOCITY
 		
-		player._velocity.x = input.x
-		player._velocity.z = input.z
-		
-		if(networkInputs["inGame_Jump"]):
+		var direction = input.normalized().rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
+		player._velocity = lerp(player._velocity, direction * maxMoveVelocity, delta * MOVE_ACCEL)
+
+		if(networkInputs["inGame_Attack1"]):
+			state_machine.transition_to("MeleeAttack")
+		elif(networkInputs["inGame_Jump"]):
 			state_machine.transition_to("Jump")
 		elif(not player.is_on_floor()):
 			state_machine.transition_to("Fall")

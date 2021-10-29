@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Models/DwardDummyRigged2.glb" type="PackedScene" id=2]
@@ -8,38 +8,88 @@
 [ext_resource path="res://Scenes/Player/States/PlayerWalk.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Player/States/PlayerFall.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Player/States/PlayerJump.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Player/States/PlayerMeleeAttack.gd" type="Script" id=9]
 
-[sub_resource type="CylinderShape" id=1]
-radius = 1.0204
-height = 3.58235
+[sub_resource type="CapsuleShape" id=1]
+height = 1.5
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "MeleeAttack2"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "MeleeAttack1"
+
+[sub_resource type="AnimationNodeOneShot" id=4]
+fadein_time = 0.0
+fadeout_time = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Falling-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeBlend2" id=7]
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Land"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Run-loop"
+
+[sub_resource type="AnimationNodeBlend2" id=11]
+
+[sub_resource type="AnimationNodeOneShot" id=12]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeOneShot" id=13]
+
+[sub_resource type="AnimationNodeOneShot" id=14]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id=15]
+graph_offset = Vector2( 0, 196.5 )
+nodes/Animation/node = SubResource( 3 )
+nodes/Animation/position = Vector2( 80, 380 )
+"nodes/Animation 2/node" = SubResource( 2 )
+"nodes/Animation 2/position" = Vector2( 280, 380 )
+nodes/Fall_To_Land/node = SubResource( 4 )
+nodes/Fall_To_Land/position = Vector2( 100, 200 )
+nodes/Falling/node = SubResource( 5 )
+nodes/Falling/position = Vector2( -440, 380 )
+nodes/Idle/node = SubResource( 6 )
+nodes/Idle/position = Vector2( -600, 200 )
+nodes/Idle_To_Run/node = SubResource( 7 )
+nodes/Idle_To_Run/position = Vector2( -440, 200 )
+nodes/Jump/node = SubResource( 8 )
+nodes/Jump/position = Vector2( -240, 380 )
+nodes/Land/node = SubResource( 9 )
+nodes/Land/position = Vector2( -60, 380 )
+nodes/Run/node = SubResource( 10 )
+nodes/Run/position = Vector2( -600, 320 )
+nodes/Run_To_Fall/node = SubResource( 11 )
+nodes/Run_To_Fall/position = Vector2( -260, 200 )
+nodes/To_Jump/node = SubResource( 12 )
+nodes/To_Jump/position = Vector2( -80, 200 )
+nodes/To_MeleeAttack1/node = SubResource( 13 )
+nodes/To_MeleeAttack1/position = Vector2( 280, 200 )
+nodes/To_MeleeAttack2/node = SubResource( 14 )
+nodes/To_MeleeAttack2/position = Vector2( 480, 200 )
+nodes/output/position = Vector2( 960, 200 )
+node_connections = [ "output", 0, "To_MeleeAttack2", "Fall_To_Land", 0, "To_Jump", "Fall_To_Land", 1, "Land", "Idle_To_Run", 0, "Idle", "Idle_To_Run", 1, "Run", "To_MeleeAttack2", 0, "To_MeleeAttack1", "To_MeleeAttack2", 1, "Animation 2", "To_Jump", 0, "Run_To_Fall", "To_Jump", 1, "Jump", "Run_To_Fall", 0, "Idle_To_Run", "Run_To_Fall", 1, "Falling", "To_MeleeAttack1", 0, "Fall_To_Land", "To_MeleeAttack1", 1, "Animation" ]
+
+[sub_resource type="BoxShape" id=16]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81284, 0 )
-shape = SubResource( 1 )
-
-[node name="DwardDummyRigged2" parent="." instance=ExtResource( 2 )]
-transform = Transform( -3, 0, 2.62268e-07, 0, 3, 0, -2.62268e-07, 0, -3, 0, 0, 0 )
-
-[node name="Skeleton" parent="DwardDummyRigged2/Armature" index="0"]
-bones/15/bound_children = [ NodePath("BoneAttachment") ]
-
-[node name="Cube" parent="DwardDummyRigged2/Armature/Skeleton" index="0"]
-mesh = ExtResource( 3 )
-
-[node name="BoneAttachment" type="BoneAttachment" parent="DwardDummyRigged2/Armature/Skeleton" index="1"]
-transform = Transform( -0.974061, -0.22442, -0.0289838, 0.152899, -0.747171, 0.646806, -0.166812, 0.625597, 0.762104, -0.352246, 0.545582, -0.0384445 )
-bone_name = "Fingers.R"
-
-[node name="MeshInstance" type="MeshInstance" parent="DwardDummyRigged2/Armature/Skeleton/BoneAttachment"]
-transform = Transform( 0.3, 0, 0, 0, -2.62268e-08, -0.5, 0, 0.6, -2.18557e-08, 0, 0, -0.075 )
-mesh = ExtResource( 3 )
-material/0 = null
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -57,4 +107,50 @@ script = ExtResource( 7 )
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
 
-[editable path="DwardDummyRigged2"]
+[node name="MeleeAttack" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 1.58993, 0 )
+shape = SubResource( 1 )
+
+[node name="PlayerModel" parent="." instance=ExtResource( 2 )]
+transform = Transform( -2.12132, 0, 2.12132, 0, 3, 0, -2.12132, 0, -2.12132, 0, 0, 0 )
+
+[node name="Skeleton" parent="PlayerModel/Armature" index="0"]
+bones/19/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="Cube" parent="PlayerModel/Armature/Skeleton" index="0"]
+transform = Transform( 1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0 )
+
+[node name="BoneAttachment" type="BoneAttachment" parent="PlayerModel/Armature/Skeleton" index="1"]
+transform = Transform( -0.782361, -0.622517, -0.0195678, 0.618684, -0.780393, 0.0906449, -0.0716987, 0.0588108, 0.995691, -0.288186, 0.383898, 0.0259783 )
+bone_name = "Hand.R"
+
+[node name="Weapoin" type="MeshInstance" parent="PlayerModel/Armature/Skeleton/BoneAttachment"]
+transform = Transform( -0.0122369, -0.513459, 0.214179, 0.144428, 0.685146, 0.110909, -0.203692, 0.516653, 0.0657745, 0.0810642, -0.0643214, -0.124525 )
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 15 )
+anim_player = NodePath("../PlayerModel/AnimationPlayer")
+active = true
+process_mode = 0
+root_motion_track = NodePath("Armature/Skeleton:Root")
+parameters/Fall_To_Land/active = false
+parameters/Idle_To_Run/blend_amount = 0.0
+parameters/Run_To_Fall/blend_amount = 0.0
+parameters/To_Jump/active = false
+parameters/To_MeleeAttack1/active = false
+parameters/To_MeleeAttack2/active = false
+
+[node name="Hitbox" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1.3 )
+
+[node name="WeaponCollision" type="CollisionShape" parent="Hitbox"]
+transform = Transform( -0.124667, 0.992191, -0.00593664, -0.00203802, -0.00424494, -1.49998, -0.992197, -0.124657, 0.00382696, 0.231922, 0.455502, 0.0848184 )
+shape = SubResource( 16 )
+disabled = true
+
+[editable path="PlayerModel"]
