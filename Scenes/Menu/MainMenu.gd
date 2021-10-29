@@ -25,7 +25,7 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	_exitButton.connect("pressed", self, "_exitButton_Pressed")
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ingame_MenuButton"):
 		if(_settingsMenu.visible):
 			_settingsMenu.hide()

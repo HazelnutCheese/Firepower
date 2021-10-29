@@ -7,6 +7,8 @@ signal transitioned(state_name)
 export var initial_state := NodePath()
 onready var state: State = get_node(initial_state)
 
+var stateEntered = false
+
 puppet var _puppet_stateName : String
 
 func _ready() -> void:
@@ -14,12 +16,15 @@ func _ready() -> void:
 	for child in get_children():
 		child.state_machine = self
 	state.enter()
+	stateEntered = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	state.handle_input(event)
+	if(stateEntered):
+		state.handle_input(event)
 
 func _physics_process(delta: float) -> void:
-	state.physics_update(delta)
+	if(stateEntered):
+		state.physics_update(delta)
 
 remote func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	# If you reuse a state in different state machines but you don't want them 
@@ -27,8 +32,10 @@ remote func transition_to(target_state_name: String, msg: Dictionary = {}) -> vo
 	if not has_node(target_state_name):
 		return
 	state.exit()
+	stateEntered = false
 	state = get_node(target_state_name)
 	state.enter(msg)
+	stateEntered = true
 	emit_signal("transitioned", state.name)
 	if(get_tree().is_network_server()):
 		rpc("transition_to", target_state_name, msg)

@@ -99,18 +99,14 @@ func set_windowed():
 	var windowSizeOption = Configuration._getWindowSizeAsId()
 	if(windowSizeOption == 0):
 		return
-		
-	var screen_size = OS.get_screen_size(0)
+
 	var selectedDimensions = Configuration._windowSize.split("x")
 	var selectedX = float(selectedDimensions[0])
 	var selectedY = float(selectedDimensions[1])
 	var newSize = Vector2(selectedX, selectedY)
 	
-	var window_x = (screen_size.x / 2) - (newSize.x / 2)
-	var window_y = (screen_size.y / 2) - (newSize.y / 2)
 	OS.set_borderless_window(Configuration._borderless)
 	OS.set_window_fullscreen(false)
-	#OS.set_window_position(Vector2(window_x, window_y))
 	OS.set_window_size(newSize)
 	var gameViewport : Viewport = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport")
 	if(gameViewport != null):

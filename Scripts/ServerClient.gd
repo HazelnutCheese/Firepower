@@ -17,7 +17,7 @@ func _ready():
 	get_tree().connect("connection_failed", self, "_connection_failed")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if get_tree().is_network_server():
 		_updateWorldState(_player_info)
 		rpc_unreliable("_updateWorldState", _player_info)

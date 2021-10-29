@@ -10,29 +10,35 @@ func _createInputDict():
 	return { 
 	"cameraY" : 0.0,
 	"inGame_Jump" : false,
+	"inGame_Attack1" : false,
 	"inGame_MoveForward" : false,
 	"inGame_MoveBackward" : false,
 	"inGame_StrafeLeft" : false,
-	"inGame_StrafeRight" : false  }
+	"inGame_StrafeRight" : false,
+	"inGame_Sprint" : false  }
 
 func _getInputs(id):
 	if not _serverSidePlayersInputs.has(id):
 		_serverSidePlayersInputs[id] = _createInputDict()	
 	return _serverSidePlayersInputs[id]
 
+func _updateRemoteInput(networkId, inputName, newValue):
+	if get_tree().is_network_server():
+		_getInputs(networkId)[inputName] = newValue
+
 func _updateInput(inputName, newValue):
 	var currentValue = _localInputDict[inputName]
 	if(newValue == currentValue):
-		pass
+		return
 	_localInputDict[inputName] = newValue
 	if get_tree().is_network_server():
-		_serverSidePlayersInputs[1][inputName] = newValue
+		_getInputs(1)[inputName] = newValue
 	elif(ServerClient._networkId > 1):
-		rpc_unreliable_id(1, "_serverRecieveInputs", _localInputDict)
+		rpc_unreliable_id(1, "_serverRecieveInputs", inputName, newValue)
 
-remote func _serverRecieveInputs(inputs):
+remote func _serverRecieveInputs(inputName, newValue):
 	var rpcId = get_tree().get_rpc_sender_id()
-	_serverSidePlayersInputs[rpcId] = inputs
+	_getInputs(rpcId)[inputName] = newValue
 
 func _clearInputs():
 	_localInputDict["inGame_MoveForward"] = false
@@ -61,3 +67,11 @@ func _unhandled_input(event):
 		_updateInput("inGame_Jump", true)
 	elif (event.is_action_released("inGame_Jump")):
 		_updateInput("inGame_Jump", false)
+	elif (event.is_action_pressed("inGame_Attack1")):
+		_updateInput("inGame_Attack1", true)
+	elif (event.is_action_released("inGame_Attack1")):
+		_updateInput("inGame_Attack1", false)
+	elif (event.is_action_pressed("inGame_Sprint")):
+		_updateInput("inGame_Sprint", true)
+	elif (event.is_action_released("inGame_Sprint")):
+		_updateInput("inGame_Sprint", false)
