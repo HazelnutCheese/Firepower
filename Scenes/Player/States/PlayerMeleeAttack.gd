@@ -37,20 +37,19 @@ func physics_update(_delta: float) -> void:
 		if(player._animationTree.get("parameters/To_MeleeAttack1/active")):
 			var overlappingBodies = weaponHitbox.get_overlapping_bodies()
 			for body in overlappingBodies:
-				_weaponHitbox_entered(body)
+				_weaponHitbox_entered1(body)
 			if(comboFrame == 0 and networkInputs["inGame_Attack1"]):
 				comboFrame = 1
 			return
 		if(player._animationTree.get("parameters/To_MeleeAttack2/active")):
 			var overlappingBodies = weaponHitbox.get_overlapping_bodies()
 			for body in overlappingBodies:
-				_weaponHitbox_entered(body)
+				_weaponHitbox_entered2(body)
 			return
 
 		if(comboFrame == 1):
 			comboFrame = 2
 			_doMeleeAttack2()
-			rpc("_doMeleeAttack2")
 		elif(networkInputs["inGame_Jump"]):
 			state_machine.transition_to("Jump")
 		elif(isWalking):
@@ -59,8 +58,8 @@ func physics_update(_delta: float) -> void:
 			state_machine.transition_to("Idle")
 
 func _doMeleeAttack1():
-	player._animationTree.set("parameters/To_MeleeAttack1/active", true)
 	if(get_tree().is_network_server()):
+		player._animationTree.pset("parameters/To_MeleeAttack1/active", true)
 		hitList.clear()
 		player._velocity = Vector3()
 		InputManager._updateRemoteInput(player._networkId,"inGame_Attack1", false)
@@ -70,8 +69,8 @@ func _doMeleeAttack1():
 		player._velocity.z = momentum.z
 
 remote func _doMeleeAttack2():
-	player._animationTree.set("parameters/To_MeleeAttack2/active", true)
 	if(get_tree().is_network_server()):
+		player._animationTree.pset("parameters/To_MeleeAttack2/active", true)
 		hitList.clear()
 		player._velocity = Vector3()
 		InputManager._updateRemoteInput(player._networkId,"inGame_Attack1", false)
@@ -80,25 +79,35 @@ remote func _doMeleeAttack2():
 		player._velocity.x = momentum.x
 		player._velocity.z = momentum.z
 
-func _weaponHitbox_entered(body):
-	var bodyOwner = body.owner
-	if(bodyOwner != null):
-		var name = bodyOwner.get_name()
-		if((not hitList.has(name)) and bodyOwner.has_method("_hurt")):
-			bodyOwner._hurt()
+func _weaponHitbox_entered1(body):
+	if(body != null):
+		var name = body.get_name()
+		if((not hitList.has(name)) and body.has_method("_hurt")):
+			body._hurt(player, 0, "slashing")
+			var impulseDirection = player.translation.direction_to(body.translation)
+			impulseDirection.y = 1
+			var impulse = impulseDirection * Vector3(0.5,12,0.5)
+			body._impulse(player, impulse)
 			hitList.append(name)
-			
-	
-func meleeAnimationEnded():
-	print("Yes, finally, my function is called!!!")
-	animationHasEnded = true
+
+func _weaponHitbox_entered2(body):
+	if(body != null):
+		var name = body.get_name()
+		if((not hitList.has(name)) and body.has_method("_hurt")):
+			body._hurt(player, 0, "slashing")
+			var impulseDirection = player.translation.direction_to(body.translation)
+			impulseDirection.y = 1
+			var impulse = impulseDirection * Vector3(20,15,20)
+			body._impulse(player, impulse)
+			hitList.append(name)
 
 func enter(_msg := {}) -> void:
 	if(get_tree().is_network_server()):
 		weaponCollision.disabled = false
-	comboFrame = 0
+		_doMeleeAttack1()
+		comboFrame = 0
 	player._rotateWithPlayer = false
-	_doMeleeAttack1()
+	
 
 func exit(_msg := {}) -> void:
 	if(get_tree().is_network_server()):

@@ -1,22 +1,185 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scenes/Models/DwardDummyRigged2.glb" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemy/TrainingDummy.gd" type="Script" id=2]
+[ext_resource path="res://addons/behavior_tree/src/blackboard.gd" type="Script" id=3]
+[ext_resource path="res://addons/behavior_tree/src/behavior_tree.gd" type="Script" id=4]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/composites/bt_sequence.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Gameplay/btnodes/Leaves/bt_walkTo.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Gameplay/btnodes/Leaves/bt_getTargetOfType.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Networking/EnetAnimationTree.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Gameplay/btnodes/Decorators/bt_isDistanceFromTarget.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Gameplay/btnodes/Leaves/bt_navigateTo.gd" type="Script" id=10]
+[ext_resource path="res://addons/behavior_tree/src/btnodes/decorators/bt_repeat_until.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Gameplay/btnodes/Leaves/bt_meleeAttack.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Gameplay/btnodes/Leaves/bt_whenVarEq.gd" type="Script" id=13]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.8
-height = 3.0
+height = 1.5
 
-[node name="TrainingDummy" type="Spatial"]
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "MeleeAttack2"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "OnHit"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "MeleeAttack1"
+
+[sub_resource type="AnimationNodeOneShot" id=5]
+fadein_time = 0.0
+fadeout_time = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "Falling-loop"
+
+[sub_resource type="AnimationNodeTimeScale" id=7]
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeBlend2" id=9]
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Land"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "Run-loop"
+
+[sub_resource type="AnimationNodeBlend2" id=13]
+
+[sub_resource type="AnimationNodeOneShot" id=14]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeOneShot" id=15]
+
+[sub_resource type="AnimationNodeOneShot" id=16]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeOneShot" id=17]
+fadein_time = 0.0
+fadeout_time = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id=18]
+graph_offset = Vector2( 0, 196.5 )
+nodes/Animation/node = SubResource( 4 )
+nodes/Animation/position = Vector2( 80, 380 )
+"nodes/Animation 2/node" = SubResource( 2 )
+"nodes/Animation 2/position" = Vector2( 280, 380 )
+"nodes/Animation 3/node" = SubResource( 3 )
+"nodes/Animation 3/position" = Vector2( 480, 380 )
+nodes/Fall_To_Land/node = SubResource( 5 )
+nodes/Fall_To_Land/position = Vector2( 100, 200 )
+nodes/Falling/node = SubResource( 6 )
+nodes/Falling/position = Vector2( -440, 380 )
+nodes/FreezeScale/node = SubResource( 7 )
+nodes/FreezeScale/position = Vector2( 860, 200 )
+nodes/Idle/node = SubResource( 8 )
+nodes/Idle/position = Vector2( -600, 200 )
+nodes/Idle_To_Run/node = SubResource( 9 )
+nodes/Idle_To_Run/position = Vector2( -440, 200 )
+nodes/Jump/node = SubResource( 10 )
+nodes/Jump/position = Vector2( -240, 380 )
+nodes/Land/node = SubResource( 11 )
+nodes/Land/position = Vector2( -60, 380 )
+nodes/Run/node = SubResource( 12 )
+nodes/Run/position = Vector2( -600, 320 )
+nodes/Run_To_Fall/node = SubResource( 13 )
+nodes/Run_To_Fall/position = Vector2( -260, 200 )
+nodes/To_Jump/node = SubResource( 14 )
+nodes/To_Jump/position = Vector2( -80, 200 )
+nodes/To_MeleeAttack1/node = SubResource( 15 )
+nodes/To_MeleeAttack1/position = Vector2( 280, 200 )
+nodes/To_MeleeAttack2/node = SubResource( 16 )
+nodes/To_MeleeAttack2/position = Vector2( 480, 200 )
+nodes/To_OnHit/node = SubResource( 17 )
+nodes/To_OnHit/position = Vector2( 680, 200 )
+nodes/output/position = Vector2( 1040, 200 )
+node_connections = [ "output", 0, "FreezeScale", "FreezeScale", 0, "To_OnHit", "To_OnHit", 0, "To_MeleeAttack2", "To_OnHit", 1, "Animation 3", "Fall_To_Land", 0, "To_Jump", "Fall_To_Land", 1, "Land", "To_MeleeAttack2", 0, "To_MeleeAttack1", "To_MeleeAttack2", 1, "Animation 2", "Run_To_Fall", 0, "Idle_To_Run", "Run_To_Fall", 1, "Falling", "To_Jump", 0, "Run_To_Fall", "To_Jump", 1, "Jump", "To_MeleeAttack1", 0, "Fall_To_Land", "To_MeleeAttack1", 1, "Animation", "Idle_To_Run", 0, "Idle", "Idle_To_Run", 1, "Run" ]
+
+[node name="TrainingDummy" type="KinematicBody"]
 script = ExtResource( 2 )
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource( 3 )
 
-[node name="DwardDummyRigged2" parent="StaticBody" instance=ExtResource( 1 )]
-transform = Transform( 3, 0, 0, 0, 4, 0, 0, 0, 3, 0, 0, 0 )
+[node name="BehaviorTree" type="Node" parent="."]
+script = ExtResource( 4 )
+is_active = true
+is_networkServerOnly = true
+_blackboard = NodePath("../Blackboard")
+_agent = NodePath("..")
+sync_mode = 1
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.48118, 0 )
+[node name="BTSequence" type="Node" parent="BehaviorTree"]
+script = ExtResource( 5 )
+
+[node name="BTRepeatUntil2" type="Node" parent="BehaviorTree/BTSequence"]
+script = ExtResource( 11 )
+until_what = 1
+
+[node name="BTWhenVarEq" type="Node" parent="BehaviorTree/BTSequence/BTRepeatUntil2"]
+script = ExtResource( 13 )
+variableName = "_isInHitFrames"
+expectedValue = "False"
+
+[node name="BTGetTargetOfType" type="Node" parent="BehaviorTree/BTSequence"]
+script = ExtResource( 7 )
+targetType = "res://Scenes/Player/Player.tscn"
+resultKey = "target"
+
+[node name="BTNavigateTo" type="Node" parent="BehaviorTree/BTSequence"]
+script = ExtResource( 10 )
+targetKey = "target"
+resultKey = "targetPath"
+
+[node name="BTWalkTo" type="Node" parent="BehaviorTree/BTSequence"]
+script = ExtResource( 6 )
+pathKey = "targetPath"
+actualTarget = "target"
+stopAtRange = 2.5
+avoid_distance = 2.5
+separation_force = 0.75
+
+[node name="BTIsDistanceFromTarget" type="Node" parent="BehaviorTree/BTSequence"]
+script = ExtResource( 9 )
+targetKey = "target"
+distance = 2.5
+
+[node name="MeleeRepeatUntil" type="Node" parent="BehaviorTree/BTSequence"]
+script = ExtResource( 11 )
+until_what = 1
+
+[node name="BTMeleeAttack" type="Node" parent="BehaviorTree/BTSequence/MeleeRepeatUntil"]
+script = ExtResource( 12 )
+actualTarget = "target"
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.75122, 0 )
 shape = SubResource( 1 )
 
-[editable path="StaticBody/DwardDummyRigged2"]
+[node name="DwardDummyRigged2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 18 )
+anim_player = NodePath("../DwardDummyRigged2/AnimationPlayer")
+active = true
+process_mode = 0
+root_motion_track = NodePath("Armature/Skeleton:Root")
+parameters/Fall_To_Land/active = false
+parameters/FreezeScale/scale = 1.0
+parameters/Idle_To_Run/blend_amount = 0.0
+parameters/Run_To_Fall/blend_amount = 0.0
+parameters/To_Jump/active = false
+parameters/To_MeleeAttack1/active = false
+parameters/To_MeleeAttack2/active = false
+parameters/To_OnHit/active = false
+script = ExtResource( 8 )
+
+[editable path="DwardDummyRigged2"]
