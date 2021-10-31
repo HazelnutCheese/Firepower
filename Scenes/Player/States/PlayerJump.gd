@@ -2,9 +2,11 @@ extends PlayerBaseState
 
 const JUMP_VERTICAL_VELOCITY = 12.0
 const JUMP_PUSH_MULTI = 1.1
+const JUMP_LAND_MULTI = 0.75
 
 func physics_update(delta: float) -> void:
-	if(get_tree().is_network_server()):		
+	player._rotate_player_process(10.0, delta)
+	if(get_tree().is_network_server()):
 		var networkInputs = InputManager._getInputs(player._networkId)
 
 		var input = Vector3()

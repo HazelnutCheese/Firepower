@@ -22,6 +22,9 @@ func physics_update(_delta: float) -> void:
 	if(get_tree().is_network_server()):
 		var networkInputs = InputManager._getInputs(player._networkId)
 
+		if(networkInputs["inGame_Roll"]):
+			state_machine.transition_to("Roll")
+
 		var input = Vector3()
 		if(networkInputs["inGame_MoveForward"]):
 			input.z -= 1
@@ -37,14 +40,16 @@ func physics_update(_delta: float) -> void:
 		if(player._animationTree.get("parameters/To_MeleeAttack1/active")):
 			var overlappingBodies = weaponHitbox.get_overlapping_bodies()
 			for body in overlappingBodies:
-				_weaponHitbox_entered1(body)
+				if(body != player):
+					_weaponHitbox_entered1(body)
 			if(comboFrame == 0 and networkInputs["inGame_Attack1"]):
 				comboFrame = 1
 			return
 		if(player._animationTree.get("parameters/To_MeleeAttack2/active")):
 			var overlappingBodies = weaponHitbox.get_overlapping_bodies()
 			for body in overlappingBodies:
-				_weaponHitbox_entered2(body)
+				if(body != player):
+					_weaponHitbox_entered2(body)
 			return
 
 		if(comboFrame == 1):

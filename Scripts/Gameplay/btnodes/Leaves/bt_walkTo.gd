@@ -6,6 +6,8 @@ export(String) var pathKey: String
 export(String) var actualTarget: String
 export(float) var stopAtRange: float = 0.0
 export(float) var avoid_distance: = 20.0
+export(float) var step_size: = 8.0
+export(float) var look_acceleration: = 4.0
 export var separation_force: = 0.05
 
 func _tick(delta: float, agent: Node, blackboard: Blackboard) -> bool:
@@ -28,9 +30,6 @@ func _tick(delta: float, agent: Node, blackboard: Blackboard) -> bool:
 		if(distanceToActualTarget < stopAtRange):
 			return succeed()
 			
-	var lookAccel = 4.0
-	var step_size = 8.0
-	
 	var distanceToPath = kinematicBody.translation.distance_to(path[0])
 	while(distanceToPath < step_size/10):
 		path.remove(0)
@@ -55,7 +54,7 @@ func _tick(delta: float, agent: Node, blackboard: Blackboard) -> bool:
 	kinematicBody.rotation.y = lerp_angle(
 		kinematicBody.rotation.y, 
 		atan2(aimFor.x, aimFor.z), 
-		lookAccel * delta)
+		look_acceleration * delta)
 	
 	var stepVelocity = (lookAt).normalized() * step_size	
 	kinematicBody._velocity.x = stepVelocity.x

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Borc_cleaned.obj-538ac091000930e77f662161cb948924.mesh"
+
+[deps]
+
+files=[ "res://.import/Borc_cleaned.obj-538ac091000930e77f662161cb948924.mesh" ]
+
+source_file="res://Scenes/Models/Borc_cleaned.obj"
+dest_files=[ "res://.import/Borc_cleaned.obj-538ac091000930e77f662161cb948924.mesh", "res://.import/Borc_cleaned.obj-538ac091000930e77f662161cb948924.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

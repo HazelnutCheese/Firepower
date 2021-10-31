@@ -3,6 +3,7 @@ extends PlayerBaseState
 const MOVE_DECEL = 6.0
 
 func physics_update(delta: float) -> void:
+	player._rotate_player_process(6.0, delta)
 	if(get_tree().is_network_server()):
 		var animationBlendAmount = player._velocity.length() / player.MAX_SPRINT_VELOCITY
 		player._animationTree.pset_unreliable(
@@ -25,7 +26,9 @@ func physics_update(delta: float) -> void:
 		var direction = Vector3(1,1,1).rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
 		player._velocity = lerp(player._velocity, direction * 0, delta * MOVE_DECEL)
 		
-		if(networkInputs["inGame_Attack1"]):
+		if(networkInputs["inGame_Roll"]):
+			state_machine.transition_to("Roll")
+		elif(networkInputs["inGame_Attack1"]):
 			state_machine.transition_to("MeleeAttack")
 		elif(networkInputs["inGame_Jump"]):
 			state_machine.transition_to("Jump")

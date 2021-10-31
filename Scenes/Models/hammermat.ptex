@@ -1,0 +1,7125 @@
+{
+	"connections": [
+		{
+			"from": "mwf_output",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 0
+		},
+		{
+			"from": "mwf_output",
+			"from_port": 1,
+			"to": "Material",
+			"to_port": 1
+		},
+		{
+			"from": "mwf_output",
+			"from_port": 2,
+			"to": "Material",
+			"to_port": 2
+		},
+		{
+			"from": "mwf_output",
+			"from_port": 3,
+			"to": "Material",
+			"to_port": 3
+		},
+		{
+			"from": "mwf_output",
+			"from_port": 4,
+			"to": "Material",
+			"to_port": 4
+		},
+		{
+			"from": "mwf_output",
+			"from_port": 5,
+			"to": "Material",
+			"to_port": 5
+		},
+		{
+			"from": "mwf_create_map",
+			"from_port": 0,
+			"to": "mwf_map",
+			"to_port": 0
+		},
+		{
+			"from": "graph_2_2_2",
+			"from_port": 0,
+			"to": "mwf_map",
+			"to_port": 1
+		},
+		{
+			"from": "graph_2_2_2",
+			"from_port": 1,
+			"to": "mwf_map",
+			"to_port": 2
+		},
+		{
+			"from": "graph_2_2_2",
+			"from_port": 2,
+			"to": "mwf_map",
+			"to_port": 3
+		},
+		{
+			"from": "graph_2_2_2",
+			"from_port": 3,
+			"to": "mwf_map",
+			"to_port": 4
+		},
+		{
+			"from": "mwf_map",
+			"from_port": 0,
+			"to": "mwf_output",
+			"to_port": 0
+		},
+		{
+			"from": "mwf_map",
+			"from_port": 1,
+			"to": "mwf_output",
+			"to_port": 1
+		},
+		{
+			"from": "mwf_map",
+			"from_port": 2,
+			"to": "mwf_output",
+			"to_port": 2
+		},
+		{
+			"from": "mwf_map",
+			"from_port": 3,
+			"to": "mwf_output",
+			"to_port": 3
+		},
+		{
+			"from": "mwf_map",
+			"from_port": 4,
+			"to": "mwf_output",
+			"to_port": 4
+		},
+		{
+			"from": "graph_2",
+			"from_port": 0,
+			"to": "791_2",
+			"to_port": 0
+		},
+		{
+			"from": "graph",
+			"from_port": 0,
+			"to": "791_2",
+			"to_port": 1
+		},
+		{
+			"from": "graph_6",
+			"from_port": 0,
+			"to": "791_2",
+			"to_port": 2
+		},
+		{
+			"from": "graph_3",
+			"from_port": 0,
+			"to": "791_3",
+			"to_port": 0
+		},
+		{
+			"from": "791_2",
+			"from_port": 0,
+			"to": "791_3",
+			"to_port": 1
+		},
+		{
+			"from": "graph_4",
+			"from_port": 0,
+			"to": "791_3",
+			"to_port": 2
+		},
+		{
+			"from": "791_3",
+			"from_port": 0,
+			"to": "slope_blur",
+			"to_port": 0
+		},
+		{
+			"from": "graph_4",
+			"from_port": 0,
+			"to": "slope_blur",
+			"to_port": 1
+		},
+		{
+			"from": "slope_blur",
+			"from_port": 0,
+			"to": "mwf_create_map",
+			"to_port": 0
+		}
+	],
+	"label": "Graph",
+	"longdesc": "",
+	"name": "239",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"nodes": [
+		{
+			"export_paths": {
+
+			},
+			"name": "Material",
+			"node_position": {
+				"x": 163.923218,
+				"y": 136.602676
+			},
+			"parameters": {
+				"albedo_color": {
+					"a": 1,
+					"b": 1,
+					"g": 1,
+					"r": 1,
+					"type": "Color"
+				},
+				"ao": 1,
+				"depth_scale": 0.5,
+				"emission_energy": 1,
+				"flags_transparent": false,
+				"metallic": 1,
+				"normal": 1,
+				"roughness": 0.53,
+				"size": 11,
+				"sss": 0
+			},
+			"seed": 0,
+			"seed_locked": false,
+			"type": "material"
+		},
+		{
+			"connections": [
+				{
+					"from": "sdrhombus",
+					"from_port": 0,
+					"to": "sdrepeat",
+					"to_port": 0
+				},
+				{
+					"from": "sdrepeat",
+					"from_port": 0,
+					"to": "sdtranslate",
+					"to_port": 0
+				},
+				{
+					"from": "sdtranslate",
+					"from_port": 0,
+					"to": "sdshow",
+					"to_port": 0
+				},
+				{
+					"from": "sdshow",
+					"from_port": 0,
+					"to": "splatter",
+					"to_port": 0
+				},
+				{
+					"from": "sdshow",
+					"from_port": 0,
+					"to": "splatter_2",
+					"to_port": 0
+				},
+				{
+					"from": "splatter_2",
+					"from_port": 0,
+					"to": "math_2",
+					"to_port": 0
+				},
+				{
+					"from": "graph_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 2
+				},
+				{
+					"from": "splatter",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 1
+				},
+				{
+					"from": "math_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 0
+				},
+				{
+					"from": "791_2",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 0
+				},
+				{
+					"from": "slope_blur",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 0
+				},
+				{
+					"from": "fbm",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 1
+				}
+			],
+			"label": "Rough Relief",
+			"longdesc": "",
+			"name": "graph",
+			"node_position": {
+				"x": -1544.088623,
+				"y": -189.735153
+			},
+			"nodes": [
+				{
+					"name": "sdshow",
+					"node_position": {
+						"x": -816.333374,
+						"y": -83.673477
+					},
+					"parameters": {
+						"base": 0,
+						"bevel": 0.05
+					},
+					"seed": 12957,
+					"seed_locked": false,
+					"type": "sdshow"
+				},
+				{
+					"name": "gen_inputs",
+					"node_position": {
+						"x": -867,
+						"y": 106.13707
+					},
+					"parameters": {
+
+					},
+					"ports": [
+
+					],
+					"seed": -26007,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_outputs",
+					"node_position": {
+						"x": 814.177124,
+						"y": -135.961319
+					},
+					"parameters": {
+
+					},
+					"ports": [
+						{
+							"group_size": 0,
+							"name": "unnamed",
+							"type": "f"
+						}
+					],
+					"seed": -62485,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_parameters",
+					"node_position": {
+						"x": -851,
+						"y": -276.447174
+					},
+					"parameters": {
+
+					},
+					"seed": 29983,
+					"seed_locked": false,
+					"type": "remote",
+					"widgets": [
+
+					]
+				},
+				{
+					"name": "sdrhombus",
+					"node_position": {
+						"x": -1146.791626,
+						"y": -198.765594
+					},
+					"parameters": {
+						"cx": 0,
+						"cy": 0,
+						"h": 0.1,
+						"w": 0.06
+					},
+					"seed": 20480,
+					"seed_locked": false,
+					"type": "sdrhombus"
+				},
+				{
+					"name": "sdrepeat",
+					"node_position": {
+						"x": -1118.791382,
+						"y": -68.229141
+					},
+					"parameters": {
+						"r": 0.5,
+						"rx": 4,
+						"ry": 4
+					},
+					"seed": 59682,
+					"seed_locked": false,
+					"type": "sdrepeat"
+				},
+				{
+					"name": "sdtranslate",
+					"node_position": {
+						"x": -808.791687,
+						"y": -170.12764
+					},
+					"parameters": {
+						"x": 0.125,
+						"y": 0.125
+					},
+					"seed": 14718,
+					"seed_locked": false,
+					"type": "sdtranslate"
+				},
+				{
+					"name": "splatter",
+					"node_position": {
+						"x": -505.458313,
+						"y": -229.401672
+					},
+					"parameters": {
+						"count": 90,
+						"rotate": 0,
+						"scale": 0.14,
+						"scale_x": 1,
+						"scale_y": 1,
+						"select_inputs": 2,
+						"value": 0.77,
+						"variations": false
+					},
+					"seed": 25794,
+					"seed_locked": false,
+					"type": "splatter"
+				},
+				{
+					"name": "splatter_2",
+					"node_position": {
+						"x": -506.625,
+						"y": -29.528862
+					},
+					"parameters": {
+						"count": 100,
+						"rotate": 0,
+						"scale": 0.14,
+						"scale_x": 0.47,
+						"scale_y": 0.3,
+						"select_inputs": 2,
+						"value": 0.77,
+						"variations": false
+					},
+					"seed": 33625,
+					"seed_locked": false,
+					"type": "splatter"
+				},
+				{
+					"name": "math_2",
+					"node_position": {
+						"x": -154.791626,
+						"y": 28.341095
+					},
+					"parameters": {
+						"clamp": false,
+						"default_in1": 0,
+						"default_in2": 0.41,
+						"op": 2
+					},
+					"seed": -47290,
+					"seed_locked": false,
+					"type": "math"
+				},
+				{
+					"name": "791_2",
+					"node_position": {
+						"x": 199.208374,
+						"y": -148.149414
+					},
+					"parameters": {
+						"blend_type": 11,
+						"m_smooth": 0.661511,
+						"m_step": 0.485345,
+						"warp_strength": 1.8,
+						"warp_x": 0.279322,
+						"warp_y": 0.149004
+					},
+					"seed": -12683,
+					"seed_locked": false,
+					"shader_model": {
+						"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+						"global": "",
+						"includes": [
+							"blend"
+						],
+						"inputs": [
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_1",
+								"shortdesc": "Input 1",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_2",
+								"shortdesc": "Input 2",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+								"name": "warp",
+								"shortdesc": "Warp",
+								"type": "rgb"
+							}
+						],
+						"instance": "",
+						"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+						"name": "Mingle",
+						"outputs": [
+							{
+								"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+								"shortdesc": "Output",
+								"type": "rgb"
+							}
+						],
+						"parameters": [
+							{
+								"default": 1,
+								"label": "",
+								"longdesc": "Specify method how you like to warp input images.",
+								"name": "blend_type",
+								"shortdesc": "Blend Type",
+								"type": "enum",
+								"values": [
+									{
+										"name": "Normal",
+										"value": "normal"
+									},
+									{
+										"name": "Dissolve",
+										"value": "dissolve"
+									},
+									{
+										"name": "Multiply",
+										"value": "multiply"
+									},
+									{
+										"name": "Screen",
+										"value": "screen"
+									},
+									{
+										"name": "Overlay",
+										"value": "overlay"
+									},
+									{
+										"name": "Hard Light",
+										"value": "hard_light"
+									},
+									{
+										"name": "Soft Light",
+										"value": "soft_light"
+									},
+									{
+										"name": "Burn",
+										"value": "burn"
+									},
+									{
+										"name": "Dodge",
+										"value": "dodge"
+									},
+									{
+										"name": "Lighten",
+										"value": "lighten"
+									},
+									{
+										"name": "Darken",
+										"value": "darken"
+									},
+									{
+										"name": "Difference",
+										"value": "difference"
+									}
+								]
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Step",
+								"max": 1,
+								"min": 0,
+								"name": "m_step",
+								"shortdesc": "Mingle U",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Smoothness",
+								"max": 1,
+								"min": 0,
+								"name": "m_smooth",
+								"shortdesc": "Mingle V",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "P1.x",
+								"default": 0,
+								"label": "Warp X",
+								"max": 10,
+								"min": 0,
+								"name": "warp_x",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "P1.y",
+								"default": 0,
+								"label": "Warp Y",
+								"max": 10,
+								"min": 0,
+								"name": "warp_y",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 1,
+								"label": "Warp Strength",
+								"max": 1,
+								"min": 0,
+								"name": "warp_strength",
+								"step": 0.1,
+								"type": "float"
+							}
+						],
+						"shortdesc": "Mingle 1"
+					},
+					"type": "shader"
+				},
+				{
+					"connections": [
+						{
+							"from": "combine",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_2",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 3
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 0
+						},
+						{
+							"from": "combine_2",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 1
+						}
+					],
+					"label": "FBM Vec",
+					"longdesc": "",
+					"name": "graph_2",
+					"node_position": {
+						"x": 204.541702,
+						"y": 44.991116
+					},
+					"nodes": [
+						{
+							"name": "fbm_3",
+							"node_position": {
+								"x": -495.760742,
+								"y": 1025.774536
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -10482,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_4",
+							"node_position": {
+								"x": -497.094055,
+								"y": 1196.270996
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -28547,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_5",
+							"node_position": {
+								"x": -497.094086,
+								"y": 1364.103638
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -28283,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine",
+							"node_position": {
+								"x": 294.405914,
+								"y": 1146.736694
+							},
+							"parameters": {
+
+							},
+							"seed": 47584,
+							"seed_locked": false,
+							"type": "combine"
+						},
+						{
+							"name": "gen_inputs",
+							"node_position": {
+								"x": -971.094116,
+								"y": 1119.45166
+							},
+							"parameters": {
+
+							},
+							"ports": [
+
+							],
+							"seed": -3788,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_outputs",
+							"node_position": {
+								"x": 502.405945,
+								"y": 1152.739136
+							},
+							"parameters": {
+
+							},
+							"ports": [
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgb"
+								},
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgba"
+								}
+							],
+							"seed": 586,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_parameters",
+							"node_position": {
+								"x": -863.885681,
+								"y": 1508.326782
+							},
+							"parameters": {
+								"param0": 2,
+								"param1": 3,
+								"param2": 3,
+								"param3": 0,
+								"param4": 6,
+								"param5": 0.6
+							},
+							"seed": -60517,
+							"seed_locked": false,
+							"type": "remote",
+							"widgets": [
+								{
+									"label": "Noise",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "noise"
+										}
+									],
+									"name": "param0",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale X",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_x"
+										}
+									],
+									"name": "param1",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale Y",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_y"
+										}
+									],
+									"name": "param2",
+									"type": "linked_control"
+								},
+								{
+									"label": "Folds",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "folds"
+										}
+									],
+									"name": "param3",
+									"type": "linked_control"
+								},
+								{
+									"label": "Iterations",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "iterations"
+										}
+									],
+									"name": "param4",
+									"type": "linked_control"
+								},
+								{
+									"label": "Persistence",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "persistence"
+										}
+									],
+									"name": "param5",
+									"type": "linked_control"
+								}
+							]
+						},
+						{
+							"name": "fbm_2",
+							"node_position": {
+								"x": -495.298431,
+								"y": 1543.288208
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -11000,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine_2",
+							"node_position": {
+								"x": 292.968933,
+								"y": 1276.987427
+							},
+							"parameters": {
+
+							},
+							"seed": 31648,
+							"seed_locked": false,
+							"type": "combine"
+						}
+					],
+					"parameters": {
+						"param0": 2,
+						"param1": 3,
+						"param2": 3,
+						"param3": 0,
+						"param4": 6,
+						"param5": 0.6
+					},
+					"seed": 52376,
+					"seed_locked": false,
+					"shortdesc": "",
+					"type": "graph"
+				},
+				{
+					"name": "slope_blur",
+					"node_position": {
+						"x": 542.21051,
+						"y": -138.441284
+					},
+					"parameters": {
+						"param0": 10,
+						"param1": 2.4
+					},
+					"seed": -58156,
+					"seed_locked": false,
+					"type": "slope_blur"
+				},
+				{
+					"name": "fbm",
+					"node_position": {
+						"x": 521.690979,
+						"y": -23.744061
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 3,
+						"noise": 1,
+						"persistence": 0.5,
+						"scale_x": 6,
+						"scale_y": 6
+					},
+					"seed": -22018,
+					"seed_locked": false,
+					"type": "fbm"
+				}
+			],
+			"parameters": {
+
+			},
+			"seed": 45643,
+			"seed_locked": false,
+			"shortdesc": "",
+			"type": "graph"
+		},
+		{
+			"connections": [
+				{
+					"from": "uniform_greyscale_3_2",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 0
+				},
+				{
+					"from": "uniform_greyscale_4",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 2
+				},
+				{
+					"from": "combine",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 1
+				},
+				{
+					"from": "uniform",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 2
+				},
+				{
+					"from": "uniform_3",
+					"from_port": 0,
+					"to": "blend",
+					"to_port": 1
+				},
+				{
+					"from": "blend",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 0
+				},
+				{
+					"from": "graph_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 2
+				},
+				{
+					"from": "fbm",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 1
+				},
+				{
+					"from": "fbm_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 0
+				},
+				{
+					"from": "tones_step",
+					"from_port": 0,
+					"to": "tones_map",
+					"to_port": 0
+				},
+				{
+					"from": "tones_map",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 1
+				},
+				{
+					"from": "normal_map",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 3
+				},
+				{
+					"from": "tones_step_2",
+					"from_port": 0,
+					"to": "normal_map",
+					"to_port": 0
+				},
+				{
+					"from": "791_2",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 0
+				},
+				{
+					"from": "graph_2",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 1
+				},
+				{
+					"from": "slope_blur",
+					"from_port": 0,
+					"to": "blend",
+					"to_port": 0
+				},
+				{
+					"from": "slope_blur",
+					"from_port": 0,
+					"to": "tones_step",
+					"to_port": 0
+				},
+				{
+					"from": "slope_blur",
+					"from_port": 0,
+					"to": "tones_step_2",
+					"to_port": 0
+				}
+			],
+			"label": "Material template",
+			"longdesc": "",
+			"name": "graph_2_2_2",
+			"node_position": {
+				"x": -513.110779,
+				"y": 51.188568
+			},
+			"nodes": [
+				{
+					"name": "uniform_greyscale_3_2",
+					"node_position": {
+						"x": -608.322693,
+						"y": -181.48642
+					},
+					"parameters": {
+						"color": 1
+					},
+					"seed": 59691,
+					"seed_locked": false,
+					"type": "uniform_greyscale"
+				},
+				{
+					"name": "uniform_greyscale_4",
+					"node_position": {
+						"x": -608.322693,
+						"y": -79.48642
+					},
+					"parameters": {
+						"color": 1
+					},
+					"seed": 59857,
+					"seed_locked": false,
+					"type": "uniform_greyscale"
+				},
+				{
+					"name": "uniform_3",
+					"node_position": {
+						"x": -832.322632,
+						"y": -235.153717
+					},
+					"parameters": {
+						"color": {
+							"a": 1,
+							"b": 0.14902,
+							"g": 0.192157,
+							"r": 0.215686,
+							"type": "Color"
+						}
+					},
+					"seed": 9301,
+					"seed_locked": false,
+					"type": "uniform"
+				},
+				{
+					"name": "combine",
+					"node_position": {
+						"x": -410.322693,
+						"y": -141.48642
+					},
+					"parameters": {
+
+					},
+					"seed": 55081,
+					"seed_locked": false,
+					"type": "combine"
+				},
+				{
+					"name": "gen_inputs",
+					"node_position": {
+						"x": -1157.322754,
+						"y": 106.289078
+					},
+					"parameters": {
+
+					},
+					"ports": [
+
+					],
+					"seed": -42865,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_outputs",
+					"node_position": {
+						"x": -206.322693,
+						"y": -144.585464
+					},
+					"parameters": {
+
+					},
+					"ports": [
+						{
+							"group_size": 4,
+							"name": "Albedo",
+							"type": "rgb"
+						},
+						{
+							"group_size": 0,
+							"name": "ORM",
+							"type": "rgb"
+						},
+						{
+							"group_size": 0,
+							"name": "Emission",
+							"type": "rgb"
+						},
+						{
+							"group_size": 0,
+							"name": "Normal",
+							"type": "rgb"
+						}
+					],
+					"seed": 2686,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_parameters",
+					"node_position": {
+						"x": -730.30249,
+						"y": -555.514221
+					},
+					"parameters": {
+						"param0": {
+							"a": 1,
+							"b": 0.14902,
+							"g": 0.192157,
+							"r": 0.215686,
+							"type": "Color"
+						},
+						"param2": 1,
+						"param3": {
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"r": 0,
+							"type": "Color"
+						}
+					},
+					"seed": 48207,
+					"seed_locked": false,
+					"type": "remote",
+					"widgets": [
+						{
+							"label": "Albedo",
+							"linked_widgets": [
+								{
+									"node": "uniform_3",
+									"widget": "color"
+								}
+							],
+							"name": "param0",
+							"type": "linked_control"
+						},
+						{
+							"label": "Metallic",
+							"linked_widgets": [
+								{
+									"node": "uniform_greyscale_4",
+									"widget": "color"
+								}
+							],
+							"name": "param2",
+							"type": "linked_control"
+						},
+						{
+							"label": "Emission",
+							"linked_widgets": [
+								{
+									"node": "uniform",
+									"widget": "color"
+								}
+							],
+							"name": "param3",
+							"type": "linked_control"
+						}
+					]
+				},
+				{
+					"name": "uniform",
+					"node_position": {
+						"x": -569.80249,
+						"y": -21.425568
+					},
+					"parameters": {
+						"color": {
+							"a": 1,
+							"b": 0,
+							"g": 0,
+							"r": 0,
+							"type": "Color"
+						}
+					},
+					"seed": 11250,
+					"seed_locked": false,
+					"type": "uniform"
+				},
+				{
+					"name": "blend",
+					"node_position": {
+						"x": -670.727173,
+						"y": -320.374725
+					},
+					"parameters": {
+						"amount": 0.34,
+						"blend_type": 6
+					},
+					"seed": 29214,
+					"seed_locked": false,
+					"type": "blend"
+				},
+				{
+					"name": "791_2",
+					"node_position": {
+						"x": -1573.112793,
+						"y": -427.758759
+					},
+					"parameters": {
+						"blend_type": 3,
+						"m_smooth": 0.306547,
+						"m_step": 0.275882,
+						"warp_strength": 11.2,
+						"warp_x": 0.30285,
+						"warp_y": 0.726632
+					},
+					"seed": 14544,
+					"seed_locked": false,
+					"shader_model": {
+						"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+						"global": "",
+						"includes": [
+							"blend"
+						],
+						"inputs": [
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_1",
+								"shortdesc": "Input 1",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_2",
+								"shortdesc": "Input 2",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+								"name": "warp",
+								"shortdesc": "Warp",
+								"type": "rgb"
+							}
+						],
+						"instance": "",
+						"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+						"name": "Mingle",
+						"outputs": [
+							{
+								"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+								"shortdesc": "Output",
+								"type": "rgb"
+							}
+						],
+						"parameters": [
+							{
+								"default": 1,
+								"label": "",
+								"longdesc": "Specify method how you like to warp input images.",
+								"name": "blend_type",
+								"shortdesc": "Blend Type",
+								"type": "enum",
+								"values": [
+									{
+										"name": "Normal",
+										"value": "normal"
+									},
+									{
+										"name": "Dissolve",
+										"value": "dissolve"
+									},
+									{
+										"name": "Multiply",
+										"value": "multiply"
+									},
+									{
+										"name": "Screen",
+										"value": "screen"
+									},
+									{
+										"name": "Overlay",
+										"value": "overlay"
+									},
+									{
+										"name": "Hard Light",
+										"value": "hard_light"
+									},
+									{
+										"name": "Soft Light",
+										"value": "soft_light"
+									},
+									{
+										"name": "Burn",
+										"value": "burn"
+									},
+									{
+										"name": "Dodge",
+										"value": "dodge"
+									},
+									{
+										"name": "Lighten",
+										"value": "lighten"
+									},
+									{
+										"name": "Darken",
+										"value": "darken"
+									},
+									{
+										"name": "Difference",
+										"value": "difference"
+									}
+								]
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Step",
+								"max": 1,
+								"min": 0,
+								"name": "m_step",
+								"shortdesc": "Mingle U",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Smoothness",
+								"max": 1,
+								"min": 0,
+								"name": "m_smooth",
+								"shortdesc": "Mingle V",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "P1.x",
+								"default": 0,
+								"label": "Warp X",
+								"max": 10,
+								"min": 0,
+								"name": "warp_x",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "P1.y",
+								"default": 0,
+								"label": "Warp Y",
+								"max": 10,
+								"min": 0,
+								"name": "warp_y",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 1,
+								"label": "Warp Strength",
+								"max": 1,
+								"min": 0,
+								"name": "warp_strength",
+								"step": 0.1,
+								"type": "float"
+							}
+						],
+						"shortdesc": "Mingle 1"
+					},
+					"type": "shader"
+				},
+				{
+					"name": "fbm",
+					"node_position": {
+						"x": -1911.112915,
+						"y": -440.285858
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 5,
+						"noise": 1,
+						"persistence": 0.5,
+						"scale_x": 3,
+						"scale_y": 2
+					},
+					"seed": 20959,
+					"seed_locked": false,
+					"type": "fbm"
+				},
+				{
+					"connections": [
+						{
+							"from": "combine",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_2",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 3
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 0
+						},
+						{
+							"from": "combine_2",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 1
+						}
+					],
+					"label": "FBM Vec",
+					"longdesc": "",
+					"name": "graph_2",
+					"node_position": {
+						"x": -1571.779541,
+						"y": -227.725159
+					},
+					"nodes": [
+						{
+							"name": "fbm_3",
+							"node_position": {
+								"x": -495.760742,
+								"y": 1025.774536
+							},
+							"parameters": {
+								"folds": 1,
+								"iterations": 8,
+								"noise": 1,
+								"persistence": 0.76,
+								"scale_x": 3,
+								"scale_y": 2
+							},
+							"seed": -10482,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_4",
+							"node_position": {
+								"x": -497.094055,
+								"y": 1196.270996
+							},
+							"parameters": {
+								"folds": 1,
+								"iterations": 8,
+								"noise": 1,
+								"persistence": 0.76,
+								"scale_x": 3,
+								"scale_y": 2
+							},
+							"seed": -28547,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_5",
+							"node_position": {
+								"x": -497.094086,
+								"y": 1364.103638
+							},
+							"parameters": {
+								"folds": 1,
+								"iterations": 8,
+								"noise": 1,
+								"persistence": 0.76,
+								"scale_x": 3,
+								"scale_y": 2
+							},
+							"seed": -28283,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine",
+							"node_position": {
+								"x": 294.405914,
+								"y": 1146.736694
+							},
+							"parameters": {
+
+							},
+							"seed": 47584,
+							"seed_locked": false,
+							"type": "combine"
+						},
+						{
+							"name": "gen_inputs",
+							"node_position": {
+								"x": -971.094116,
+								"y": 1119.45166
+							},
+							"parameters": {
+
+							},
+							"ports": [
+
+							],
+							"seed": -3788,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_outputs",
+							"node_position": {
+								"x": 502.405945,
+								"y": 1152.739136
+							},
+							"parameters": {
+
+							},
+							"ports": [
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgb"
+								},
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgba"
+								}
+							],
+							"seed": 586,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_parameters",
+							"node_position": {
+								"x": -863.885681,
+								"y": 1508.326782
+							},
+							"parameters": {
+								"param0": 1,
+								"param1": 3,
+								"param2": 2,
+								"param3": 1,
+								"param4": 8,
+								"param5": 0.76
+							},
+							"seed": -60517,
+							"seed_locked": false,
+							"type": "remote",
+							"widgets": [
+								{
+									"label": "Noise",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "noise"
+										}
+									],
+									"name": "param0",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale X",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_x"
+										}
+									],
+									"name": "param1",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale Y",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_y"
+										}
+									],
+									"name": "param2",
+									"type": "linked_control"
+								},
+								{
+									"label": "Folds",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "folds"
+										}
+									],
+									"name": "param3",
+									"type": "linked_control"
+								},
+								{
+									"label": "Iterations",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "iterations"
+										}
+									],
+									"name": "param4",
+									"type": "linked_control"
+								},
+								{
+									"label": "Persistence",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "persistence"
+										}
+									],
+									"name": "param5",
+									"type": "linked_control"
+								}
+							]
+						},
+						{
+							"name": "fbm_2",
+							"node_position": {
+								"x": -495.298431,
+								"y": 1543.288208
+							},
+							"parameters": {
+								"folds": 1,
+								"iterations": 8,
+								"noise": 1,
+								"persistence": 0.76,
+								"scale_x": 3,
+								"scale_y": 2
+							},
+							"seed": -11000,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine_2",
+							"node_position": {
+								"x": 292.968933,
+								"y": 1276.987427
+							},
+							"parameters": {
+
+							},
+							"seed": 31648,
+							"seed_locked": false,
+							"type": "combine"
+						}
+					],
+					"parameters": {
+						"param0": 1,
+						"param1": 3,
+						"param2": 2,
+						"param3": 1,
+						"param4": 8,
+						"param5": 0.76
+					},
+					"seed": 64478,
+					"seed_locked": false,
+					"shortdesc": "",
+					"type": "graph"
+				},
+				{
+					"name": "fbm_2",
+					"node_position": {
+						"x": -1909.946167,
+						"y": -609.909302
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 5,
+						"noise": 1,
+						"persistence": 0.5,
+						"scale_x": 2,
+						"scale_y": 3
+					},
+					"seed": 4170,
+					"seed_locked": false,
+					"type": "fbm"
+				},
+				{
+					"name": "tones_step",
+					"node_position": {
+						"x": -882.060547,
+						"y": -121.140686
+					},
+					"parameters": {
+						"invert": false,
+						"value": 0.47,
+						"width": 0.55
+					},
+					"seed": 14517,
+					"seed_locked": false,
+					"type": "tones_step"
+				},
+				{
+					"name": "tones_map",
+					"node_position": {
+						"x": -902.727234,
+						"y": -14.527149
+					},
+					"parameters": {
+						"in_max": 1,
+						"in_min": 0,
+						"out_max": 0.9,
+						"out_min": 0.61
+					},
+					"seed": 42804,
+					"seed_locked": false,
+					"type": "tones_map"
+				},
+				{
+					"name": "normal_map",
+					"node_position": {
+						"x": -562.060547,
+						"y": 92.752777
+					},
+					"parameters": {
+						"param0": 10,
+						"param1": 0.06,
+						"param2": 0,
+						"param4": 1
+					},
+					"seed": -21074,
+					"seed_locked": false,
+					"type": "normal_map"
+				},
+				{
+					"name": "tones_step_2",
+					"node_position": {
+						"x": -891.727173,
+						"y": 131.875229
+					},
+					"parameters": {
+						"invert": false,
+						"value": 0.39,
+						"width": 1
+					},
+					"seed": -20584,
+					"seed_locked": false,
+					"type": "tones_step"
+				},
+				{
+					"name": "slope_blur",
+					"node_position": {
+						"x": -1241.230469,
+						"y": -203.163849
+					},
+					"parameters": {
+						"param0": 11,
+						"param1": 0.1
+					},
+					"seed": 56716,
+					"seed_locked": false,
+					"type": "slope_blur"
+				}
+			],
+			"parameters": {
+				"param0": {
+					"a": 1,
+					"b": 0.14902,
+					"g": 0.192157,
+					"r": 0.215686,
+					"type": "Color"
+				},
+				"param2": 1,
+				"param3": {
+					"a": 1,
+					"b": 0,
+					"g": 0,
+					"r": 0,
+					"type": "Color"
+				}
+			},
+			"seed": -23854,
+			"seed_locked": false,
+			"shortdesc": "",
+			"type": "graph"
+		},
+		{
+			"name": "mwf_output",
+			"node_position": {
+				"x": -142.847641,
+				"y": 290.848267
+			},
+			"parameters": {
+				"param0": 1,
+				"param2": 1
+			},
+			"seed": 61841,
+			"seed_locked": false,
+			"type": "mwf_output"
+		},
+		{
+			"name": "mwf_map",
+			"node_position": {
+				"x": -180.222824,
+				"y": -32.140499
+			},
+			"parameters": {
+
+			},
+			"seed": 57812,
+			"seed_locked": false,
+			"type": "mwf_map"
+		},
+		{
+			"name": "mwf_create_map",
+			"node_position": {
+				"x": -418.818359,
+				"y": -118.661034
+			},
+			"parameters": {
+				"angle": 0,
+				"height": 0.075
+			},
+			"seed": 53480,
+			"seed_locked": false,
+			"type": "mwf_create_map"
+		},
+		{
+			"connections": [
+				{
+					"from": "sdrhombus",
+					"from_port": 0,
+					"to": "sdrepeat",
+					"to_port": 0
+				},
+				{
+					"from": "sdrepeat",
+					"from_port": 0,
+					"to": "sdtranslate",
+					"to_port": 0
+				},
+				{
+					"from": "sdtranslate",
+					"from_port": 0,
+					"to": "sdshow",
+					"to_port": 0
+				},
+				{
+					"from": "sdshow",
+					"from_port": 0,
+					"to": "splatter",
+					"to_port": 0
+				},
+				{
+					"from": "sdshow",
+					"from_port": 0,
+					"to": "splatter_2",
+					"to_port": 0
+				},
+				{
+					"from": "splatter_2",
+					"from_port": 0,
+					"to": "math_2",
+					"to_port": 0
+				},
+				{
+					"from": "graph_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 2
+				},
+				{
+					"from": "splatter",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 1
+				},
+				{
+					"from": "math_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 0
+				},
+				{
+					"from": "791_2",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 0
+				},
+				{
+					"from": "slope_blur",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 0
+				},
+				{
+					"from": "fbm",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 1
+				}
+			],
+			"label": "Rough Relief",
+			"longdesc": "",
+			"name": "graph_2",
+			"node_position": {
+				"x": -1330.623291,
+				"y": -295.808075
+			},
+			"nodes": [
+				{
+					"name": "sdshow",
+					"node_position": {
+						"x": -816.333374,
+						"y": -83.673477
+					},
+					"parameters": {
+						"base": 0,
+						"bevel": 0.05
+					},
+					"seed": 12957,
+					"seed_locked": false,
+					"type": "sdshow"
+				},
+				{
+					"name": "gen_inputs",
+					"node_position": {
+						"x": -867,
+						"y": 106.13707
+					},
+					"parameters": {
+
+					},
+					"ports": [
+
+					],
+					"seed": -26007,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_outputs",
+					"node_position": {
+						"x": 814.177124,
+						"y": -135.961319
+					},
+					"parameters": {
+
+					},
+					"ports": [
+						{
+							"group_size": 0,
+							"name": "unnamed",
+							"type": "f"
+						}
+					],
+					"seed": -62485,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_parameters",
+					"node_position": {
+						"x": -851,
+						"y": -276.447174
+					},
+					"parameters": {
+
+					},
+					"seed": 29983,
+					"seed_locked": false,
+					"type": "remote",
+					"widgets": [
+
+					]
+				},
+				{
+					"name": "sdrhombus",
+					"node_position": {
+						"x": -1146.791626,
+						"y": -198.765594
+					},
+					"parameters": {
+						"cx": 0,
+						"cy": 0,
+						"h": 0.1,
+						"w": 0.06
+					},
+					"seed": 20480,
+					"seed_locked": false,
+					"type": "sdrhombus"
+				},
+				{
+					"name": "sdrepeat",
+					"node_position": {
+						"x": -1118.791382,
+						"y": -68.229141
+					},
+					"parameters": {
+						"r": 0.5,
+						"rx": 4,
+						"ry": 4
+					},
+					"seed": 59682,
+					"seed_locked": false,
+					"type": "sdrepeat"
+				},
+				{
+					"name": "sdtranslate",
+					"node_position": {
+						"x": -808.791687,
+						"y": -170.12764
+					},
+					"parameters": {
+						"x": 0.125,
+						"y": 0.125
+					},
+					"seed": 14718,
+					"seed_locked": false,
+					"type": "sdtranslate"
+				},
+				{
+					"name": "splatter",
+					"node_position": {
+						"x": -505.458313,
+						"y": -229.401672
+					},
+					"parameters": {
+						"count": 90,
+						"rotate": 0,
+						"scale": 0.14,
+						"scale_x": 1,
+						"scale_y": 1,
+						"select_inputs": 2,
+						"value": 0.77,
+						"variations": false
+					},
+					"seed": 25794,
+					"seed_locked": false,
+					"type": "splatter"
+				},
+				{
+					"name": "splatter_2",
+					"node_position": {
+						"x": -506.625,
+						"y": -29.528862
+					},
+					"parameters": {
+						"count": 100,
+						"rotate": 0,
+						"scale": 0.14,
+						"scale_x": 0.47,
+						"scale_y": 0.3,
+						"select_inputs": 2,
+						"value": 0.77,
+						"variations": false
+					},
+					"seed": 33625,
+					"seed_locked": false,
+					"type": "splatter"
+				},
+				{
+					"name": "math_2",
+					"node_position": {
+						"x": -154.791626,
+						"y": 28.341095
+					},
+					"parameters": {
+						"clamp": false,
+						"default_in1": 0,
+						"default_in2": 0.41,
+						"op": 2
+					},
+					"seed": -47290,
+					"seed_locked": false,
+					"type": "math"
+				},
+				{
+					"name": "791_2",
+					"node_position": {
+						"x": 199.208374,
+						"y": -148.149414
+					},
+					"parameters": {
+						"blend_type": 11,
+						"m_smooth": 0.661511,
+						"m_step": 0.485345,
+						"warp_strength": 1.8,
+						"warp_x": 0.279322,
+						"warp_y": 0.149004
+					},
+					"seed": -12683,
+					"seed_locked": false,
+					"shader_model": {
+						"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+						"global": "",
+						"includes": [
+							"blend"
+						],
+						"inputs": [
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_1",
+								"shortdesc": "Input 1",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_2",
+								"shortdesc": "Input 2",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+								"name": "warp",
+								"shortdesc": "Warp",
+								"type": "rgb"
+							}
+						],
+						"instance": "",
+						"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+						"name": "Mingle",
+						"outputs": [
+							{
+								"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+								"shortdesc": "Output",
+								"type": "rgb"
+							}
+						],
+						"parameters": [
+							{
+								"default": 1,
+								"label": "",
+								"longdesc": "Specify method how you like to warp input images.",
+								"name": "blend_type",
+								"shortdesc": "Blend Type",
+								"type": "enum",
+								"values": [
+									{
+										"name": "Normal",
+										"value": "normal"
+									},
+									{
+										"name": "Dissolve",
+										"value": "dissolve"
+									},
+									{
+										"name": "Multiply",
+										"value": "multiply"
+									},
+									{
+										"name": "Screen",
+										"value": "screen"
+									},
+									{
+										"name": "Overlay",
+										"value": "overlay"
+									},
+									{
+										"name": "Hard Light",
+										"value": "hard_light"
+									},
+									{
+										"name": "Soft Light",
+										"value": "soft_light"
+									},
+									{
+										"name": "Burn",
+										"value": "burn"
+									},
+									{
+										"name": "Dodge",
+										"value": "dodge"
+									},
+									{
+										"name": "Lighten",
+										"value": "lighten"
+									},
+									{
+										"name": "Darken",
+										"value": "darken"
+									},
+									{
+										"name": "Difference",
+										"value": "difference"
+									}
+								]
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Step",
+								"max": 1,
+								"min": 0,
+								"name": "m_step",
+								"shortdesc": "Mingle U",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Smoothness",
+								"max": 1,
+								"min": 0,
+								"name": "m_smooth",
+								"shortdesc": "Mingle V",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "P1.x",
+								"default": 0,
+								"label": "Warp X",
+								"max": 10,
+								"min": 0,
+								"name": "warp_x",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "P1.y",
+								"default": 0,
+								"label": "Warp Y",
+								"max": 10,
+								"min": 0,
+								"name": "warp_y",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 1,
+								"label": "Warp Strength",
+								"max": 1,
+								"min": 0,
+								"name": "warp_strength",
+								"step": 0.1,
+								"type": "float"
+							}
+						],
+						"shortdesc": "Mingle 1"
+					},
+					"type": "shader"
+				},
+				{
+					"connections": [
+						{
+							"from": "combine",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_2",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 3
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 0
+						},
+						{
+							"from": "combine_2",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 1
+						}
+					],
+					"label": "FBM Vec",
+					"longdesc": "",
+					"name": "graph_2",
+					"node_position": {
+						"x": 204.541702,
+						"y": 44.991116
+					},
+					"nodes": [
+						{
+							"name": "fbm_3",
+							"node_position": {
+								"x": -495.760742,
+								"y": 1025.774536
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -10482,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_4",
+							"node_position": {
+								"x": -497.094055,
+								"y": 1196.270996
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -28547,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_5",
+							"node_position": {
+								"x": -497.094086,
+								"y": 1364.103638
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -28283,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine",
+							"node_position": {
+								"x": 294.405914,
+								"y": 1146.736694
+							},
+							"parameters": {
+
+							},
+							"seed": 47584,
+							"seed_locked": false,
+							"type": "combine"
+						},
+						{
+							"name": "gen_inputs",
+							"node_position": {
+								"x": -971.094116,
+								"y": 1119.45166
+							},
+							"parameters": {
+
+							},
+							"ports": [
+
+							],
+							"seed": -3788,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_outputs",
+							"node_position": {
+								"x": 502.405945,
+								"y": 1152.739136
+							},
+							"parameters": {
+
+							},
+							"ports": [
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgb"
+								},
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgba"
+								}
+							],
+							"seed": 586,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_parameters",
+							"node_position": {
+								"x": -863.885681,
+								"y": 1508.326782
+							},
+							"parameters": {
+								"param0": 2,
+								"param1": 3,
+								"param2": 3,
+								"param3": 0,
+								"param4": 6,
+								"param5": 0.6
+							},
+							"seed": -60517,
+							"seed_locked": false,
+							"type": "remote",
+							"widgets": [
+								{
+									"label": "Noise",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "noise"
+										}
+									],
+									"name": "param0",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale X",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_x"
+										}
+									],
+									"name": "param1",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale Y",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_y"
+										}
+									],
+									"name": "param2",
+									"type": "linked_control"
+								},
+								{
+									"label": "Folds",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "folds"
+										}
+									],
+									"name": "param3",
+									"type": "linked_control"
+								},
+								{
+									"label": "Iterations",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "iterations"
+										}
+									],
+									"name": "param4",
+									"type": "linked_control"
+								},
+								{
+									"label": "Persistence",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "persistence"
+										}
+									],
+									"name": "param5",
+									"type": "linked_control"
+								}
+							]
+						},
+						{
+							"name": "fbm_2",
+							"node_position": {
+								"x": -495.298431,
+								"y": 1543.288208
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -11000,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine_2",
+							"node_position": {
+								"x": 292.968933,
+								"y": 1276.987427
+							},
+							"parameters": {
+
+							},
+							"seed": 31648,
+							"seed_locked": false,
+							"type": "combine"
+						}
+					],
+					"parameters": {
+						"param0": 2,
+						"param1": 3,
+						"param2": 3,
+						"param3": 0,
+						"param4": 6,
+						"param5": 0.6
+					},
+					"seed": 52376,
+					"seed_locked": false,
+					"shortdesc": "",
+					"type": "graph"
+				},
+				{
+					"name": "slope_blur",
+					"node_position": {
+						"x": 542.21051,
+						"y": -138.441284
+					},
+					"parameters": {
+						"param0": 10,
+						"param1": 2.4
+					},
+					"seed": -58156,
+					"seed_locked": false,
+					"type": "slope_blur"
+				},
+				{
+					"name": "fbm",
+					"node_position": {
+						"x": 521.690979,
+						"y": -23.744061
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 3,
+						"noise": 1,
+						"persistence": 0.5,
+						"scale_x": 6,
+						"scale_y": 6
+					},
+					"seed": -22018,
+					"seed_locked": false,
+					"type": "fbm"
+				}
+			],
+			"parameters": {
+
+			},
+			"seed": 44587,
+			"seed_locked": false,
+			"shortdesc": "",
+			"type": "graph"
+		},
+		{
+			"name": "791_2",
+			"node_position": {
+				"x": -1329.739014,
+				"y": -223.281372
+			},
+			"parameters": {
+				"blend_type": 2,
+				"m_smooth": 0.23631,
+				"m_step": 0.720098,
+				"warp_strength": 13.8,
+				"warp_x": 0.175886,
+				"warp_y": 0.339507
+			},
+			"seed": 36656,
+			"seed_locked": false,
+			"shader_model": {
+				"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+				"global": "",
+				"includes": [
+					"blend"
+				],
+				"inputs": [
+					{
+						"default": "0.0",
+						"label": "",
+						"name": "in_1",
+						"shortdesc": "Input 1",
+						"type": "rgb"
+					},
+					{
+						"default": "0.0",
+						"label": "",
+						"name": "in_2",
+						"shortdesc": "Input 2",
+						"type": "rgb"
+					},
+					{
+						"default": "0.0",
+						"label": "",
+						"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+						"name": "warp",
+						"shortdesc": "Warp",
+						"type": "rgb"
+					}
+				],
+				"instance": "",
+				"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+				"name": "Mingle",
+				"outputs": [
+					{
+						"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+						"shortdesc": "Output",
+						"type": "rgb"
+					}
+				],
+				"parameters": [
+					{
+						"default": 1,
+						"label": "",
+						"longdesc": "Specify method how you like to warp input images.",
+						"name": "blend_type",
+						"shortdesc": "Blend Type",
+						"type": "enum",
+						"values": [
+							{
+								"name": "Normal",
+								"value": "normal"
+							},
+							{
+								"name": "Dissolve",
+								"value": "dissolve"
+							},
+							{
+								"name": "Multiply",
+								"value": "multiply"
+							},
+							{
+								"name": "Screen",
+								"value": "screen"
+							},
+							{
+								"name": "Overlay",
+								"value": "overlay"
+							},
+							{
+								"name": "Hard Light",
+								"value": "hard_light"
+							},
+							{
+								"name": "Soft Light",
+								"value": "soft_light"
+							},
+							{
+								"name": "Burn",
+								"value": "burn"
+							},
+							{
+								"name": "Dodge",
+								"value": "dodge"
+							},
+							{
+								"name": "Lighten",
+								"value": "lighten"
+							},
+							{
+								"name": "Darken",
+								"value": "darken"
+							},
+							{
+								"name": "Difference",
+								"value": "difference"
+							}
+						]
+					},
+					{
+						"control": "None",
+						"default": 0,
+						"label": "Step",
+						"max": 1,
+						"min": 0,
+						"name": "m_step",
+						"shortdesc": "Mingle U",
+						"step": 0,
+						"type": "float"
+					},
+					{
+						"control": "None",
+						"default": 0,
+						"label": "Smoothness",
+						"max": 1,
+						"min": 0,
+						"name": "m_smooth",
+						"shortdesc": "Mingle V",
+						"step": 0,
+						"type": "float"
+					},
+					{
+						"control": "P1.x",
+						"default": 0,
+						"label": "Warp X",
+						"max": 10,
+						"min": 0,
+						"name": "warp_x",
+						"step": 0.1,
+						"type": "float"
+					},
+					{
+						"control": "P1.y",
+						"default": 0,
+						"label": "Warp Y",
+						"max": 10,
+						"min": 0,
+						"name": "warp_y",
+						"step": 0.1,
+						"type": "float"
+					},
+					{
+						"control": "None",
+						"default": 1,
+						"label": "Warp Strength",
+						"max": 1,
+						"min": 0,
+						"name": "warp_strength",
+						"step": 0.1,
+						"type": "float"
+					}
+				],
+				"shortdesc": "Mingle 1"
+			},
+			"type": "shader"
+		},
+		{
+			"connections": [
+				{
+					"from": "graph_3",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 0
+				},
+				{
+					"from": "graph_4",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 1
+				},
+				{
+					"from": "graph_5",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 2
+				},
+				{
+					"from": "combine",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 0
+				}
+			],
+			"label": "Relief Mingle Warp",
+			"longdesc": "",
+			"name": "graph_6",
+			"node_position": {
+				"x": -1328.845215,
+				"y": -20.243536
+			},
+			"nodes": [
+				{
+					"connections": [
+						{
+							"from": "sdrhombus",
+							"from_port": 0,
+							"to": "sdrepeat",
+							"to_port": 0
+						},
+						{
+							"from": "sdrepeat",
+							"from_port": 0,
+							"to": "sdtranslate",
+							"to_port": 0
+						},
+						{
+							"from": "sdtranslate",
+							"from_port": 0,
+							"to": "sdshow",
+							"to_port": 0
+						},
+						{
+							"from": "sdshow",
+							"from_port": 0,
+							"to": "splatter",
+							"to_port": 0
+						},
+						{
+							"from": "sdshow",
+							"from_port": 0,
+							"to": "splatter_2",
+							"to_port": 0
+						},
+						{
+							"from": "splatter_2",
+							"from_port": 0,
+							"to": "math_2",
+							"to_port": 0
+						},
+						{
+							"from": "graph_2",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 2
+						},
+						{
+							"from": "splatter",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 1
+						},
+						{
+							"from": "math_2",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 0
+						},
+						{
+							"from": "791_2",
+							"from_port": 0,
+							"to": "slope_blur",
+							"to_port": 0
+						},
+						{
+							"from": "slope_blur",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 0
+						},
+						{
+							"from": "fbm",
+							"from_port": 0,
+							"to": "slope_blur",
+							"to_port": 1
+						}
+					],
+					"label": "Rough Relief",
+					"longdesc": "",
+					"name": "graph_5",
+					"node_position": {
+						"x": -1337.09668,
+						"y": 42.717674
+					},
+					"nodes": [
+						{
+							"name": "sdshow",
+							"node_position": {
+								"x": -816.333374,
+								"y": -83.673477
+							},
+							"parameters": {
+								"base": 0,
+								"bevel": 0.05
+							},
+							"seed": 12957,
+							"seed_locked": false,
+							"type": "sdshow"
+						},
+						{
+							"name": "gen_inputs",
+							"node_position": {
+								"x": -867,
+								"y": 106.13707
+							},
+							"parameters": {
+
+							},
+							"ports": [
+
+							],
+							"seed": -26007,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_outputs",
+							"node_position": {
+								"x": 814.177124,
+								"y": -135.961319
+							},
+							"parameters": {
+
+							},
+							"ports": [
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "f"
+								}
+							],
+							"seed": -62485,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_parameters",
+							"node_position": {
+								"x": -851,
+								"y": -276.447174
+							},
+							"parameters": {
+
+							},
+							"seed": 29983,
+							"seed_locked": false,
+							"type": "remote",
+							"widgets": [
+
+							]
+						},
+						{
+							"name": "sdrhombus",
+							"node_position": {
+								"x": -1146.791626,
+								"y": -198.765594
+							},
+							"parameters": {
+								"cx": 0,
+								"cy": 0,
+								"h": 0.1,
+								"w": 0.06
+							},
+							"seed": 20480,
+							"seed_locked": false,
+							"type": "sdrhombus"
+						},
+						{
+							"name": "sdrepeat",
+							"node_position": {
+								"x": -1118.791382,
+								"y": -68.229141
+							},
+							"parameters": {
+								"r": 0.5,
+								"rx": 4,
+								"ry": 4
+							},
+							"seed": 59682,
+							"seed_locked": false,
+							"type": "sdrepeat"
+						},
+						{
+							"name": "sdtranslate",
+							"node_position": {
+								"x": -808.791687,
+								"y": -170.12764
+							},
+							"parameters": {
+								"x": 0.125,
+								"y": 0.125
+							},
+							"seed": 14718,
+							"seed_locked": false,
+							"type": "sdtranslate"
+						},
+						{
+							"name": "splatter",
+							"node_position": {
+								"x": -505.458313,
+								"y": -229.401672
+							},
+							"parameters": {
+								"count": 90,
+								"rotate": 0,
+								"scale": 0.14,
+								"scale_x": 1,
+								"scale_y": 1,
+								"select_inputs": 2,
+								"value": 0.77,
+								"variations": false
+							},
+							"seed": 25794,
+							"seed_locked": false,
+							"type": "splatter"
+						},
+						{
+							"name": "splatter_2",
+							"node_position": {
+								"x": -506.625,
+								"y": -29.528862
+							},
+							"parameters": {
+								"count": 100,
+								"rotate": 0,
+								"scale": 0.14,
+								"scale_x": 0.47,
+								"scale_y": 0.3,
+								"select_inputs": 2,
+								"value": 0.77,
+								"variations": false
+							},
+							"seed": 33625,
+							"seed_locked": false,
+							"type": "splatter"
+						},
+						{
+							"name": "math_2",
+							"node_position": {
+								"x": -154.791626,
+								"y": 28.341095
+							},
+							"parameters": {
+								"clamp": false,
+								"default_in1": 0,
+								"default_in2": 0.41,
+								"op": 2
+							},
+							"seed": -47290,
+							"seed_locked": false,
+							"type": "math"
+						},
+						{
+							"name": "791_2",
+							"node_position": {
+								"x": 199.208374,
+								"y": -148.149414
+							},
+							"parameters": {
+								"blend_type": 11,
+								"m_smooth": 0.661511,
+								"m_step": 0.485345,
+								"warp_strength": 1.8,
+								"warp_x": 0.279322,
+								"warp_y": 0.149004
+							},
+							"seed": -12683,
+							"seed_locked": false,
+							"shader_model": {
+								"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+								"global": "",
+								"includes": [
+									"blend"
+								],
+								"inputs": [
+									{
+										"default": "0.0",
+										"label": "",
+										"name": "in_1",
+										"shortdesc": "Input 1",
+										"type": "rgb"
+									},
+									{
+										"default": "0.0",
+										"label": "",
+										"name": "in_2",
+										"shortdesc": "Input 2",
+										"type": "rgb"
+									},
+									{
+										"default": "0.0",
+										"label": "",
+										"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+										"name": "warp",
+										"shortdesc": "Warp",
+										"type": "rgb"
+									}
+								],
+								"instance": "",
+								"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+								"name": "Mingle",
+								"outputs": [
+									{
+										"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+										"shortdesc": "Output",
+										"type": "rgb"
+									}
+								],
+								"parameters": [
+									{
+										"default": 1,
+										"label": "",
+										"longdesc": "Specify method how you like to warp input images.",
+										"name": "blend_type",
+										"shortdesc": "Blend Type",
+										"type": "enum",
+										"values": [
+											{
+												"name": "Normal",
+												"value": "normal"
+											},
+											{
+												"name": "Dissolve",
+												"value": "dissolve"
+											},
+											{
+												"name": "Multiply",
+												"value": "multiply"
+											},
+											{
+												"name": "Screen",
+												"value": "screen"
+											},
+											{
+												"name": "Overlay",
+												"value": "overlay"
+											},
+											{
+												"name": "Hard Light",
+												"value": "hard_light"
+											},
+											{
+												"name": "Soft Light",
+												"value": "soft_light"
+											},
+											{
+												"name": "Burn",
+												"value": "burn"
+											},
+											{
+												"name": "Dodge",
+												"value": "dodge"
+											},
+											{
+												"name": "Lighten",
+												"value": "lighten"
+											},
+											{
+												"name": "Darken",
+												"value": "darken"
+											},
+											{
+												"name": "Difference",
+												"value": "difference"
+											}
+										]
+									},
+									{
+										"control": "None",
+										"default": 0,
+										"label": "Step",
+										"max": 1,
+										"min": 0,
+										"name": "m_step",
+										"shortdesc": "Mingle U",
+										"step": 0,
+										"type": "float"
+									},
+									{
+										"control": "None",
+										"default": 0,
+										"label": "Smoothness",
+										"max": 1,
+										"min": 0,
+										"name": "m_smooth",
+										"shortdesc": "Mingle V",
+										"step": 0,
+										"type": "float"
+									},
+									{
+										"control": "P1.x",
+										"default": 0,
+										"label": "Warp X",
+										"max": 10,
+										"min": 0,
+										"name": "warp_x",
+										"step": 0.1,
+										"type": "float"
+									},
+									{
+										"control": "P1.y",
+										"default": 0,
+										"label": "Warp Y",
+										"max": 10,
+										"min": 0,
+										"name": "warp_y",
+										"step": 0.1,
+										"type": "float"
+									},
+									{
+										"control": "None",
+										"default": 1,
+										"label": "Warp Strength",
+										"max": 1,
+										"min": 0,
+										"name": "warp_strength",
+										"step": 0.1,
+										"type": "float"
+									}
+								],
+								"shortdesc": "Mingle 1"
+							},
+							"type": "shader"
+						},
+						{
+							"connections": [
+								{
+									"from": "combine",
+									"from_port": 0,
+									"to": "gen_outputs",
+									"to_port": 0
+								},
+								{
+									"from": "fbm_5",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 2
+								},
+								{
+									"from": "fbm_4",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 1
+								},
+								{
+									"from": "fbm_3",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 0
+								},
+								{
+									"from": "fbm_2",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 3
+								},
+								{
+									"from": "fbm_5",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 2
+								},
+								{
+									"from": "fbm_4",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 1
+								},
+								{
+									"from": "fbm_3",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 0
+								},
+								{
+									"from": "combine_2",
+									"from_port": 0,
+									"to": "gen_outputs",
+									"to_port": 1
+								}
+							],
+							"label": "FBM Vec",
+							"longdesc": "",
+							"name": "graph_2",
+							"node_position": {
+								"x": 204.541702,
+								"y": 44.991116
+							},
+							"nodes": [
+								{
+									"name": "fbm_3",
+									"node_position": {
+										"x": -495.760742,
+										"y": 1025.774536
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -10482,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "fbm_4",
+									"node_position": {
+										"x": -497.094055,
+										"y": 1196.270996
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -28547,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "fbm_5",
+									"node_position": {
+										"x": -497.094086,
+										"y": 1364.103638
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -28283,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "combine",
+									"node_position": {
+										"x": 294.405914,
+										"y": 1146.736694
+									},
+									"parameters": {
+
+									},
+									"seed": 47584,
+									"seed_locked": false,
+									"type": "combine"
+								},
+								{
+									"name": "gen_inputs",
+									"node_position": {
+										"x": -971.094116,
+										"y": 1119.45166
+									},
+									"parameters": {
+
+									},
+									"ports": [
+
+									],
+									"seed": -3788,
+									"seed_locked": false,
+									"type": "ios"
+								},
+								{
+									"name": "gen_outputs",
+									"node_position": {
+										"x": 502.405945,
+										"y": 1152.739136
+									},
+									"parameters": {
+
+									},
+									"ports": [
+										{
+											"group_size": 0,
+											"name": "unnamed",
+											"type": "rgb"
+										},
+										{
+											"group_size": 0,
+											"name": "unnamed",
+											"type": "rgba"
+										}
+									],
+									"seed": 586,
+									"seed_locked": false,
+									"type": "ios"
+								},
+								{
+									"name": "gen_parameters",
+									"node_position": {
+										"x": -863.885681,
+										"y": 1508.326782
+									},
+									"parameters": {
+										"param0": 2,
+										"param1": 3,
+										"param2": 3,
+										"param3": 0,
+										"param4": 6,
+										"param5": 0.6
+									},
+									"seed": -60517,
+									"seed_locked": false,
+									"type": "remote",
+									"widgets": [
+										{
+											"label": "Noise",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "noise"
+												}
+											],
+											"name": "param0",
+											"type": "linked_control"
+										},
+										{
+											"label": "Scale X",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "scale_x"
+												}
+											],
+											"name": "param1",
+											"type": "linked_control"
+										},
+										{
+											"label": "Scale Y",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "scale_y"
+												}
+											],
+											"name": "param2",
+											"type": "linked_control"
+										},
+										{
+											"label": "Folds",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "folds"
+												}
+											],
+											"name": "param3",
+											"type": "linked_control"
+										},
+										{
+											"label": "Iterations",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "iterations"
+												}
+											],
+											"name": "param4",
+											"type": "linked_control"
+										},
+										{
+											"label": "Persistence",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "persistence"
+												}
+											],
+											"name": "param5",
+											"type": "linked_control"
+										}
+									]
+								},
+								{
+									"name": "fbm_2",
+									"node_position": {
+										"x": -495.298431,
+										"y": 1543.288208
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -11000,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "combine_2",
+									"node_position": {
+										"x": 292.968933,
+										"y": 1276.987427
+									},
+									"parameters": {
+
+									},
+									"seed": 31648,
+									"seed_locked": false,
+									"type": "combine"
+								}
+							],
+							"parameters": {
+								"param0": 2,
+								"param1": 3,
+								"param2": 3,
+								"param3": 0,
+								"param4": 6,
+								"param5": 0.6
+							},
+							"seed": 52376,
+							"seed_locked": false,
+							"shortdesc": "",
+							"type": "graph"
+						},
+						{
+							"name": "slope_blur",
+							"node_position": {
+								"x": 542.21051,
+								"y": -138.441284
+							},
+							"parameters": {
+								"param0": 10,
+								"param1": 2.4
+							},
+							"seed": -58156,
+							"seed_locked": false,
+							"type": "slope_blur"
+						},
+						{
+							"name": "fbm",
+							"node_position": {
+								"x": 521.690979,
+								"y": -23.744061
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 3,
+								"noise": 1,
+								"persistence": 0.5,
+								"scale_x": 6,
+								"scale_y": 6
+							},
+							"seed": -22018,
+							"seed_locked": false,
+							"type": "fbm"
+						}
+					],
+					"parameters": {
+
+					},
+					"seed": -35021,
+					"seed_locked": false,
+					"shortdesc": "",
+					"type": "graph"
+				},
+				{
+					"connections": [
+						{
+							"from": "sdrhombus",
+							"from_port": 0,
+							"to": "sdrepeat",
+							"to_port": 0
+						},
+						{
+							"from": "sdrepeat",
+							"from_port": 0,
+							"to": "sdtranslate",
+							"to_port": 0
+						},
+						{
+							"from": "sdtranslate",
+							"from_port": 0,
+							"to": "sdshow",
+							"to_port": 0
+						},
+						{
+							"from": "sdshow",
+							"from_port": 0,
+							"to": "splatter",
+							"to_port": 0
+						},
+						{
+							"from": "sdshow",
+							"from_port": 0,
+							"to": "splatter_2",
+							"to_port": 0
+						},
+						{
+							"from": "splatter_2",
+							"from_port": 0,
+							"to": "math_2",
+							"to_port": 0
+						},
+						{
+							"from": "graph_2",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 2
+						},
+						{
+							"from": "splatter",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 1
+						},
+						{
+							"from": "math_2",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 0
+						},
+						{
+							"from": "791_2",
+							"from_port": 0,
+							"to": "slope_blur",
+							"to_port": 0
+						},
+						{
+							"from": "slope_blur",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 0
+						},
+						{
+							"from": "fbm",
+							"from_port": 0,
+							"to": "slope_blur",
+							"to_port": 1
+						}
+					],
+					"label": "Rough Relief",
+					"longdesc": "",
+					"name": "graph_4",
+					"node_position": {
+						"x": -1335.630981,
+						"y": -6.577724
+					},
+					"nodes": [
+						{
+							"name": "sdshow",
+							"node_position": {
+								"x": -816.333374,
+								"y": -83.673477
+							},
+							"parameters": {
+								"base": 0,
+								"bevel": 0.05
+							},
+							"seed": 12957,
+							"seed_locked": false,
+							"type": "sdshow"
+						},
+						{
+							"name": "gen_inputs",
+							"node_position": {
+								"x": -867,
+								"y": 106.13707
+							},
+							"parameters": {
+
+							},
+							"ports": [
+
+							],
+							"seed": -26007,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_outputs",
+							"node_position": {
+								"x": 814.177124,
+								"y": -135.961319
+							},
+							"parameters": {
+
+							},
+							"ports": [
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "f"
+								}
+							],
+							"seed": -62485,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_parameters",
+							"node_position": {
+								"x": -851,
+								"y": -276.447174
+							},
+							"parameters": {
+
+							},
+							"seed": 29983,
+							"seed_locked": false,
+							"type": "remote",
+							"widgets": [
+
+							]
+						},
+						{
+							"name": "sdrhombus",
+							"node_position": {
+								"x": -1146.791626,
+								"y": -198.765594
+							},
+							"parameters": {
+								"cx": 0,
+								"cy": 0,
+								"h": 0.1,
+								"w": 0.06
+							},
+							"seed": 20480,
+							"seed_locked": false,
+							"type": "sdrhombus"
+						},
+						{
+							"name": "sdrepeat",
+							"node_position": {
+								"x": -1118.791382,
+								"y": -68.229141
+							},
+							"parameters": {
+								"r": 0.5,
+								"rx": 4,
+								"ry": 4
+							},
+							"seed": 59682,
+							"seed_locked": false,
+							"type": "sdrepeat"
+						},
+						{
+							"name": "sdtranslate",
+							"node_position": {
+								"x": -808.791687,
+								"y": -170.12764
+							},
+							"parameters": {
+								"x": 0.125,
+								"y": 0.125
+							},
+							"seed": 14718,
+							"seed_locked": false,
+							"type": "sdtranslate"
+						},
+						{
+							"name": "splatter",
+							"node_position": {
+								"x": -505.458313,
+								"y": -229.401672
+							},
+							"parameters": {
+								"count": 90,
+								"rotate": 0,
+								"scale": 0.14,
+								"scale_x": 1,
+								"scale_y": 1,
+								"select_inputs": 2,
+								"value": 0.77,
+								"variations": false
+							},
+							"seed": 25794,
+							"seed_locked": false,
+							"type": "splatter"
+						},
+						{
+							"name": "splatter_2",
+							"node_position": {
+								"x": -506.625,
+								"y": -29.528862
+							},
+							"parameters": {
+								"count": 100,
+								"rotate": 0,
+								"scale": 0.14,
+								"scale_x": 0.47,
+								"scale_y": 0.3,
+								"select_inputs": 2,
+								"value": 0.77,
+								"variations": false
+							},
+							"seed": 33625,
+							"seed_locked": false,
+							"type": "splatter"
+						},
+						{
+							"name": "math_2",
+							"node_position": {
+								"x": -154.791626,
+								"y": 28.341095
+							},
+							"parameters": {
+								"clamp": false,
+								"default_in1": 0,
+								"default_in2": 0.41,
+								"op": 2
+							},
+							"seed": -47290,
+							"seed_locked": false,
+							"type": "math"
+						},
+						{
+							"name": "791_2",
+							"node_position": {
+								"x": 199.208374,
+								"y": -148.149414
+							},
+							"parameters": {
+								"blend_type": 11,
+								"m_smooth": 0.661511,
+								"m_step": 0.485345,
+								"warp_strength": 1.8,
+								"warp_x": 0.279322,
+								"warp_y": 0.149004
+							},
+							"seed": -12683,
+							"seed_locked": false,
+							"shader_model": {
+								"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+								"global": "",
+								"includes": [
+									"blend"
+								],
+								"inputs": [
+									{
+										"default": "0.0",
+										"label": "",
+										"name": "in_1",
+										"shortdesc": "Input 1",
+										"type": "rgb"
+									},
+									{
+										"default": "0.0",
+										"label": "",
+										"name": "in_2",
+										"shortdesc": "Input 2",
+										"type": "rgb"
+									},
+									{
+										"default": "0.0",
+										"label": "",
+										"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+										"name": "warp",
+										"shortdesc": "Warp",
+										"type": "rgb"
+									}
+								],
+								"instance": "",
+								"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+								"name": "Mingle",
+								"outputs": [
+									{
+										"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+										"shortdesc": "Output",
+										"type": "rgb"
+									}
+								],
+								"parameters": [
+									{
+										"default": 1,
+										"label": "",
+										"longdesc": "Specify method how you like to warp input images.",
+										"name": "blend_type",
+										"shortdesc": "Blend Type",
+										"type": "enum",
+										"values": [
+											{
+												"name": "Normal",
+												"value": "normal"
+											},
+											{
+												"name": "Dissolve",
+												"value": "dissolve"
+											},
+											{
+												"name": "Multiply",
+												"value": "multiply"
+											},
+											{
+												"name": "Screen",
+												"value": "screen"
+											},
+											{
+												"name": "Overlay",
+												"value": "overlay"
+											},
+											{
+												"name": "Hard Light",
+												"value": "hard_light"
+											},
+											{
+												"name": "Soft Light",
+												"value": "soft_light"
+											},
+											{
+												"name": "Burn",
+												"value": "burn"
+											},
+											{
+												"name": "Dodge",
+												"value": "dodge"
+											},
+											{
+												"name": "Lighten",
+												"value": "lighten"
+											},
+											{
+												"name": "Darken",
+												"value": "darken"
+											},
+											{
+												"name": "Difference",
+												"value": "difference"
+											}
+										]
+									},
+									{
+										"control": "None",
+										"default": 0,
+										"label": "Step",
+										"max": 1,
+										"min": 0,
+										"name": "m_step",
+										"shortdesc": "Mingle U",
+										"step": 0,
+										"type": "float"
+									},
+									{
+										"control": "None",
+										"default": 0,
+										"label": "Smoothness",
+										"max": 1,
+										"min": 0,
+										"name": "m_smooth",
+										"shortdesc": "Mingle V",
+										"step": 0,
+										"type": "float"
+									},
+									{
+										"control": "P1.x",
+										"default": 0,
+										"label": "Warp X",
+										"max": 10,
+										"min": 0,
+										"name": "warp_x",
+										"step": 0.1,
+										"type": "float"
+									},
+									{
+										"control": "P1.y",
+										"default": 0,
+										"label": "Warp Y",
+										"max": 10,
+										"min": 0,
+										"name": "warp_y",
+										"step": 0.1,
+										"type": "float"
+									},
+									{
+										"control": "None",
+										"default": 1,
+										"label": "Warp Strength",
+										"max": 1,
+										"min": 0,
+										"name": "warp_strength",
+										"step": 0.1,
+										"type": "float"
+									}
+								],
+								"shortdesc": "Mingle 1"
+							},
+							"type": "shader"
+						},
+						{
+							"connections": [
+								{
+									"from": "combine",
+									"from_port": 0,
+									"to": "gen_outputs",
+									"to_port": 0
+								},
+								{
+									"from": "fbm_5",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 2
+								},
+								{
+									"from": "fbm_4",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 1
+								},
+								{
+									"from": "fbm_3",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 0
+								},
+								{
+									"from": "fbm_2",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 3
+								},
+								{
+									"from": "fbm_5",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 2
+								},
+								{
+									"from": "fbm_4",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 1
+								},
+								{
+									"from": "fbm_3",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 0
+								},
+								{
+									"from": "combine_2",
+									"from_port": 0,
+									"to": "gen_outputs",
+									"to_port": 1
+								}
+							],
+							"label": "FBM Vec",
+							"longdesc": "",
+							"name": "graph_2",
+							"node_position": {
+								"x": 204.541702,
+								"y": 44.991116
+							},
+							"nodes": [
+								{
+									"name": "fbm_3",
+									"node_position": {
+										"x": -495.760742,
+										"y": 1025.774536
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -10482,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "fbm_4",
+									"node_position": {
+										"x": -497.094055,
+										"y": 1196.270996
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -28547,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "fbm_5",
+									"node_position": {
+										"x": -497.094086,
+										"y": 1364.103638
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -28283,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "combine",
+									"node_position": {
+										"x": 294.405914,
+										"y": 1146.736694
+									},
+									"parameters": {
+
+									},
+									"seed": 47584,
+									"seed_locked": false,
+									"type": "combine"
+								},
+								{
+									"name": "gen_inputs",
+									"node_position": {
+										"x": -971.094116,
+										"y": 1119.45166
+									},
+									"parameters": {
+
+									},
+									"ports": [
+
+									],
+									"seed": -3788,
+									"seed_locked": false,
+									"type": "ios"
+								},
+								{
+									"name": "gen_outputs",
+									"node_position": {
+										"x": 502.405945,
+										"y": 1152.739136
+									},
+									"parameters": {
+
+									},
+									"ports": [
+										{
+											"group_size": 0,
+											"name": "unnamed",
+											"type": "rgb"
+										},
+										{
+											"group_size": 0,
+											"name": "unnamed",
+											"type": "rgba"
+										}
+									],
+									"seed": 586,
+									"seed_locked": false,
+									"type": "ios"
+								},
+								{
+									"name": "gen_parameters",
+									"node_position": {
+										"x": -863.885681,
+										"y": 1508.326782
+									},
+									"parameters": {
+										"param0": 2,
+										"param1": 3,
+										"param2": 3,
+										"param3": 0,
+										"param4": 6,
+										"param5": 0.6
+									},
+									"seed": -60517,
+									"seed_locked": false,
+									"type": "remote",
+									"widgets": [
+										{
+											"label": "Noise",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "noise"
+												}
+											],
+											"name": "param0",
+											"type": "linked_control"
+										},
+										{
+											"label": "Scale X",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "scale_x"
+												}
+											],
+											"name": "param1",
+											"type": "linked_control"
+										},
+										{
+											"label": "Scale Y",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "scale_y"
+												}
+											],
+											"name": "param2",
+											"type": "linked_control"
+										},
+										{
+											"label": "Folds",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "folds"
+												}
+											],
+											"name": "param3",
+											"type": "linked_control"
+										},
+										{
+											"label": "Iterations",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "iterations"
+												}
+											],
+											"name": "param4",
+											"type": "linked_control"
+										},
+										{
+											"label": "Persistence",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "persistence"
+												}
+											],
+											"name": "param5",
+											"type": "linked_control"
+										}
+									]
+								},
+								{
+									"name": "fbm_2",
+									"node_position": {
+										"x": -495.298431,
+										"y": 1543.288208
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -11000,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "combine_2",
+									"node_position": {
+										"x": 292.968933,
+										"y": 1276.987427
+									},
+									"parameters": {
+
+									},
+									"seed": 31648,
+									"seed_locked": false,
+									"type": "combine"
+								}
+							],
+							"parameters": {
+								"param0": 2,
+								"param1": 3,
+								"param2": 3,
+								"param3": 0,
+								"param4": 6,
+								"param5": 0.6
+							},
+							"seed": 52376,
+							"seed_locked": false,
+							"shortdesc": "",
+							"type": "graph"
+						},
+						{
+							"name": "slope_blur",
+							"node_position": {
+								"x": 542.21051,
+								"y": -138.441284
+							},
+							"parameters": {
+								"param0": 10,
+								"param1": 2.4
+							},
+							"seed": -58156,
+							"seed_locked": false,
+							"type": "slope_blur"
+						},
+						{
+							"name": "fbm",
+							"node_position": {
+								"x": 521.690979,
+								"y": -23.744061
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 3,
+								"noise": 1,
+								"persistence": 0.5,
+								"scale_x": 6,
+								"scale_y": 6
+							},
+							"seed": -22018,
+							"seed_locked": false,
+							"type": "fbm"
+						}
+					],
+					"parameters": {
+
+					},
+					"seed": 19117,
+					"seed_locked": false,
+					"shortdesc": "",
+					"type": "graph"
+				},
+				{
+					"connections": [
+						{
+							"from": "sdrhombus",
+							"from_port": 0,
+							"to": "sdrepeat",
+							"to_port": 0
+						},
+						{
+							"from": "sdrepeat",
+							"from_port": 0,
+							"to": "sdtranslate",
+							"to_port": 0
+						},
+						{
+							"from": "sdtranslate",
+							"from_port": 0,
+							"to": "sdshow",
+							"to_port": 0
+						},
+						{
+							"from": "sdshow",
+							"from_port": 0,
+							"to": "splatter",
+							"to_port": 0
+						},
+						{
+							"from": "sdshow",
+							"from_port": 0,
+							"to": "splatter_2",
+							"to_port": 0
+						},
+						{
+							"from": "splatter_2",
+							"from_port": 0,
+							"to": "math_2",
+							"to_port": 0
+						},
+						{
+							"from": "graph_2",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 2
+						},
+						{
+							"from": "splatter",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 1
+						},
+						{
+							"from": "math_2",
+							"from_port": 0,
+							"to": "791_2",
+							"to_port": 0
+						},
+						{
+							"from": "791_2",
+							"from_port": 0,
+							"to": "slope_blur",
+							"to_port": 0
+						},
+						{
+							"from": "slope_blur",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 0
+						},
+						{
+							"from": "fbm",
+							"from_port": 0,
+							"to": "slope_blur",
+							"to_port": 1
+						}
+					],
+					"label": "Rough Relief",
+					"longdesc": "",
+					"name": "graph_3",
+					"node_position": {
+						"x": -1335.142334,
+						"y": -58.801579
+					},
+					"nodes": [
+						{
+							"name": "sdshow",
+							"node_position": {
+								"x": -816.333374,
+								"y": -83.673477
+							},
+							"parameters": {
+								"base": 0,
+								"bevel": 0.05
+							},
+							"seed": 12957,
+							"seed_locked": false,
+							"type": "sdshow"
+						},
+						{
+							"name": "gen_inputs",
+							"node_position": {
+								"x": -867,
+								"y": 106.13707
+							},
+							"parameters": {
+
+							},
+							"ports": [
+
+							],
+							"seed": -26007,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_outputs",
+							"node_position": {
+								"x": 814.177124,
+								"y": -135.961319
+							},
+							"parameters": {
+
+							},
+							"ports": [
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "f"
+								}
+							],
+							"seed": -62485,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_parameters",
+							"node_position": {
+								"x": -851,
+								"y": -276.447174
+							},
+							"parameters": {
+
+							},
+							"seed": 29983,
+							"seed_locked": false,
+							"type": "remote",
+							"widgets": [
+
+							]
+						},
+						{
+							"name": "sdrhombus",
+							"node_position": {
+								"x": -1146.791626,
+								"y": -198.765594
+							},
+							"parameters": {
+								"cx": 0,
+								"cy": 0,
+								"h": 0.1,
+								"w": 0.06
+							},
+							"seed": 20480,
+							"seed_locked": false,
+							"type": "sdrhombus"
+						},
+						{
+							"name": "sdrepeat",
+							"node_position": {
+								"x": -1118.791382,
+								"y": -68.229141
+							},
+							"parameters": {
+								"r": 0.5,
+								"rx": 4,
+								"ry": 4
+							},
+							"seed": 59682,
+							"seed_locked": false,
+							"type": "sdrepeat"
+						},
+						{
+							"name": "sdtranslate",
+							"node_position": {
+								"x": -808.791687,
+								"y": -170.12764
+							},
+							"parameters": {
+								"x": 0.125,
+								"y": 0.125
+							},
+							"seed": 14718,
+							"seed_locked": false,
+							"type": "sdtranslate"
+						},
+						{
+							"name": "splatter",
+							"node_position": {
+								"x": -505.458313,
+								"y": -229.401672
+							},
+							"parameters": {
+								"count": 90,
+								"rotate": 0,
+								"scale": 0.14,
+								"scale_x": 1,
+								"scale_y": 1,
+								"select_inputs": 2,
+								"value": 0.77,
+								"variations": false
+							},
+							"seed": 25794,
+							"seed_locked": false,
+							"type": "splatter"
+						},
+						{
+							"name": "splatter_2",
+							"node_position": {
+								"x": -506.625,
+								"y": -29.528862
+							},
+							"parameters": {
+								"count": 100,
+								"rotate": 0,
+								"scale": 0.14,
+								"scale_x": 0.47,
+								"scale_y": 0.3,
+								"select_inputs": 2,
+								"value": 0.77,
+								"variations": false
+							},
+							"seed": 33625,
+							"seed_locked": false,
+							"type": "splatter"
+						},
+						{
+							"name": "math_2",
+							"node_position": {
+								"x": -154.791626,
+								"y": 28.341095
+							},
+							"parameters": {
+								"clamp": false,
+								"default_in1": 0,
+								"default_in2": 0.41,
+								"op": 2
+							},
+							"seed": -47290,
+							"seed_locked": false,
+							"type": "math"
+						},
+						{
+							"name": "791_2",
+							"node_position": {
+								"x": 199.208374,
+								"y": -148.149414
+							},
+							"parameters": {
+								"blend_type": 11,
+								"m_smooth": 0.661511,
+								"m_step": 0.485345,
+								"warp_strength": 1.8,
+								"warp_x": 0.279322,
+								"warp_y": 0.149004
+							},
+							"seed": -12683,
+							"seed_locked": false,
+							"shader_model": {
+								"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+								"global": "",
+								"includes": [
+									"blend"
+								],
+								"inputs": [
+									{
+										"default": "0.0",
+										"label": "",
+										"name": "in_1",
+										"shortdesc": "Input 1",
+										"type": "rgb"
+									},
+									{
+										"default": "0.0",
+										"label": "",
+										"name": "in_2",
+										"shortdesc": "Input 2",
+										"type": "rgb"
+									},
+									{
+										"default": "0.0",
+										"label": "",
+										"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+										"name": "warp",
+										"shortdesc": "Warp",
+										"type": "rgb"
+									}
+								],
+								"instance": "",
+								"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+								"name": "Mingle",
+								"outputs": [
+									{
+										"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+										"shortdesc": "Output",
+										"type": "rgb"
+									}
+								],
+								"parameters": [
+									{
+										"default": 1,
+										"label": "",
+										"longdesc": "Specify method how you like to warp input images.",
+										"name": "blend_type",
+										"shortdesc": "Blend Type",
+										"type": "enum",
+										"values": [
+											{
+												"name": "Normal",
+												"value": "normal"
+											},
+											{
+												"name": "Dissolve",
+												"value": "dissolve"
+											},
+											{
+												"name": "Multiply",
+												"value": "multiply"
+											},
+											{
+												"name": "Screen",
+												"value": "screen"
+											},
+											{
+												"name": "Overlay",
+												"value": "overlay"
+											},
+											{
+												"name": "Hard Light",
+												"value": "hard_light"
+											},
+											{
+												"name": "Soft Light",
+												"value": "soft_light"
+											},
+											{
+												"name": "Burn",
+												"value": "burn"
+											},
+											{
+												"name": "Dodge",
+												"value": "dodge"
+											},
+											{
+												"name": "Lighten",
+												"value": "lighten"
+											},
+											{
+												"name": "Darken",
+												"value": "darken"
+											},
+											{
+												"name": "Difference",
+												"value": "difference"
+											}
+										]
+									},
+									{
+										"control": "None",
+										"default": 0,
+										"label": "Step",
+										"max": 1,
+										"min": 0,
+										"name": "m_step",
+										"shortdesc": "Mingle U",
+										"step": 0,
+										"type": "float"
+									},
+									{
+										"control": "None",
+										"default": 0,
+										"label": "Smoothness",
+										"max": 1,
+										"min": 0,
+										"name": "m_smooth",
+										"shortdesc": "Mingle V",
+										"step": 0,
+										"type": "float"
+									},
+									{
+										"control": "P1.x",
+										"default": 0,
+										"label": "Warp X",
+										"max": 10,
+										"min": 0,
+										"name": "warp_x",
+										"step": 0.1,
+										"type": "float"
+									},
+									{
+										"control": "P1.y",
+										"default": 0,
+										"label": "Warp Y",
+										"max": 10,
+										"min": 0,
+										"name": "warp_y",
+										"step": 0.1,
+										"type": "float"
+									},
+									{
+										"control": "None",
+										"default": 1,
+										"label": "Warp Strength",
+										"max": 1,
+										"min": 0,
+										"name": "warp_strength",
+										"step": 0.1,
+										"type": "float"
+									}
+								],
+								"shortdesc": "Mingle 1"
+							},
+							"type": "shader"
+						},
+						{
+							"connections": [
+								{
+									"from": "combine",
+									"from_port": 0,
+									"to": "gen_outputs",
+									"to_port": 0
+								},
+								{
+									"from": "fbm_5",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 2
+								},
+								{
+									"from": "fbm_4",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 1
+								},
+								{
+									"from": "fbm_3",
+									"from_port": 0,
+									"to": "combine",
+									"to_port": 0
+								},
+								{
+									"from": "fbm_2",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 3
+								},
+								{
+									"from": "fbm_5",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 2
+								},
+								{
+									"from": "fbm_4",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 1
+								},
+								{
+									"from": "fbm_3",
+									"from_port": 0,
+									"to": "combine_2",
+									"to_port": 0
+								},
+								{
+									"from": "combine_2",
+									"from_port": 0,
+									"to": "gen_outputs",
+									"to_port": 1
+								}
+							],
+							"label": "FBM Vec",
+							"longdesc": "",
+							"name": "graph_2",
+							"node_position": {
+								"x": 204.541702,
+								"y": 44.991116
+							},
+							"nodes": [
+								{
+									"name": "fbm_3",
+									"node_position": {
+										"x": -495.760742,
+										"y": 1025.774536
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -10482,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "fbm_4",
+									"node_position": {
+										"x": -497.094055,
+										"y": 1196.270996
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -28547,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "fbm_5",
+									"node_position": {
+										"x": -497.094086,
+										"y": 1364.103638
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -28283,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "combine",
+									"node_position": {
+										"x": 294.405914,
+										"y": 1146.736694
+									},
+									"parameters": {
+
+									},
+									"seed": 47584,
+									"seed_locked": false,
+									"type": "combine"
+								},
+								{
+									"name": "gen_inputs",
+									"node_position": {
+										"x": -971.094116,
+										"y": 1119.45166
+									},
+									"parameters": {
+
+									},
+									"ports": [
+
+									],
+									"seed": -3788,
+									"seed_locked": false,
+									"type": "ios"
+								},
+								{
+									"name": "gen_outputs",
+									"node_position": {
+										"x": 502.405945,
+										"y": 1152.739136
+									},
+									"parameters": {
+
+									},
+									"ports": [
+										{
+											"group_size": 0,
+											"name": "unnamed",
+											"type": "rgb"
+										},
+										{
+											"group_size": 0,
+											"name": "unnamed",
+											"type": "rgba"
+										}
+									],
+									"seed": 586,
+									"seed_locked": false,
+									"type": "ios"
+								},
+								{
+									"name": "gen_parameters",
+									"node_position": {
+										"x": -863.885681,
+										"y": 1508.326782
+									},
+									"parameters": {
+										"param0": 2,
+										"param1": 3,
+										"param2": 3,
+										"param3": 0,
+										"param4": 6,
+										"param5": 0.6
+									},
+									"seed": -60517,
+									"seed_locked": false,
+									"type": "remote",
+									"widgets": [
+										{
+											"label": "Noise",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "noise"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "noise"
+												}
+											],
+											"name": "param0",
+											"type": "linked_control"
+										},
+										{
+											"label": "Scale X",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "scale_x"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "scale_x"
+												}
+											],
+											"name": "param1",
+											"type": "linked_control"
+										},
+										{
+											"label": "Scale Y",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "scale_y"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "scale_y"
+												}
+											],
+											"name": "param2",
+											"type": "linked_control"
+										},
+										{
+											"label": "Folds",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "folds"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "folds"
+												}
+											],
+											"name": "param3",
+											"type": "linked_control"
+										},
+										{
+											"label": "Iterations",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "iterations"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "iterations"
+												}
+											],
+											"name": "param4",
+											"type": "linked_control"
+										},
+										{
+											"label": "Persistence",
+											"linked_widgets": [
+												{
+													"node": "fbm_3",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_4",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_5",
+													"widget": "persistence"
+												},
+												{
+													"node": "fbm_2",
+													"widget": "persistence"
+												}
+											],
+											"name": "param5",
+											"type": "linked_control"
+										}
+									]
+								},
+								{
+									"name": "fbm_2",
+									"node_position": {
+										"x": -495.298431,
+										"y": 1543.288208
+									},
+									"parameters": {
+										"folds": 0,
+										"iterations": 6,
+										"noise": 2,
+										"persistence": 0.6,
+										"scale_x": 3,
+										"scale_y": 3
+									},
+									"seed": -11000,
+									"seed_locked": false,
+									"type": "fbm"
+								},
+								{
+									"name": "combine_2",
+									"node_position": {
+										"x": 292.968933,
+										"y": 1276.987427
+									},
+									"parameters": {
+
+									},
+									"seed": 31648,
+									"seed_locked": false,
+									"type": "combine"
+								}
+							],
+							"parameters": {
+								"param0": 2,
+								"param1": 3,
+								"param2": 3,
+								"param3": 0,
+								"param4": 6,
+								"param5": 0.6
+							},
+							"seed": 52376,
+							"seed_locked": false,
+							"shortdesc": "",
+							"type": "graph"
+						},
+						{
+							"name": "slope_blur",
+							"node_position": {
+								"x": 542.21051,
+								"y": -138.441284
+							},
+							"parameters": {
+								"param0": 10,
+								"param1": 2.4
+							},
+							"seed": -58156,
+							"seed_locked": false,
+							"type": "slope_blur"
+						},
+						{
+							"name": "fbm",
+							"node_position": {
+								"x": 521.690979,
+								"y": -23.744061
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 3,
+								"noise": 1,
+								"persistence": 0.5,
+								"scale_x": 6,
+								"scale_y": 6
+							},
+							"seed": -22018,
+							"seed_locked": false,
+							"type": "fbm"
+						}
+					],
+					"parameters": {
+
+					},
+					"seed": 19089,
+					"seed_locked": false,
+					"shortdesc": "",
+					"type": "graph"
+				},
+				{
+					"name": "combine",
+					"node_position": {
+						"x": -1131.628052,
+						"y": -54.407948
+					},
+					"parameters": {
+
+					},
+					"seed": 32193,
+					"seed_locked": false,
+					"type": "combine"
+				},
+				{
+					"name": "gen_inputs",
+					"node_position": {
+						"x": -1637.09668,
+						"y": -19.267395
+					},
+					"parameters": {
+
+					},
+					"ports": [
+
+					],
+					"seed": 296,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_outputs",
+					"node_position": {
+						"x": -831.628052,
+						"y": -19.267395
+					},
+					"parameters": {
+
+					},
+					"ports": [
+						{
+							"group_size": 0,
+							"name": "port0",
+							"type": "rgba"
+						}
+					],
+					"seed": 1458,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_parameters",
+					"node_position": {
+						"x": -1484.874512,
+						"y": -358.801575
+					},
+					"parameters": {
+
+					},
+					"seed": 26326,
+					"seed_locked": false,
+					"type": "remote",
+					"widgets": [
+
+					]
+				}
+			],
+			"parameters": {
+
+			},
+			"seed": 28892,
+			"seed_locked": false,
+			"shortdesc": "",
+			"type": "graph"
+		},
+		{
+			"connections": [
+				{
+					"from": "sdrhombus",
+					"from_port": 0,
+					"to": "sdrepeat",
+					"to_port": 0
+				},
+				{
+					"from": "sdrepeat",
+					"from_port": 0,
+					"to": "sdtranslate",
+					"to_port": 0
+				},
+				{
+					"from": "sdtranslate",
+					"from_port": 0,
+					"to": "sdshow",
+					"to_port": 0
+				},
+				{
+					"from": "sdshow",
+					"from_port": 0,
+					"to": "splatter",
+					"to_port": 0
+				},
+				{
+					"from": "sdshow",
+					"from_port": 0,
+					"to": "splatter_2",
+					"to_port": 0
+				},
+				{
+					"from": "splatter_2",
+					"from_port": 0,
+					"to": "math_2",
+					"to_port": 0
+				},
+				{
+					"from": "graph_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 2
+				},
+				{
+					"from": "splatter",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 1
+				},
+				{
+					"from": "math_2",
+					"from_port": 0,
+					"to": "791_2",
+					"to_port": 0
+				},
+				{
+					"from": "791_2",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 0
+				},
+				{
+					"from": "slope_blur",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 0
+				},
+				{
+					"from": "fbm",
+					"from_port": 0,
+					"to": "slope_blur",
+					"to_port": 1
+				}
+			],
+			"label": "Rough Relief",
+			"longdesc": "",
+			"name": "graph_3",
+			"node_position": {
+				"x": -1043.26709,
+				"y": -310.785126
+			},
+			"nodes": [
+				{
+					"name": "sdshow",
+					"node_position": {
+						"x": -816.333374,
+						"y": -83.673477
+					},
+					"parameters": {
+						"base": 0,
+						"bevel": 0.05
+					},
+					"seed": 12957,
+					"seed_locked": false,
+					"type": "sdshow"
+				},
+				{
+					"name": "gen_inputs",
+					"node_position": {
+						"x": -867,
+						"y": 106.13707
+					},
+					"parameters": {
+
+					},
+					"ports": [
+
+					],
+					"seed": -26007,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_outputs",
+					"node_position": {
+						"x": 814.177124,
+						"y": -135.961319
+					},
+					"parameters": {
+
+					},
+					"ports": [
+						{
+							"group_size": 0,
+							"name": "unnamed",
+							"type": "f"
+						}
+					],
+					"seed": -62485,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_parameters",
+					"node_position": {
+						"x": -851,
+						"y": -276.447174
+					},
+					"parameters": {
+
+					},
+					"seed": 29983,
+					"seed_locked": false,
+					"type": "remote",
+					"widgets": [
+
+					]
+				},
+				{
+					"name": "sdrhombus",
+					"node_position": {
+						"x": -1146.791626,
+						"y": -198.765594
+					},
+					"parameters": {
+						"cx": 0,
+						"cy": 0,
+						"h": 0.1,
+						"w": 0.06
+					},
+					"seed": 20480,
+					"seed_locked": false,
+					"type": "sdrhombus"
+				},
+				{
+					"name": "sdrepeat",
+					"node_position": {
+						"x": -1118.791382,
+						"y": -68.229141
+					},
+					"parameters": {
+						"r": 0.5,
+						"rx": 4,
+						"ry": 4
+					},
+					"seed": 59682,
+					"seed_locked": false,
+					"type": "sdrepeat"
+				},
+				{
+					"name": "sdtranslate",
+					"node_position": {
+						"x": -808.791687,
+						"y": -170.12764
+					},
+					"parameters": {
+						"x": 0.125,
+						"y": 0.125
+					},
+					"seed": 14718,
+					"seed_locked": false,
+					"type": "sdtranslate"
+				},
+				{
+					"name": "splatter",
+					"node_position": {
+						"x": -505.458313,
+						"y": -229.401672
+					},
+					"parameters": {
+						"count": 90,
+						"rotate": 0,
+						"scale": 0.14,
+						"scale_x": 1,
+						"scale_y": 1,
+						"select_inputs": 2,
+						"value": 0.77,
+						"variations": false
+					},
+					"seed": 25794,
+					"seed_locked": false,
+					"type": "splatter"
+				},
+				{
+					"name": "splatter_2",
+					"node_position": {
+						"x": -506.625,
+						"y": -29.528862
+					},
+					"parameters": {
+						"count": 100,
+						"rotate": 0,
+						"scale": 0.14,
+						"scale_x": 0.47,
+						"scale_y": 0.3,
+						"select_inputs": 2,
+						"value": 0.77,
+						"variations": false
+					},
+					"seed": 33625,
+					"seed_locked": false,
+					"type": "splatter"
+				},
+				{
+					"name": "math_2",
+					"node_position": {
+						"x": -154.791626,
+						"y": 28.341095
+					},
+					"parameters": {
+						"clamp": false,
+						"default_in1": 0,
+						"default_in2": 0.41,
+						"op": 2
+					},
+					"seed": -47290,
+					"seed_locked": false,
+					"type": "math"
+				},
+				{
+					"name": "791_2",
+					"node_position": {
+						"x": 199.208374,
+						"y": -148.149414
+					},
+					"parameters": {
+						"blend_type": 11,
+						"m_smooth": 0.661511,
+						"m_step": 0.485345,
+						"warp_strength": 1.8,
+						"warp_x": 0.279322,
+						"warp_y": 0.149004
+					},
+					"seed": -12683,
+					"seed_locked": false,
+					"shader_model": {
+						"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+						"global": "",
+						"includes": [
+							"blend"
+						],
+						"inputs": [
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_1",
+								"shortdesc": "Input 1",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"name": "in_2",
+								"shortdesc": "Input 2",
+								"type": "rgb"
+							},
+							{
+								"default": "0.0",
+								"label": "",
+								"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+								"name": "warp",
+								"shortdesc": "Warp",
+								"type": "rgb"
+							}
+						],
+						"instance": "",
+						"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+						"name": "Mingle",
+						"outputs": [
+							{
+								"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+								"shortdesc": "Output",
+								"type": "rgb"
+							}
+						],
+						"parameters": [
+							{
+								"default": 1,
+								"label": "",
+								"longdesc": "Specify method how you like to warp input images.",
+								"name": "blend_type",
+								"shortdesc": "Blend Type",
+								"type": "enum",
+								"values": [
+									{
+										"name": "Normal",
+										"value": "normal"
+									},
+									{
+										"name": "Dissolve",
+										"value": "dissolve"
+									},
+									{
+										"name": "Multiply",
+										"value": "multiply"
+									},
+									{
+										"name": "Screen",
+										"value": "screen"
+									},
+									{
+										"name": "Overlay",
+										"value": "overlay"
+									},
+									{
+										"name": "Hard Light",
+										"value": "hard_light"
+									},
+									{
+										"name": "Soft Light",
+										"value": "soft_light"
+									},
+									{
+										"name": "Burn",
+										"value": "burn"
+									},
+									{
+										"name": "Dodge",
+										"value": "dodge"
+									},
+									{
+										"name": "Lighten",
+										"value": "lighten"
+									},
+									{
+										"name": "Darken",
+										"value": "darken"
+									},
+									{
+										"name": "Difference",
+										"value": "difference"
+									}
+								]
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Step",
+								"max": 1,
+								"min": 0,
+								"name": "m_step",
+								"shortdesc": "Mingle U",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 0,
+								"label": "Smoothness",
+								"max": 1,
+								"min": 0,
+								"name": "m_smooth",
+								"shortdesc": "Mingle V",
+								"step": 0,
+								"type": "float"
+							},
+							{
+								"control": "P1.x",
+								"default": 0,
+								"label": "Warp X",
+								"max": 10,
+								"min": 0,
+								"name": "warp_x",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "P1.y",
+								"default": 0,
+								"label": "Warp Y",
+								"max": 10,
+								"min": 0,
+								"name": "warp_y",
+								"step": 0.1,
+								"type": "float"
+							},
+							{
+								"control": "None",
+								"default": 1,
+								"label": "Warp Strength",
+								"max": 1,
+								"min": 0,
+								"name": "warp_strength",
+								"step": 0.1,
+								"type": "float"
+							}
+						],
+						"shortdesc": "Mingle 1"
+					},
+					"type": "shader"
+				},
+				{
+					"connections": [
+						{
+							"from": "combine",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine",
+							"to_port": 0
+						},
+						{
+							"from": "fbm_2",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 3
+						},
+						{
+							"from": "fbm_5",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 2
+						},
+						{
+							"from": "fbm_4",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 1
+						},
+						{
+							"from": "fbm_3",
+							"from_port": 0,
+							"to": "combine_2",
+							"to_port": 0
+						},
+						{
+							"from": "combine_2",
+							"from_port": 0,
+							"to": "gen_outputs",
+							"to_port": 1
+						}
+					],
+					"label": "FBM Vec",
+					"longdesc": "",
+					"name": "graph_2",
+					"node_position": {
+						"x": 204.541702,
+						"y": 44.991116
+					},
+					"nodes": [
+						{
+							"name": "fbm_3",
+							"node_position": {
+								"x": -495.760742,
+								"y": 1025.774536
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -10482,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_4",
+							"node_position": {
+								"x": -497.094055,
+								"y": 1196.270996
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -28547,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "fbm_5",
+							"node_position": {
+								"x": -497.094086,
+								"y": 1364.103638
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -28283,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine",
+							"node_position": {
+								"x": 294.405914,
+								"y": 1146.736694
+							},
+							"parameters": {
+
+							},
+							"seed": 47584,
+							"seed_locked": false,
+							"type": "combine"
+						},
+						{
+							"name": "gen_inputs",
+							"node_position": {
+								"x": -971.094116,
+								"y": 1119.45166
+							},
+							"parameters": {
+
+							},
+							"ports": [
+
+							],
+							"seed": -3788,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_outputs",
+							"node_position": {
+								"x": 502.405945,
+								"y": 1152.739136
+							},
+							"parameters": {
+
+							},
+							"ports": [
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgb"
+								},
+								{
+									"group_size": 0,
+									"name": "unnamed",
+									"type": "rgba"
+								}
+							],
+							"seed": 586,
+							"seed_locked": false,
+							"type": "ios"
+						},
+						{
+							"name": "gen_parameters",
+							"node_position": {
+								"x": -863.885681,
+								"y": 1508.326782
+							},
+							"parameters": {
+								"param0": 2,
+								"param1": 3,
+								"param2": 3,
+								"param3": 0,
+								"param4": 6,
+								"param5": 0.6
+							},
+							"seed": -60517,
+							"seed_locked": false,
+							"type": "remote",
+							"widgets": [
+								{
+									"label": "Noise",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "noise"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "noise"
+										}
+									],
+									"name": "param0",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale X",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_x"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_x"
+										}
+									],
+									"name": "param1",
+									"type": "linked_control"
+								},
+								{
+									"label": "Scale Y",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "scale_y"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "scale_y"
+										}
+									],
+									"name": "param2",
+									"type": "linked_control"
+								},
+								{
+									"label": "Folds",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "folds"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "folds"
+										}
+									],
+									"name": "param3",
+									"type": "linked_control"
+								},
+								{
+									"label": "Iterations",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "iterations"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "iterations"
+										}
+									],
+									"name": "param4",
+									"type": "linked_control"
+								},
+								{
+									"label": "Persistence",
+									"linked_widgets": [
+										{
+											"node": "fbm_3",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_4",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_5",
+											"widget": "persistence"
+										},
+										{
+											"node": "fbm_2",
+											"widget": "persistence"
+										}
+									],
+									"name": "param5",
+									"type": "linked_control"
+								}
+							]
+						},
+						{
+							"name": "fbm_2",
+							"node_position": {
+								"x": -495.298431,
+								"y": 1543.288208
+							},
+							"parameters": {
+								"folds": 0,
+								"iterations": 6,
+								"noise": 2,
+								"persistence": 0.6,
+								"scale_x": 3,
+								"scale_y": 3
+							},
+							"seed": -11000,
+							"seed_locked": false,
+							"type": "fbm"
+						},
+						{
+							"name": "combine_2",
+							"node_position": {
+								"x": 292.968933,
+								"y": 1276.987427
+							},
+							"parameters": {
+
+							},
+							"seed": 31648,
+							"seed_locked": false,
+							"type": "combine"
+						}
+					],
+					"parameters": {
+						"param0": 2,
+						"param1": 3,
+						"param2": 3,
+						"param3": 0,
+						"param4": 6,
+						"param5": 0.6
+					},
+					"seed": 52376,
+					"seed_locked": false,
+					"shortdesc": "",
+					"type": "graph"
+				},
+				{
+					"name": "slope_blur",
+					"node_position": {
+						"x": 542.21051,
+						"y": -138.441284
+					},
+					"parameters": {
+						"param0": 10,
+						"param1": 2.4
+					},
+					"seed": -58156,
+					"seed_locked": false,
+					"type": "slope_blur"
+				},
+				{
+					"name": "fbm",
+					"node_position": {
+						"x": 521.690979,
+						"y": -23.744061
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 3,
+						"noise": 1,
+						"persistence": 0.5,
+						"scale_x": 6,
+						"scale_y": 6
+					},
+					"seed": -22018,
+					"seed_locked": false,
+					"type": "fbm"
+				}
+			],
+			"parameters": {
+
+			},
+			"seed": 51833,
+			"seed_locked": false,
+			"shortdesc": "",
+			"type": "graph"
+		},
+		{
+			"name": "791_3",
+			"node_position": {
+				"x": -1043.726318,
+				"y": -224.638351
+			},
+			"parameters": {
+				"blend_type": 9,
+				"m_smooth": 0.323002,
+				"m_step": 0.449542,
+				"warp_strength": 8.9,
+				"warp_x": 0.16098,
+				"warp_y": 0.208469
+			},
+			"seed": 52115,
+			"seed_locked": false,
+			"shader_model": {
+				"code": "vec2 $(name_uv)_warp_1 = $uv + $warp_strength *  vec2($warp_x*$warp($uv).r,  -$warp_y*$warp($uv).g);\nvec2 $(name_uv)_warp_2 = $uv - $warp_strength *  vec2($warp_x*$warp($uv).g,  -$warp_y*$warp($uv).r);\n// vec2 $(name_uv)_mingle = vec2($mingle_strength*$mingle_u, $mingle_strength*$mingle_v);\n//float $(name_uv)_blend =  smoothstep(mingle_$mingle_mode($warp($uv),$(name_uv)_mingle ), 0.5);\nfloat $(name_uv)_blend = smoothstep($m_step-$m_smooth,  $m_step+$m_smooth,  $warp($uv).b);\n\n",
+				"global": "",
+				"includes": [
+					"blend"
+				],
+				"inputs": [
+					{
+						"default": "0.0",
+						"label": "",
+						"name": "in_1",
+						"shortdesc": "Input 1",
+						"type": "rgb"
+					},
+					{
+						"default": "0.0",
+						"label": "",
+						"name": "in_2",
+						"shortdesc": "Input 2",
+						"type": "rgb"
+					},
+					{
+						"default": "0.0",
+						"label": "",
+						"longdesc": "A Warp image combines UV warping and blending.\n\nR,G\t\t\nare mapped to a vector, which warps UV coords.\n\nB,A\t\t\nare used to blend both input images. How they are blended is controlled by a smoothstep, which could be adjust with \"Step\" and \"Smooth\".",
+						"name": "warp",
+						"shortdesc": "Warp",
+						"type": "rgb"
+					}
+				],
+				"instance": "",
+				"longdesc": "Mingle node with one output.\nBasic node which could be used to create grunge images.",
+				"name": "Mingle",
+				"outputs": [
+					{
+						"rgb": "blend_$blend_type( $uv,  $in_1($(name_uv)_warp_1),  $in_2($(name_uv)_warp_2),  $(name_uv)_blend )",
+						"shortdesc": "Output",
+						"type": "rgb"
+					}
+				],
+				"parameters": [
+					{
+						"default": 1,
+						"label": "",
+						"longdesc": "Specify method how you like to warp input images.",
+						"name": "blend_type",
+						"shortdesc": "Blend Type",
+						"type": "enum",
+						"values": [
+							{
+								"name": "Normal",
+								"value": "normal"
+							},
+							{
+								"name": "Dissolve",
+								"value": "dissolve"
+							},
+							{
+								"name": "Multiply",
+								"value": "multiply"
+							},
+							{
+								"name": "Screen",
+								"value": "screen"
+							},
+							{
+								"name": "Overlay",
+								"value": "overlay"
+							},
+							{
+								"name": "Hard Light",
+								"value": "hard_light"
+							},
+							{
+								"name": "Soft Light",
+								"value": "soft_light"
+							},
+							{
+								"name": "Burn",
+								"value": "burn"
+							},
+							{
+								"name": "Dodge",
+								"value": "dodge"
+							},
+							{
+								"name": "Lighten",
+								"value": "lighten"
+							},
+							{
+								"name": "Darken",
+								"value": "darken"
+							},
+							{
+								"name": "Difference",
+								"value": "difference"
+							}
+						]
+					},
+					{
+						"control": "None",
+						"default": 0,
+						"label": "Step",
+						"max": 1,
+						"min": 0,
+						"name": "m_step",
+						"shortdesc": "Mingle U",
+						"step": 0,
+						"type": "float"
+					},
+					{
+						"control": "None",
+						"default": 0,
+						"label": "Smoothness",
+						"max": 1,
+						"min": 0,
+						"name": "m_smooth",
+						"shortdesc": "Mingle V",
+						"step": 0,
+						"type": "float"
+					},
+					{
+						"control": "P1.x",
+						"default": 0,
+						"label": "Warp X",
+						"max": 10,
+						"min": 0,
+						"name": "warp_x",
+						"step": 0.1,
+						"type": "float"
+					},
+					{
+						"control": "P1.y",
+						"default": 0,
+						"label": "Warp Y",
+						"max": 10,
+						"min": 0,
+						"name": "warp_y",
+						"step": 0.1,
+						"type": "float"
+					},
+					{
+						"control": "None",
+						"default": 1,
+						"label": "Warp Strength",
+						"max": 1,
+						"min": 0,
+						"name": "warp_strength",
+						"step": 0.1,
+						"type": "float"
+					}
+				],
+				"shortdesc": "Mingle 1"
+			},
+			"type": "shader"
+		},
+		{
+			"connections": [
+				{
+					"from": "combine",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 0
+				},
+				{
+					"from": "fbm_5",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 2
+				},
+				{
+					"from": "fbm_4",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 1
+				},
+				{
+					"from": "fbm_3",
+					"from_port": 0,
+					"to": "combine",
+					"to_port": 0
+				},
+				{
+					"from": "fbm_2",
+					"from_port": 0,
+					"to": "combine_2",
+					"to_port": 3
+				},
+				{
+					"from": "fbm_5",
+					"from_port": 0,
+					"to": "combine_2",
+					"to_port": 2
+				},
+				{
+					"from": "fbm_4",
+					"from_port": 0,
+					"to": "combine_2",
+					"to_port": 1
+				},
+				{
+					"from": "fbm_3",
+					"from_port": 0,
+					"to": "combine_2",
+					"to_port": 0
+				},
+				{
+					"from": "combine_2",
+					"from_port": 0,
+					"to": "gen_outputs",
+					"to_port": 1
+				}
+			],
+			"label": "FBM Vec",
+			"longdesc": "",
+			"name": "graph_4",
+			"node_position": {
+				"x": -1034.38147,
+				"y": -19.796049
+			},
+			"nodes": [
+				{
+					"name": "fbm_3",
+					"node_position": {
+						"x": -495.760742,
+						"y": 1025.774536
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 6,
+						"noise": 0,
+						"persistence": 0.79,
+						"scale_x": 11,
+						"scale_y": 17
+					},
+					"seed": -10482,
+					"seed_locked": false,
+					"type": "fbm"
+				},
+				{
+					"name": "fbm_4",
+					"node_position": {
+						"x": -497.094055,
+						"y": 1196.270996
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 6,
+						"noise": 0,
+						"persistence": 0.79,
+						"scale_x": 11,
+						"scale_y": 17
+					},
+					"seed": -28547,
+					"seed_locked": false,
+					"type": "fbm"
+				},
+				{
+					"name": "fbm_5",
+					"node_position": {
+						"x": -497.094086,
+						"y": 1364.103638
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 6,
+						"noise": 0,
+						"persistence": 0.79,
+						"scale_x": 11,
+						"scale_y": 17
+					},
+					"seed": -28283,
+					"seed_locked": false,
+					"type": "fbm"
+				},
+				{
+					"name": "combine",
+					"node_position": {
+						"x": 294.405914,
+						"y": 1146.736694
+					},
+					"parameters": {
+
+					},
+					"seed": 47584,
+					"seed_locked": false,
+					"type": "combine"
+				},
+				{
+					"name": "gen_inputs",
+					"node_position": {
+						"x": -971.094116,
+						"y": 1119.45166
+					},
+					"parameters": {
+
+					},
+					"ports": [
+
+					],
+					"seed": -3788,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_outputs",
+					"node_position": {
+						"x": 502.405945,
+						"y": 1152.739136
+					},
+					"parameters": {
+
+					},
+					"ports": [
+						{
+							"group_size": 0,
+							"name": "unnamed",
+							"type": "rgb"
+						},
+						{
+							"group_size": 0,
+							"name": "unnamed",
+							"type": "rgba"
+						}
+					],
+					"seed": 586,
+					"seed_locked": false,
+					"type": "ios"
+				},
+				{
+					"name": "gen_parameters",
+					"node_position": {
+						"x": -863.885681,
+						"y": 1508.326782
+					},
+					"parameters": {
+						"param0": 0,
+						"param1": 11,
+						"param2": 17,
+						"param3": 0,
+						"param4": 6,
+						"param5": 0.79
+					},
+					"seed": -60517,
+					"seed_locked": false,
+					"type": "remote",
+					"widgets": [
+						{
+							"label": "Noise",
+							"linked_widgets": [
+								{
+									"node": "fbm_3",
+									"widget": "noise"
+								},
+								{
+									"node": "fbm_4",
+									"widget": "noise"
+								},
+								{
+									"node": "fbm_5",
+									"widget": "noise"
+								},
+								{
+									"node": "fbm_2",
+									"widget": "noise"
+								}
+							],
+							"name": "param0",
+							"type": "linked_control"
+						},
+						{
+							"label": "Scale X",
+							"linked_widgets": [
+								{
+									"node": "fbm_3",
+									"widget": "scale_x"
+								},
+								{
+									"node": "fbm_4",
+									"widget": "scale_x"
+								},
+								{
+									"node": "fbm_5",
+									"widget": "scale_x"
+								},
+								{
+									"node": "fbm_2",
+									"widget": "scale_x"
+								}
+							],
+							"name": "param1",
+							"type": "linked_control"
+						},
+						{
+							"label": "Scale Y",
+							"linked_widgets": [
+								{
+									"node": "fbm_3",
+									"widget": "scale_y"
+								},
+								{
+									"node": "fbm_4",
+									"widget": "scale_y"
+								},
+								{
+									"node": "fbm_5",
+									"widget": "scale_y"
+								},
+								{
+									"node": "fbm_2",
+									"widget": "scale_y"
+								}
+							],
+							"name": "param2",
+							"type": "linked_control"
+						},
+						{
+							"label": "Folds",
+							"linked_widgets": [
+								{
+									"node": "fbm_3",
+									"widget": "folds"
+								},
+								{
+									"node": "fbm_4",
+									"widget": "folds"
+								},
+								{
+									"node": "fbm_5",
+									"widget": "folds"
+								},
+								{
+									"node": "fbm_2",
+									"widget": "folds"
+								}
+							],
+							"name": "param3",
+							"type": "linked_control"
+						},
+						{
+							"label": "Iterations",
+							"linked_widgets": [
+								{
+									"node": "fbm_3",
+									"widget": "iterations"
+								},
+								{
+									"node": "fbm_4",
+									"widget": "iterations"
+								},
+								{
+									"node": "fbm_5",
+									"widget": "iterations"
+								},
+								{
+									"node": "fbm_2",
+									"widget": "iterations"
+								}
+							],
+							"name": "param4",
+							"type": "linked_control"
+						},
+						{
+							"label": "Persistence",
+							"linked_widgets": [
+								{
+									"node": "fbm_3",
+									"widget": "persistence"
+								},
+								{
+									"node": "fbm_4",
+									"widget": "persistence"
+								},
+								{
+									"node": "fbm_5",
+									"widget": "persistence"
+								},
+								{
+									"node": "fbm_2",
+									"widget": "persistence"
+								}
+							],
+							"name": "param5",
+							"type": "linked_control"
+						}
+					]
+				},
+				{
+					"name": "fbm_2",
+					"node_position": {
+						"x": -495.298431,
+						"y": 1543.288208
+					},
+					"parameters": {
+						"folds": 0,
+						"iterations": 6,
+						"noise": 0,
+						"persistence": 0.79,
+						"scale_x": 11,
+						"scale_y": 17
+					},
+					"seed": -11000,
+					"seed_locked": false,
+					"type": "fbm"
+				},
+				{
+					"name": "combine_2",
+					"node_position": {
+						"x": 292.968933,
+						"y": 1276.987427
+					},
+					"parameters": {
+
+					},
+					"seed": 31648,
+					"seed_locked": false,
+					"type": "combine"
+				}
+			],
+			"parameters": {
+				"param0": 0,
+				"param1": 11,
+				"param2": 17,
+				"param3": 0,
+				"param4": 6,
+				"param5": 0.79
+			},
+			"seed": 45863,
+			"seed_locked": false,
+			"shortdesc": "",
+			"type": "graph"
+		},
+		{
+			"name": "slope_blur",
+			"node_position": {
+				"x": -688.404358,
+				"y": -109.384117
+			},
+			"parameters": {
+				"param0": 11,
+				"param1": 0.01
+			},
+			"seed": 41763,
+			"seed_locked": false,
+			"type": "slope_blur"
+		}
+	],
+	"parameters": {
+
+	},
+	"seed": 0,
+	"seed_locked": false,
+	"shortdesc": "",
+	"type": "graph"
+}
