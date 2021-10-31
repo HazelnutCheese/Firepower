@@ -3,9 +3,11 @@ extends PlayerBaseState
 const MOVE_DECEL = 6.0
 
 func physics_update(delta: float) -> void:
-	var animationBlendAmount = player._velocity.length() / player.MAX_SPRINT_VELOCITY
-	player._animationTree.set("parameters/Idle_To_Run/blend_amount", animationBlendAmount)
 	if(get_tree().is_network_server()):
+		var animationBlendAmount = player._velocity.length() / player.MAX_SPRINT_VELOCITY
+		player._animationTree.pset_unreliable(
+			"parameters/Idle_To_Run/blend_amount", 
+			animationBlendAmount)
 		var networkInputs = InputManager._getInputs(player._networkId)
 
 		var input = Vector3()
@@ -31,3 +33,7 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("Fall")
 		elif(isWalking):
 			state_machine.transition_to("Walk")
+
+func enter(_msg := {}) -> void:
+	if(get_tree().is_network_server()):
+		player._animationTree.pset("parameters/Run_To_Fall/blend_amount", 0)

@@ -89,7 +89,7 @@ func _endConnection():
 	_networkId = -1
 
 remote func _updateWorldState(playerInfo):
-	var world = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene/Spatial")
+	var world = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene")
 	for n in playerInfo:
 		var player = world.get_node(playerInfo[n])
 		if(player == null):
@@ -101,14 +101,14 @@ func _addPlayer(id, name):
 	# The id must be unique
 	player.set_name(name)	
 	# Add the player to the scene
-	get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene/Spatial").add_child(player)
+	get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene").add_child(player)
 	# Call the setup
 	player._setup(id)
 
 remote func _removePlayer(id):
 	var playerName = "Player" + str(id)
 	# Remove the player from the scene
-	var player = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene/Spatial/" + playerName)
+	var player = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene/" + playerName)
 	player.queue_free()
 	print("Player" + str(id) + " removed")
 

@@ -1,8 +1,8 @@
 extends PlayerBaseState
 
 func physics_update(delta: float) -> void:
-	player._animationTree.set("parameters/Run_To_Fall/blend_amount", 1)
 	if(get_tree().is_network_server()):
+		player._animationTree.pset("parameters/Run_To_Fall/blend_amount", 1)
 		var networkInputs = InputManager._getInputs(player._networkId)
 
 		var input = Vector3()
@@ -17,22 +17,18 @@ func physics_update(delta: float) -> void:
 		
 		var isWalking = not (input.x == 0 and input.z == 0)
 		
-		var direction = input.rotated(Vector3.UP, player.rotation.y).normalized()#
+		var direction = input.normalized().rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
 		player._velocity = lerp(player._velocity, direction * player.MAX_AIR_MOVE_VELOCITY, delta * player.AIR_ACCEL)
 		
 		if(player.is_on_floor()):
-			player._velocity = Vector3()
+			player._velocity = player._velocity * 0.25
 			if(isWalking):
 				state_machine.transition_to("Walk")
 			else:
 				state_machine.transition_to("Idle")
 
-func enter(_msg := {}) -> void:
-	player._animationTree.set("parameters/Run_To_Fall/blend_amount", 1)
-
 func exit(_msg := {}) -> void:
 	if(get_tree().is_network_server()):
 		InputManager._updateRemoteInput(player._networkId,"inGame_Jump", false)
-	player._currentHealth -= 5
-	player._animationTree.set("parameters/Fall_To_Land/active", true)
-	player._animationTree.set("parameters/Run_To_Fall/blend_amount", 0)
+		player._currentHealth -= 5
+		player._animationTree.pset("parameters/Fall_To_Land/active", true)
