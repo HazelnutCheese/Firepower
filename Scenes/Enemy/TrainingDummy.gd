@@ -5,7 +5,12 @@ onready var animationTree: EnetAnimationTree = $AnimationTree
 
 onready var behaviourTree : BehaviorTree = $BehaviorTree
 onready var blackboard : Blackboard = $Blackboard
-onready var skeleton : Skeleton = $DwardDummyRigged2/Armature/Skeleton
+onready var skeleton : Skeleton = $Borc_cleaned/Armature/Skeleton
+onready var _weaponHitbox : Area = $Borc_cleaned/Armature/Skeleton/BoneAttachment/hammer/Hitbox
+onready var _weaponCollision : CollisionShape = $Borc_cleaned/Armature/Skeleton/BoneAttachment/hammer/Hitbox/CollisionShape
+
+func _ready():
+	_weaponHitbox.monitoring = false
 
 func _hurt(agent: Node, damage: int, damageType: String) -> void:
 	_playHurt()
@@ -34,3 +39,9 @@ func _physics_process(delta):
 	animationTree.pset_unreliable(
 		"parameters/Idle_To_Run/blend_amount", 
 		animationBlendAmount)
+
+func _weaponRaised():
+	_weaponHitbox.monitoring = true
+
+func _weaponLowered():
+	_weaponHitbox.monitoring = false

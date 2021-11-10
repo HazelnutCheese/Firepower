@@ -1,8 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Models/DwardDummyRigged2.glb" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Models/miniplayer.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://Scenes/Models/Edowyn/eowyn_rollOnView.glb" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Models/hammer.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Scenes/Player/States/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Player/States/PlayerIdle.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Player/States/PlayerWalk.gd" type="Script" id=6]
@@ -10,91 +10,212 @@
 [ext_resource path="res://Scenes/Player/States/PlayerJump.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Player/States/PlayerMeleeAttack.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Networking/EnetAnimationTree.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Player/States/PlayerRoll.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/Player/States/PlayerSprint.gd" type="Script" id=12]
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=42]
 height = 1.5
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "MeleeAttack2"
 
 [sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Roll"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "WeaponHold2H-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "MeleeAttack1"
 
-[sub_resource type="AnimationNodeOneShot" id=4]
+[sub_resource type="AnimationNodeBlend2" id=6]
+filter_enabled = true
+filters = [ "eowyntest/Skeleton:clavicle_l", "eowyntest/Skeleton:clavicle_r", "eowyntest/Skeleton:hand_l", "eowyntest/Skeleton:hand_r", "eowyntest/Skeleton:index_01_l", "eowyntest/Skeleton:index_01_r", "eowyntest/Skeleton:index_02_l", "eowyntest/Skeleton:index_02_r", "eowyntest/Skeleton:index_03_l", "eowyntest/Skeleton:index_03_r", "eowyntest/Skeleton:lowerarm_l", "eowyntest/Skeleton:lowerarm_r", "eowyntest/Skeleton:middle_01_l", "eowyntest/Skeleton:middle_01_r", "eowyntest/Skeleton:middle_02_l", "eowyntest/Skeleton:middle_02_r", "eowyntest/Skeleton:middle_03_l", "eowyntest/Skeleton:middle_03_r", "eowyntest/Skeleton:pinky_01_l", "eowyntest/Skeleton:pinky_01_r", "eowyntest/Skeleton:pinky_02_l", "eowyntest/Skeleton:pinky_03_l", "eowyntest/Skeleton:pinky_03_r", "eowyntest/Skeleton:ring_01_l", "eowyntest/Skeleton:ring_01_r", "eowyntest/Skeleton:ring_02_l", "eowyntest/Skeleton:ring_02_r", "eowyntest/Skeleton:ring_03_l", "eowyntest/Skeleton:ring_03_r", "eowyntest/Skeleton:spine_01", "eowyntest/Skeleton:spine_02", "eowyntest/Skeleton:spine_03", "eowyntest/Skeleton:thumb_01_l", "eowyntest/Skeleton:thumb_01_r", "eowyntest/Skeleton:thumb_02_l", "eowyntest/Skeleton:thumb_02_r", "eowyntest/Skeleton:thumb_03_l", "eowyntest/Skeleton:thumb_03_r", "eowyntest/Skeleton:upperarm_l", "eowyntest/Skeleton:upperarm_r", "eowyntest/Skeleton:weapon_l", "eowyntest/Skeleton:weapon_r" ]
+
+[sub_resource type="AnimationNodeOneShot" id=7]
 fadein_time = 0.0
 fadeout_time = 1.0
 
-[sub_resource type="AnimationNodeAnimation" id=5]
-animation = "Falling-loop"
-
-[sub_resource type="AnimationNodeTimeScale" id=12]
-
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "Idle-loop"
-
-[sub_resource type="AnimationNodeBlend2" id=7]
-
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "Jump"
+animation = "Fall-loop"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeBlend2" id=10]
+filters = [ "eowyntest/Skeleton:Root", "eowyntest/Skeleton:pelvis" ]
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "Land"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "Run-loop"
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "RunForward-loop"
 
-[sub_resource type="AnimationNodeBlend2" id=11]
+[sub_resource type="AnimationNodeTimeScale" id=14]
 
-[sub_resource type="AnimationNodeOneShot" id=13]
+[sub_resource type="AnimationNodeBlendTree" id=15]
+graph_offset = Vector2( -354, 91 )
+nodes/Animation/node = SubResource( 13 )
+nodes/Animation/position = Vector2( -160, 120 )
+nodes/TimeScale/node = SubResource( 14 )
+nodes/TimeScale/position = Vector2( 80, 100 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "StrafeL-loop"
+
+[sub_resource type="AnimationNodeTimeScale" id=17]
+
+[sub_resource type="AnimationNodeBlendTree" id=18]
+nodes/Animation/node = SubResource( 16 )
+nodes/Animation/position = Vector2( 20, 80 )
+nodes/TimeScale/node = SubResource( 17 )
+nodes/TimeScale/position = Vector2( 260, 60 )
+nodes/output/position = Vector2( 480, 80 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "StrafeR-loop"
+
+[sub_resource type="AnimationNodeTimeScale" id=20]
+
+[sub_resource type="AnimationNodeBlendTree" id=21]
+graph_offset = Vector2( -364, 7 )
+nodes/Animation/node = SubResource( 19 )
+nodes/Animation/position = Vector2( -80, 120 )
+nodes/TimeScale/node = SubResource( 20 )
+nodes/TimeScale/position = Vector2( 155, 129 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "RunForward-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "WalkF-loop"
+
+[sub_resource type="AnimationNodeTimeScale" id=24]
+
+[sub_resource type="AnimationNodeTimeScale" id=25]
+
+[sub_resource type="AnimationNodeBlend2" id=26]
+
+[sub_resource type="AnimationNodeBlendTree" id=27]
+graph_offset = Vector2( -302, -18 )
+nodes/Animation/node = SubResource( 23 )
+nodes/Animation/position = Vector2( -160, 0 )
+"nodes/Animation 2/node" = SubResource( 22 )
+"nodes/Animation 2/position" = Vector2( -160, 160 )
+nodes/TimeScale/node = SubResource( 25 )
+nodes/TimeScale/position = Vector2( 60, 0 )
+"nodes/TimeScale 2/node" = SubResource( 24 )
+"nodes/TimeScale 2/position" = Vector2( 72, 132 )
+nodes/Walk_To_Run/node = SubResource( 26 )
+nodes/Walk_To_Run/position = Vector2( 260, 0 )
+nodes/output/position = Vector2( 500, 40 )
+node_connections = [ "output", 0, "Walk_To_Run", "TimeScale", 0, "Animation", "Walk_To_Run", 0, "TimeScale", "Walk_To_Run", 1, "TimeScale 2", "TimeScale 2", 0, "Animation 2" ]
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "RunForward-loop"
+
+[sub_resource type="AnimationNodeTimeScale" id=29]
+
+[sub_resource type="AnimationNodeBlendTree" id=30]
+graph_offset = Vector2( -369, 11 )
+nodes/Animation/node = SubResource( 28 )
+nodes/Animation/position = Vector2( -100, 120 )
+nodes/TimeScale/node = SubResource( 29 )
+nodes/TimeScale/position = Vector2( 140, 100 )
+node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=31]
+blend_point_0/node = SubResource( 15 )
+blend_point_0/pos = Vector2( 0, -0.5 )
+blend_point_1/node = SubResource( 18 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 21 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 27 )
+blend_point_3/pos = Vector2( 0, 1 )
+blend_point_4/node = SubResource( 30 )
+blend_point_4/pos = Vector2( 0, -1 )
+snap = Vector2( 0.5, 0.5 )
+
+[sub_resource type="AnimationNodeBlend2" id=32]
+
+[sub_resource type="AnimationNodeTimeScale" id=33]
+
+[sub_resource type="AnimationNodeTimeScale" id=34]
+
+[sub_resource type="AnimationNodeTimeScale" id=35]
+
+[sub_resource type="AnimationNodeTimeScale" id=36]
+
+[sub_resource type="AnimationNodeOneShot" id=37]
 fadein_time = 0.0
 fadeout_time = 0.0
 
-[sub_resource type="AnimationNodeOneShot" id=14]
+[sub_resource type="AnimationNodeOneShot" id=38]
 
-[sub_resource type="AnimationNodeOneShot" id=15]
+[sub_resource type="AnimationNodeOneShot" id=39]
 fadein_time = 0.0
 fadeout_time = 0.0
 
-[sub_resource type="AnimationNodeBlendTree" id=16]
-graph_offset = Vector2( 0, 196.5 )
-nodes/Animation/node = SubResource( 3 )
+[sub_resource type="AnimationNodeOneShot" id=40]
+
+[sub_resource type="AnimationNodeBlendTree" id=41]
+graph_offset = Vector2( 415, 29 )
+nodes/Animation/node = SubResource( 5 )
 nodes/Animation/position = Vector2( 80, 380 )
 "nodes/Animation 2/node" = SubResource( 2 )
 "nodes/Animation 2/position" = Vector2( 280, 380 )
-nodes/Fall_To_Land/node = SubResource( 4 )
+"nodes/Animation 3/node" = SubResource( 3 )
+"nodes/Animation 3/position" = Vector2( 500, 400 )
+"nodes/Animation 4/node" = SubResource( 4 )
+"nodes/Animation 4/position" = Vector2( 700, 60 )
+nodes/Blend2/node = SubResource( 6 )
+nodes/Blend2/position = Vector2( 860, 180 )
+nodes/Fall_To_Land/node = SubResource( 7 )
 nodes/Fall_To_Land/position = Vector2( 100, 200 )
-nodes/Falling/node = SubResource( 5 )
+nodes/Falling/node = SubResource( 8 )
 nodes/Falling/position = Vector2( -440, 380 )
-nodes/FreezeScale/node = SubResource( 12 )
-nodes/FreezeScale/position = Vector2( 720, 220 )
-nodes/Idle/node = SubResource( 6 )
-nodes/Idle/position = Vector2( -600, 200 )
-nodes/Idle_To_Run/node = SubResource( 7 )
+nodes/Idle/node = SubResource( 9 )
+nodes/Idle/position = Vector2( -660, 220 )
+nodes/Idle_To_Run/node = SubResource( 10 )
 nodes/Idle_To_Run/position = Vector2( -440, 200 )
-nodes/Jump/node = SubResource( 8 )
-nodes/Jump/position = Vector2( -240, 380 )
-nodes/Land/node = SubResource( 9 )
-nodes/Land/position = Vector2( -60, 380 )
-nodes/Run/node = SubResource( 10 )
-nodes/Run/position = Vector2( -600, 320 )
-nodes/Run_To_Fall/node = SubResource( 11 )
+nodes/Jump/node = SubResource( 11 )
+nodes/Jump/position = Vector2( -240, 560 )
+nodes/Land/node = SubResource( 12 )
+nodes/Land/position = Vector2( -80, 560 )
+nodes/Run_Blend/node = SubResource( 31 )
+nodes/Run_Blend/position = Vector2( -880, 380 )
+nodes/Run_To_Fall/node = SubResource( 32 )
 nodes/Run_To_Fall/position = Vector2( -260, 200 )
-nodes/To_Jump/node = SubResource( 13 )
+nodes/TimeScale/node = SubResource( 36 )
+nodes/TimeScale/position = Vector2( 660, 380 )
+"nodes/TimeScale 2/node" = SubResource( 33 )
+"nodes/TimeScale 2/position" = Vector2( -660, 360 )
+"nodes/TimeScale 3/node" = SubResource( 34 )
+"nodes/TimeScale 3/position" = Vector2( -240, 440 )
+"nodes/TimeScale 4/node" = SubResource( 35 )
+"nodes/TimeScale 4/position" = Vector2( -80, 440 )
+nodes/To_Jump/node = SubResource( 37 )
 nodes/To_Jump/position = Vector2( -80, 200 )
-nodes/To_MeleeAttack1/node = SubResource( 14 )
+nodes/To_MeleeAttack1/node = SubResource( 38 )
 nodes/To_MeleeAttack1/position = Vector2( 280, 200 )
-nodes/To_MeleeAttack2/node = SubResource( 15 )
+nodes/To_MeleeAttack2/node = SubResource( 39 )
 nodes/To_MeleeAttack2/position = Vector2( 480, 200 )
-nodes/output/position = Vector2( 960, 200 )
-node_connections = [ "output", 0, "FreezeScale", "To_Jump", 0, "Run_To_Fall", "To_Jump", 1, "Jump", "Run_To_Fall", 0, "Idle_To_Run", "Run_To_Fall", 1, "Falling", "To_MeleeAttack1", 0, "Fall_To_Land", "To_MeleeAttack1", 1, "Animation", "To_MeleeAttack2", 0, "To_MeleeAttack1", "To_MeleeAttack2", 1, "Animation 2", "Idle_To_Run", 0, "Idle", "Idle_To_Run", 1, "Run", "Fall_To_Land", 0, "To_Jump", "Fall_To_Land", 1, "Land", "FreezeScale", 0, "To_MeleeAttack2" ]
+nodes/To_Roll/node = SubResource( 40 )
+nodes/To_Roll/position = Vector2( 1140, 280 )
+nodes/output/position = Vector2( 1380, 200 )
+node_connections = [ "output", 0, "To_Roll", "To_MeleeAttack1", 0, "Fall_To_Land", "To_MeleeAttack1", 1, "Animation", "TimeScale 4", 0, "Land", "To_Roll", 0, "Blend2", "To_Roll", 1, "TimeScale", "Idle_To_Run", 0, "Idle", "Idle_To_Run", 1, "TimeScale 2", "Blend2", 0, "To_MeleeAttack2", "Blend2", 1, "Animation 4", "Run_To_Fall", 0, "Idle_To_Run", "Run_To_Fall", 1, "Falling", "To_Jump", 0, "Run_To_Fall", "To_Jump", 1, "TimeScale 3", "TimeScale 3", 0, "Jump", "To_MeleeAttack2", 0, "To_MeleeAttack1", "To_MeleeAttack2", 1, "Animation 2", "Fall_To_Land", 0, "To_Jump", "Fall_To_Land", 1, "TimeScale 4", "TimeScale", 0, "Animation 3", "TimeScale 2", 0, "Run_Blend" ]
 
-[sub_resource type="BoxShape" id=17]
+[sub_resource type="BoxShape" id=43]
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -115,38 +236,72 @@ script = ExtResource( 8 )
 [node name="MeleeAttack" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
+[node name="Roll" type="Node" parent="StateMachine"]
+script = ExtResource( 11 )
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource( 12 )
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, -0.707107, -3.09086e-08, 0, 1.58993, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 42 )
 
 [node name="PlayerModel" parent="." instance=ExtResource( 2 )]
 transform = Transform( -2.12132, 0, 2.12132, 0, 3, 0, -2.12132, 0, -2.12132, 0, 0, 0 )
 
-[node name="Cube" parent="PlayerModel/Armature/Skeleton" index="0"]
-transform = Transform( 1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0 )
+[node name="Skeleton" parent="PlayerModel/eowyntest" index="1"]
+bones/44/bound_children = [ NodePath("BoneAttachment") ]
 
-[node name="BoneAttachment" type="BoneAttachment" parent="PlayerModel/Armature/Skeleton" index="1"]
-transform = Transform( -0.774014, -0.632903, -0.0183534, 0.629096, -0.771994, 0.0908985, -0.0716987, 0.0588107, 0.995692, -0.290705, 0.380785, 0.0259783 )
-bone_name = "Hand.R"
+[node name="BoneAttachment" type="BoneAttachment" parent="PlayerModel/eowyntest/Skeleton" index="0"]
+transform = Transform( -0.89225, -0.227587, -0.389992, -0.0492499, 0.907588, -0.416963, 0.448848, -0.352828, -0.821004, -0.140206, 0.364569, 0.170854 )
+bone_name = "weapon_r"
 
-[node name="Weapoin" type="MeshInstance" parent="PlayerModel/Armature/Skeleton/BoneAttachment"]
-transform = Transform( -0.0122369, -0.513459, 0.214179, 0.144428, 0.685146, 0.110909, -0.203692, 0.516653, 0.0657745, 0.0810642, -0.0643214, -0.124525 )
+[node name="Weapoin" type="MeshInstance" parent="PlayerModel/eowyntest/Skeleton/BoneAttachment"]
+transform = Transform( 0.000544185, -0.00459075, 0.0749784, 0.00518074, 0.199472, 0.00167989, -0.0748189, 0.0137788, 0.000661673, -0.0183737, 0.555504, 0.0354928 )
 mesh = ExtResource( 3 )
 material/0 = null
 
+[node name="eowyntestboots" parent="PlayerModel/eowyntest/Skeleton" index="1"]
+extra_cull_margin = 1.0
+
+[node name="eowyntestbracers" parent="PlayerModel/eowyntest/Skeleton" index="2"]
+extra_cull_margin = 1.0
+
+[node name="eowyntestchainmail" parent="PlayerModel/eowyntest/Skeleton" index="3"]
+extra_cull_margin = 1.0
+
+[node name="eowyntesteyebrow003" parent="PlayerModel/eowyntest/Skeleton" index="4"]
+extra_cull_margin = 1.0
+
+[node name="eowyntestlong01" parent="PlayerModel/eowyntest/Skeleton" index="9"]
+extra_cull_margin = 1.0
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 16 )
+tree_root = SubResource( 41 )
 anim_player = NodePath("../PlayerModel/AnimationPlayer")
 active = true
 process_mode = 0
-root_motion_track = NodePath("Armature/Skeleton:Root")
+root_motion_track = NodePath("eowyntest/Skeleton:Root")
+parameters/Blend2/blend_amount = 1.0
 parameters/Fall_To_Land/active = false
-parameters/FreezeScale/scale = 1.0
 parameters/Idle_To_Run/blend_amount = 0.0
+parameters/Run_Blend/blend_position = Vector2( -0.00351495, -0.456897 )
+parameters/Run_Blend/0/TimeScale/scale = 1.7
+parameters/Run_Blend/1/TimeScale/scale = 1.25
+parameters/Run_Blend/2/TimeScale/scale = 1.25
+parameters/Run_Blend/3/TimeScale/scale = 1.0
+"parameters/Run_Blend/3/TimeScale 2/scale" = 1.0
+parameters/Run_Blend/3/Walk_To_Run/blend_amount = 0.0
+parameters/Run_Blend/4/TimeScale/scale = 2.0
 parameters/Run_To_Fall/blend_amount = 0.0
+parameters/TimeScale/scale = 3.5
+"parameters/TimeScale 2/scale" = 2.0
+"parameters/TimeScale 3/scale" = 2.5
+"parameters/TimeScale 4/scale" = 3.0
 parameters/To_Jump/active = false
 parameters/To_MeleeAttack1/active = false
 parameters/To_MeleeAttack2/active = false
+parameters/To_Roll/active = false
 script = ExtResource( 10 )
 
 [node name="Hitbox" type="Area" parent="."]
@@ -154,7 +309,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1.3 )
 
 [node name="WeaponCollision" type="CollisionShape" parent="Hitbox"]
 transform = Transform( -0.124667, 0.992191, -0.00593664, -0.00203802, -0.00424494, -1.49998, -0.992197, -0.124657, 0.00382696, 0.231922, 0.455502, 0.0848184 )
-shape = SubResource( 17 )
+shape = SubResource( 43 )
 disabled = true
 
 [editable path="PlayerModel"]

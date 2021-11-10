@@ -15,7 +15,8 @@ func _createInputDict():
 	"inGame_MoveBackward" : false,
 	"inGame_StrafeLeft" : false,
 	"inGame_StrafeRight" : false,
-	"inGame_Sprint" : false  }
+	"inGame_Sprint" : false,
+	"inGame_Roll" : false }
 
 func _getInputs(id):
 	if not _serverSidePlayersInputs.has(id):
@@ -75,3 +76,7 @@ func _unhandled_input(event):
 		_updateInput("inGame_Sprint", true)
 	elif (event.is_action_released("inGame_Sprint")):
 		_updateInput("inGame_Sprint", false)
+	elif (event.is_action_pressed("inGame_Roll")):
+		_updateInput("inGame_Roll", true)
+	elif (event.is_action_released("inGame_Roll")):
+		_updateInput("inGame_Roll", false)

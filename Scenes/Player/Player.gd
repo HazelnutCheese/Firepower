@@ -24,11 +24,13 @@ onready var _weaponHitbox = $Hitbox
 onready var _weaponCollision = $Hitbox/WeaponCollision
 
 # movement
-const MAX_MOVE_VELOCITY = 8.0
+const MAX_MOVE_VELOCITY = 9.0
+const MAX_STRAFE_VELOCITY = 4.0
+const MAX_BACKPEDAL_VELOCITY = 6.0
 const MAX_AIR_MOVE_VELOCITY = 20.0
 const MAX_SPRINT_VELOCITY = 12.0
 const AIR_ACCEL = 0.4
-const ANGULAR_ACCEL = 15.0
+const ANGULAR_ACCEL = 10.0
 var _canRotate = true
 onready var playerModel = $PlayerModel
 
@@ -49,20 +51,50 @@ func _setup(networkId):
 func _physics_process(delta):
 	apply_movement(delta)
 	
+#	if(get_tree().is_network_server()):
+#		if(_networkId != 1 and _rotateWithPlayer):
+#			var networkInputs = InputManager._getInputs(_networkId)
+#			var direction = Vector3(1,1,1).rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
+#			rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), ANGULAR_ACCEL * delta)
+#
+#	if(localCamera != null):
+#		localCamera.translation = translation
+#		localCamera.rotation_degrees.y = localCamera._nextCameraY
+#		if(_rotateWithPlayer):
+#			var direction = Vector3(1,1,1).rotated(Vector3.UP, localCamera.rotation.y)
+#			rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), ANGULAR_ACCEL * delta)
+
+	if(localHud != null):
+		localHud._updateHealth(_currentHealth)
+	else:
+		remoteHud._updateHealth(_currentHealth)
+
+func _impulse(agent: Node, impulse: Vector3):
+	_velocity += impulse
+
+func _rotate_player_process(lookAccel: float, delta: float):
 	if(get_tree().is_network_server()):
 		if(_networkId != 1 and _rotateWithPlayer):
 			var networkInputs = InputManager._getInputs(_networkId)
 			var direction = Vector3(1,1,1).rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
-			rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), ANGULAR_ACCEL * delta)
+			rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), lookAccel * delta)
 
 	if(localCamera != null):
 		localCamera.translation = translation
 		localCamera.rotation_degrees.y = localCamera._nextCameraY
 		if(_rotateWithPlayer):
 			var direction = Vector3(1,1,1).rotated(Vector3.UP, localCamera.rotation.y)
-			rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), ANGULAR_ACCEL * delta)
+			rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), lookAccel * delta)
 
-	if(localHud != null):
-		localHud._updateHealth(_currentHealth)
-	else:
-		remoteHud._updateHealth(_currentHealth)
+func _set_rotation_to_camera():
+	if(get_tree().is_network_server()):
+		if(_networkId != 1 and _rotateWithPlayer):
+			var networkInputs = InputManager._getInputs(_networkId)
+			rotation_degrees.y = networkInputs["cameraY"] + 45
+#			rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), lookAccel * delta)
+
+	if(localCamera != null):
+		localCamera.translation = translation
+		localCamera.rotation_degrees.y = localCamera._nextCameraY
+		if(_rotateWithPlayer):
+			rotation_degrees.y = localCamera._nextCameraY + 45

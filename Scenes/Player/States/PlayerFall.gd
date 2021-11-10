@@ -1,6 +1,7 @@
 extends PlayerBaseState
 
 func physics_update(delta: float) -> void:
+	player._rotate_player_process(10.0, delta)
 	if(get_tree().is_network_server()):
 		player._animationTree.pset("parameters/Run_To_Fall/blend_amount", 1)
 		var networkInputs = InputManager._getInputs(player._networkId)
@@ -21,7 +22,7 @@ func physics_update(delta: float) -> void:
 		player._velocity = lerp(player._velocity, direction * player.MAX_AIR_MOVE_VELOCITY, delta * player.AIR_ACCEL)
 		
 		if(player.is_on_floor()):
-			player._velocity = player._velocity * 0.25
+			player._velocity = player._velocity * 0.05
 			if(isWalking):
 				state_machine.transition_to("Walk")
 			else:
