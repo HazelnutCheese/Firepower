@@ -18,9 +18,10 @@ func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
 func _physics_process(_delta):
-	if get_tree().is_network_server():
-		_updateWorldState(_player_info)
-		rpc_unreliable("_updateWorldState", _player_info)
+	if (get_tree().has_network_peer() and 
+		get_tree().is_network_server()):
+		_updateWorldState([_player_info])
+		UpdateManager.qrpc_unreliable(self, "_updateWorldState", [_player_info])
 
 # Called on both clients and server when a peer connects. 
 func _player_connected(id):
@@ -35,8 +36,8 @@ func _player_disconnected(id):
 	if get_tree().is_network_server():
 		print("player ",id," disconnected")
 		_player_info.erase(id) # Erase player from info.
-		_removePlayer(id)
-		rpc_id(id, "_removePlayer")
+		_removePlayer([id])
+		UpdateManager.qrpc(self, "_removePlayer", [id])
 	else:
 		print("You disconnected from the server")
 
@@ -88,7 +89,8 @@ func _endConnection():
 	get_tree().set_network_peer(null)
 	_networkId = -1
 
-remote func _updateWorldState(playerInfo):
+remote func _updateWorldState(args):
+	var playerInfo = args[0] as Dictionary
 	var world = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene")
 	for n in playerInfo:
 		var player = world.get_node(playerInfo[n])
@@ -97,7 +99,7 @@ remote func _updateWorldState(playerInfo):
 
 # Adds a player to the scene on both the server and the clients
 func _addPlayer(id, name):
-	var player = playerScene.instance()	
+	var player = playerScene.instance()
 	# The id must be unique
 	player.set_name(name)	
 	# Add the player to the scene
@@ -105,10 +107,11 @@ func _addPlayer(id, name):
 	# Call the setup
 	player._setup(id)
 
-remote func _removePlayer(id):
-	var playerName = "Player" + str(id)
+remote func _removePlayer(args):
+	var playedId = args[0] as int
+	var playerName = "Player" + str(playedId)
 	# Remove the player from the scene
 	var player = get_tree().get_root().get_node("Control/GameViewportContainer/Viewport/testScene/" + playerName)
 	player.queue_free()
-	print("Player" + str(id) + " removed")
+	print(playerName + " removed")
 

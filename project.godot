@@ -30,7 +30,7 @@ _global_script_classes=[ {
 "path": "res://addons/behavior_tree/src/btnodes/bt_decorator.gd"
 }, {
 "base": "BTLeaf",
-"class": "BTGetTargetOfType",
+"class": "BTGetTargetOfGroup",
 "language": "GDScript",
 "path": "res://Scripts/Gameplay/btnodes/Leaves/bt_getTargetOfType.gd"
 }, {
@@ -119,6 +119,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Gameplay/btnodes/Leaves/bt_whenVarEq.gd"
 }, {
+"base": "PlayerBaseState",
+"class": "BaseAttackState",
+"language": "GDScript",
+"path": "res://Scenes/Player/States/BaseAttackState.gd"
+}, {
 "base": "Node",
 "class": "BehaviorTree",
 "language": "GDScript",
@@ -129,6 +134,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/behavior_tree/src/blackboard.gd"
 }, {
+"base": "VitalEntity",
+"class": "CaveTroll",
+"language": "GDScript",
+"path": "res://Scenes/Enemy/CaveTroll.gd"
+}, {
 "base": "AnimationTree",
 "class": "EnetAnimationTree",
 "language": "GDScript",
@@ -138,6 +148,11 @@ _global_script_classes=[ {
 "class": "KinematicEntity",
 "language": "GDScript",
 "path": "res://Scripts/Gameplay/KinematicEntity.gd"
+}, {
+"base": "VitalEntity",
+"class": "Orc",
+"language": "GDScript",
+"path": "res://Scenes/Enemy/Orc/Orc.gd"
 }, {
 "base": "VitalEntity",
 "class": "Player",
@@ -154,6 +169,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Player/PlayerCamera.gd"
 }, {
+"base": "Spatial",
+"class": "Spawner",
+"language": "GDScript",
+"path": "res://Scripts/Gameplay/Spawner.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -163,11 +183,6 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Scripts/Gameplay/StateMachine.gd"
-}, {
-"base": "VitalEntity",
-"class": "TrainingDummy",
-"language": "GDScript",
-"path": "res://Scenes/Enemy/TrainingDummy.gd"
 }, {
 "base": "KinematicEntity",
 "class": "VitalEntity",
@@ -179,7 +194,7 @@ _global_script_class_icons={
 "BTComposite": "res://addons/behavior_tree/icons/btcomposite.svg",
 "BTConditional": "res://addons/behavior_tree/icons/btconditional.png",
 "BTDecorator": "res://addons/behavior_tree/icons/btdecorator.svg",
-"BTGetTargetOfType": "res://addons/behavior_tree/icons/btleaf.svg",
+"BTGetTargetOfGroup": "res://addons/behavior_tree/icons/btleaf.svg",
 "BTGuard": "res://addons/behavior_tree/icons/btguard.svg",
 "BTIsDistanceFromTarget": "",
 "BTLeaf": "res://addons/behavior_tree/icons/btleaf.svg",
@@ -197,16 +212,19 @@ _global_script_class_icons={
 "BTWait": "res://addons/behavior_tree/icons/btwait.svg",
 "BTWalkTo": "res://addons/behavior_tree/icons/btleaf.svg",
 "BTWhenVarEq": "",
+"BaseAttackState": "",
 "BehaviorTree": "res://addons/behavior_tree/icons/bt.svg",
 "Blackboard": "res://addons/behavior_tree/icons/blackboard.svg",
+"CaveTroll": "",
 "EnetAnimationTree": "",
 "KinematicEntity": "",
+"Orc": "",
 "Player": "",
 "PlayerBaseState": "",
 "PlayerCamera": "",
+"Spawner": "",
 "State": "",
 "StateMachine": "",
-"TrainingDummy": "",
 "VitalEntity": ""
 }
 
@@ -221,12 +239,13 @@ config/icon="res://icon.png"
 Configuration="*res://Scenes/Menu/Configuration.gd"
 InputManager="*res://Scripts/InputManager.gd"
 ServerClient="*res://Scripts/ServerClient.gd"
+UpdateManager="*res://Scripts/Networking/UpdateManager.gd"
 
 [debug]
 
 gdscript/warnings/return_value_discarded=false
 multirun/number_of_windows=2
-multirun/window_distance=1270
+multirun/window_distance=100
 multirun/add_custom_args=false
 multirun/first_window_args=""
 multirun/other_window_args=""
@@ -335,6 +354,11 @@ inGame_Sprint={
 inGame_Roll={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777240,"unicode":0,"echo":false,"script":null)
+ ]
+}
+inGame_Attack2={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

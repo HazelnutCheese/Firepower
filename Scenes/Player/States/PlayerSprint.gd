@@ -5,50 +5,39 @@ const TURN_SPEED = 2.5
 
 func physics_update(delta: float) -> void:
 	player._rotate_player_process(3, delta)
+	
+	var vDirection = player._velocity.normalized().rotated(
+		Vector3.UP, 
+		-player.rotation.y)
+
+	player._animationTree.set(
+		"parameters/Idle_To_Run/blend_amount", 
+		1)
+
+	player._animationTree.set(
+		"parameters/Run_Blend/blend_position", 
+		Vector2(vDirection.x, -vDirection.z))
+	
 	if(get_tree().is_network_server()):
 		var networkInputs = InputManager._getInputs(player._networkId)
 
-		var input = Vector3()
-		if(networkInputs["inGame_MoveForward"]):
-			input.z -= 1
-#		if(networkInputs["inGame_MoveBackward"]):
-#			input.z += 1
-#		if(networkInputs["inGame_StrafeLeft"]):
-#			input.x -= 1
-#		if(networkInputs["inGame_StrafeRight"]):
-#			input.x += 1
+		var input = player._get_inputVector(networkInputs)
+		input.x = 0
 		
 		var isWalking = not input.z == 0
 
 		var direction = input.normalized().rotated(
 			Vector3.UP, 
-			deg2rad(player.rotation_degrees.y - 45))
-		
-		player._velocity = lerp(
-			player._velocity, 
-			direction * 0, 
-			delta * 1.5)
-		
+			deg2rad(player.rotation_degrees.y))
+
 		player._velocity = lerp(
 			player._velocity, 
 			direction * player.MAX_SPRINT_VELOCITY, 
 			delta * MOVE_ACCEL)
 
-		var vDirection = player._velocity.normalized().rotated(
-			Vector3.UP, 
-			-deg2rad(player.rotation_degrees.y - 45))
-
-		player._animationTree.pset_unreliable(
-			"parameters/Idle_To_Run/blend_amount", 
-			1)
-
-		player._animationTree.pset_unreliable(
-			"parameters/Run_Blend/blend_position", 
-			Vector2(vDirection.x, vDirection.z))
-
 		if(networkInputs["inGame_Roll"]):
 			state_machine.transition_to("Roll")
-		elif(networkInputs["inGame_Attack1"]):
+		elif(networkInputs["inGame_Attack1"] or networkInputs["inGame_Attack2"]):
 			state_machine.transition_to("MeleeAttack")
 		elif(networkInputs["inGame_Jump"]):
 			state_machine.transition_to("Jump")
@@ -60,5 +49,4 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("Idle")
 
 func enter(_msg := {}) -> void:
-	if(get_tree().is_network_server()):
-		player._animationTree.pset("parameters/Run_To_Fall/blend_amount", 0)
+	player._animationTree.set("parameters/Run_To_Fall/blend_amount", 0)

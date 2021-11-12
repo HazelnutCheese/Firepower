@@ -10,7 +10,7 @@ load_path = "res://.import/remote_healthbar.png-a5a113c0c93adfc80be4ca189637e5ae
 script = ExtResource( 1 )
 
 [node name="HealthBar3d" type="Sprite3D" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.5, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5.5, 0 )
 billboard = 1
 transparent = false
 

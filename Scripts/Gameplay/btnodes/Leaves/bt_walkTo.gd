@@ -70,7 +70,7 @@ func get_fellow_ai(agent):
 		currentNode = currentNode.get_parent()
 		var children = currentNode.get_children()
 		for child in children:
-			if(child is TrainingDummy and child != agent):
+			if((child is CaveTroll or child is Orc) and child != agent):
 				listOfFellowAi.append(child)
 	return listOfFellowAi
 
