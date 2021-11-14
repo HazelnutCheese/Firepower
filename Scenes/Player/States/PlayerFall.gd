@@ -6,20 +6,16 @@ func physics_update(delta: float) -> void:
 		player._animationTree.pset("parameters/Run_To_Fall/blend_amount", 1)
 		var networkInputs = InputManager._getInputs(player._networkId)
 
-		var input = Vector3()
-		if(networkInputs["inGame_MoveForward"]):
-			input.z -= 1
-		if(networkInputs["inGame_MoveBackward"]):
-			input.z += 1
-		if(networkInputs["inGame_StrafeLeft"]):
-			input.x -= 1
-		if(networkInputs["inGame_StrafeRight"]):
-			input.x += 1
+		var input = player._get_inputVector(networkInputs)
 		
 		var isWalking = not (input.x == 0 and input.z == 0)
 		
 		var direction = input.normalized().rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
-		player._velocity = lerp(player._velocity, direction * player.MAX_AIR_MOVE_VELOCITY, delta * player.AIR_ACCEL)
+		var dVelocity = direction * player.MAX_AIR_MOVE_VELOCITY
+		player._velocity = lerp(
+			player._velocity, 
+			Vector3(dVelocity.x, player._velocity.y, dVelocity.z),
+			delta * player.AIR_ACCEL)
 		
 		if(player.is_on_floor()):
 			player._velocity = player._velocity * 0.05

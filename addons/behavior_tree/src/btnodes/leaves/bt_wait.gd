@@ -8,8 +8,6 @@ extends BTLeaf
 export(float) var wait_time: float
 export(String) var time_in_bb: String
 
-
-
 func _tick(delta: float, agent: Node, blackboard: Blackboard) -> bool:
 	if time_in_bb:
 		wait_time = blackboard.get_data(time_in_bb)

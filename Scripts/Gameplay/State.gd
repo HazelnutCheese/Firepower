@@ -3,6 +3,11 @@ extends Node
 
 var state_machine = null
 
+func _setStateMachine(stateMachine):
+	state_machine = stateMachine
+	for child in get_children():
+		child._setStateMachine(state_machine)
+
 # Virtual function. Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
 	pass

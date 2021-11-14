@@ -16,7 +16,7 @@ func _physics_process(delta):
 
 func _rotateCamera(mouseDelta, delta):
 	# rotate the camera along the x axis
-	rotation_degrees.x -= mouseDelta.y * _lookSensitivity * delta
+	rotation_degrees.x += mouseDelta.y * _lookSensitivity * delta
 	
 	# clamp camera x rotation axis
 	rotation_degrees.x = clamp(

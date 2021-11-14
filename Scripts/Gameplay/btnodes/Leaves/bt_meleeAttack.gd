@@ -58,7 +58,7 @@ func _tick(delta: float, agent: Node, blackboard: Blackboard) -> bool:
 	return succeed()
 	
 func _weaponHitbox_entered1(body):
-	if(body != null):
+	if(body != null and body is Player):
 		var name = body.get_name()
 		if((not hitList.has(name)) and body.has_method("_hurt")):
 			body._hurt(owner, 0, "crushing")

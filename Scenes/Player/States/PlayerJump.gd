@@ -1,6 +1,6 @@
 extends PlayerBaseState
 
-const JUMP_VERTICAL_VELOCITY = 12.0
+const JUMP_VERTICAL_VELOCITY = 22.0
 const JUMP_PUSH_MULTI = 1.1
 const JUMP_LAND_MULTI = 0.75
 
@@ -9,15 +9,7 @@ func physics_update(delta: float) -> void:
 	if(get_tree().is_network_server()):
 		var networkInputs = InputManager._getInputs(player._networkId)
 
-		var input = Vector3()
-		if(networkInputs["inGame_MoveForward"]):
-			input.z -= 1
-		if(networkInputs["inGame_MoveBackward"]):
-			input.z += 1
-		if(networkInputs["inGame_StrafeLeft"]):
-			input.x -= 1
-		if(networkInputs["inGame_StrafeRight"]):
-			input.x += 1
+		var input = player._get_inputVector(networkInputs)
 		
 		var direction = input.normalized().rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
 		player._velocity = lerp(player._velocity, direction * player.MAX_AIR_MOVE_VELOCITY, delta * player.AIR_ACCEL)

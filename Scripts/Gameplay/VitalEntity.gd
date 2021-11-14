@@ -17,6 +17,13 @@ func _impulse(agent: Node, impulse: Vector3):
 
 func _physics_process(delta):
 	if(get_tree().is_network_server()):
-		rset_unreliable("puppet_current_health", _currentHealth)
+		if _currentHealth < 0:
+			self.queue_free()
+			return
+		if puppet_current_health != _currentHealth:
+			UpdateManager.qrset_unreliable(self, "puppet_current_health", _currentHealth)			
 	else:
 		_currentHealth = puppet_current_health
+
+remotesync func _die():
+	self.queue_free()

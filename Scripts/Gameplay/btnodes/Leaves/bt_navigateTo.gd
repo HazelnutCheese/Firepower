@@ -7,12 +7,17 @@ export(String) var resultKey: String
 
 func _tick(delta: float, agent: Node, blackboard: Blackboard) -> bool:
 	var agentSpatial = agent as Spatial
-	var targetSpatial = blackboard.get_data(targetKey) as Spatial
+	var target = blackboard.get_data(targetKey) as Spatial
+	if target == null or not is_instance_valid(target):
+		blackboard.set_data(targetKey, null)
+		return fail()
+	var targetVector = target.translation
+
 	var navigation = get_navigation_ancestor(agent)
 	var path = []
 	path = navigation.get_simple_path(
 		agentSpatial.translation, 
-		targetSpatial.translation, 
+		targetVector, 
 		true)
 	
 	blackboard.set_data(resultKey, path)
