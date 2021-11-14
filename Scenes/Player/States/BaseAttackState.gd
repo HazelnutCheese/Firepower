@@ -11,7 +11,6 @@ export(bool) var allow_pre_rotation = true
 export(float) var initial_velocity_dampening: float = 0.1
 export(Vector3) var attack_user_impluse: Vector3 = Vector3(1,1,1)
 export(Dictionary) var combo_input_dict: Dictionary
-export(bool) var finish_on_ground = false
 
 var chosen_combo_input : String = ""
 

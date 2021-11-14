@@ -2,7 +2,7 @@ class_name KinematicEntity
 extends KinematicBody
 
 # Movement
-const GRAVITY = 32.0
+var gravity = 32.0
 var _velocity : Vector3 = Vector3()
 
 # networking
@@ -13,7 +13,7 @@ puppet var puppet_velocity = Vector3()
 var replicate_rotation = true
 
 func apply_movement(delta):
-	_velocity.y -= delta * GRAVITY
+	_velocity.y -= delta * gravity
 	_velocity = move_and_slide(_velocity, Vector3.UP, true)
 	if(get_tree().is_network_server()):
 		if(puppet_translation != translation):

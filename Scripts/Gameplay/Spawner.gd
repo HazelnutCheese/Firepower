@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if(_wait_for_delay):
 		return
 	
-	if(total_limit > 0 and spawned.size() >= total_limit):
+	if(spawned.size() >= total_limit):
 		return
 	_current_time_ms += (delta * 1000)
 	if(_current_time_ms > spawn_time_ms):

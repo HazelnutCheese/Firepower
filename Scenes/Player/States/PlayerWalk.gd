@@ -37,7 +37,7 @@ func physics_update(delta: float) -> void:
 		if(networkInputs["inGame_Roll"]):
 			state_machine.transition_to("Roll")
 		elif(networkInputs["inGame_Attack1"] or networkInputs["inGame_Attack2"]):
-			state_machine.transition_to("MeleeAttack")
+			state_machine.transition_to("BowAttack")
 		elif(networkInputs["inGame_Jump"]):
 			state_machine.transition_to("Jump")
 		elif(not player.is_on_floor() and not player.is_on_wall()):
