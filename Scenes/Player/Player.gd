@@ -1,12 +1,6 @@
 class_name Player
 extends VitalEntity
 
-# TODO
-# * Host stuck in Fall_To_Run
-# * Remove screen freeze from melee attack
-# * Redo ai walk node to recalculate each tick
-
-
 # Animation
 onready var _animationTree : EnetAnimationTree = $AnimationTree
 
@@ -32,14 +26,13 @@ const AIR_ACCEL = 4.0
 const ANGULAR_ACCEL = 10.0
 var _canRotate = true
 onready var playerModel = $PlayerModel
+onready var _skeleton : Skeleton = $PlayerModel/eowyntest/Skeleton
+onready var _spineIK : SkeletonIK = $PlayerModel/eowyntest/Skeleton/SpineIK
 
 # networking
 var _networkId = -1
 puppet var puppet_camera_rotation_degrees = Vector3()
 remote var puppet_forServer_cameraY = 0.0
-
-#func _ready():
-#	_weaponHitbox.monitoring = false
 
 func _setup(networkId):
 	_networkId = networkId
@@ -48,6 +41,7 @@ func _setup(networkId):
 		localCamera.get_node("ClippedCamera").add_exception(self)
 		localHud = get_tree().get_root().get_node("Control/HUD")
 		replicate_rotation = false
+		_spineIK.target_node = localCamera.SpineIK_Target.get_path()
 	else:
 		remoteHud = remoteHudScene.instance()
 		self.add_child(remoteHud)
@@ -64,18 +58,23 @@ func _physics_process(delta):
 func _impulse(agent: Node, impulse: Vector3):
 	_velocity += impulse
 
+func BeginAiming():
+	_spineIK.start()
+
+func StopAiming():
+	_spineIK.stop()
+	_skeleton.clear_bones_global_pose_override()	
+
 func _rotate_player_process(lookAccel: float, delta: float):
 	if(get_tree().is_network_server()):
 		if(_networkId != 1 and _rotateWithPlayer):
 			var networkInputs = InputManager._getInputs(_networkId)
-#			var direction = Vector3(1,0,1).rotated(Vector3.UP, deg2rad(networkInputs["cameraY"]))
 			rotation.y = lerp_angle(rotation.y, deg2rad(networkInputs["cameraY"]), lookAccel * delta)
 
 	if(localCamera != null):
 		localCamera.translation = translation
 		localCamera.rotation_degrees.y = localCamera._nextCameraY
 		if(_rotateWithPlayer):
-#			var direction = Vector3(1,0,1).rotated(Vector3.UP, localCamera.rotation.y)
 			rotation.y = lerp_angle(rotation.y, localCamera.rotation.y, lookAccel * delta)
 
 func _set_rotation_to_camera():
@@ -108,9 +107,3 @@ func _get_rotated_input_heading():
 			Vector3.UP, 
 			rotation.y)
 		return direction
-
-func _enableWeaponHitbox():
-	_weaponHitbox.monitoring = true
-
-func _disableWeaponHitbox():
-	_weaponHitbox.monitoring = false

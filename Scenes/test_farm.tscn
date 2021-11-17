@@ -112,7 +112,7 @@ light_energy = 0.1
 [node name="Spawner" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.4824, 2.71389, 0 )
 script = ExtResource( 1 )
-spawn_time_ms = 1000.0
+spawn_time_ms = 250.0
 initial_delay_ms = 2000.0
-total_limit = 0
+total_limit = 100
 spawn_type_path = "res://Scenes/Enemy/Orc/Orc.tscn"

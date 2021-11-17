@@ -1,13 +1,15 @@
 class_name PlayerCamera
 extends Spatial
 
-const _minLookAngleX = -45.0
-const _maxLookAngleX = 0.0
+var Min_LookAngle_X = -45.0
+var Max_LookAngle_X = 0.0
 const _lookSensitivity = 10.0
 const _cameraReturnSensitivity = 500.0
 
 var _nextCameraY = 0.0
 var _mouseDelta = Vector2()
+
+onready var SpineIK_Target : Position3D = $SpineIK_Target
 
 # Rotate the local camera on the server / each clients
 func _physics_process(delta):
@@ -17,12 +19,13 @@ func _physics_process(delta):
 func _rotateCamera(mouseDelta, delta):
 	# rotate the camera along the x axis
 	rotation_degrees.x += mouseDelta.y * _lookSensitivity * delta
+#	SpineIK_Target.rotation_degrees.x += mouseDelta.y * _lookSensitivity * delta
 	
 	# clamp camera x rotation axis
 	rotation_degrees.x = clamp(
 		rotation_degrees.x, 
-		_minLookAngleX, 
-		_maxLookAngleX)
+		Min_LookAngle_X, 
+		Max_LookAngle_X)
 	
 	# rotate the camera along the y-axis
 	var change = (mouseDelta.x * 1.5) * _lookSensitivity * delta

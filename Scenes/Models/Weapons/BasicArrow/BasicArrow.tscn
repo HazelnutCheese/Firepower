@@ -25,8 +25,11 @@ extents = Vector3( 0.0642393, 0.703124, 0.174787 )
 radius = 0.0536072
 height = 1.53432
 
-[node name="BasicArrow" type="KinematicBody"]
-collision_layer = 4
+[node name="BasicArrow" type="KinematicBody" groups=[
+"Friendly",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.650283 )
+collision_layer = 0
 collision_mask = 4
 script = ExtResource( 1 )
 

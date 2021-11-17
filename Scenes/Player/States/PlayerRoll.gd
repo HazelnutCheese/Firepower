@@ -17,11 +17,11 @@ func physics_update(delta: float) -> void:
 			delta)
 		
 		var animPerc = player._animationTree._get_currentAnim_percentage("To_Roll")
-		if(player._animationTree.get("parameters/To_Roll/active") and animPerc < 0.5):
+		if(player._animationTree.get("parameters/To_Roll/active") and animPerc < 0.35):
 			return
 			
 		if(networkInputs["inGame_Attack1"]):
-			state_machine.transition_to_sub("Light_1H_Sword_Roll")
+			state_machine.transition_to_any("Bow_Light_03")
 			
 		if(player._animationTree.get("parameters/To_Roll/active") and animPerc < 1):
 			return
